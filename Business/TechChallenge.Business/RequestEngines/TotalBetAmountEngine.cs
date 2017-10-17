@@ -22,7 +22,6 @@ namespace TechChallenge.Business.RequestEngines
             this.betsRepository = betsRepository;
         }
 
-
         public async Task<TotalBetAmountResponse> GetAsync(TotalBetAmountRequest request)
         {
             var bets = await EntityFactory.GetBets(betsRepository);

@@ -45,8 +45,6 @@ namespace TechChallenge.Business.RequestEngines
             return new RiskCustomerResponse(riskCustomers);
         }
 
-    
-
         private static List<Bet> GetCustomerBets(int customerId, IEnumerable<Bet> bets)
         {
             return bets

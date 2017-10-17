@@ -28,8 +28,6 @@ namespace TechChallenge.Business.RequestEngines
         {
             var races = await EntityFactory.GetRaces(racesRepository);
             var bets = await EntityFactory.GetBets(betsRepository);
-            //races = races.ToList();
-            //bets = bets.ToList();
             var response = races
                 .Select(r => new RaceStat
                 {
@@ -84,7 +82,6 @@ namespace TechChallenge.Business.RequestEngines
         {
             racesRepository?.Dispose();
             betsRepository?.Dispose();
-
         }
     }
 }
