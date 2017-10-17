@@ -1,0 +1,33 @@
+{
+   "CustomerBets": [
+      {
+         "customerId": 4,
+         "totalstake": 600
+      },
+      {
+         "customerId": 3,
+         "totalstake": 650
+      },
+      {
+         "customerId": 1,
+         "totalstake": 700
+      },
+      {
+         "customerId": 2,
+         "totalstake": 750
+      },
+      {
+         "customerId": 5,
+         "totalstake": 1120
+      },
+      {
+         "customerId": 6,
+         "totalstake": 1120
+      },
+      {
+         "customerId": 7,
+         "totalstake": 1120
+      }
+   ]
+}
+

@@ -1,0 +1,176 @@
+[
+   {
+      "customerId": 1,
+      "raceId": 1,
+      "horseId": 11,
+      "stake": 100
+   },
+   {
+      "customerId": 1,
+      "raceId": 2,
+      "horseId": 21,
+      "stake": 150
+   },
+   {
+      "customerId": 1,
+      "raceId": 3,
+      "horseId": 32,
+      "stake": 200
+   },
+   {
+      "customerId": 1,
+      "raceId": 4,
+      "horseId": 42,
+      "stake": 250
+   },
+   {
+      "customerId": 2,
+      "raceId": 5,
+      "horseId": 55,
+      "stake": 300
+   },
+   {
+      "customerId": 2,
+      "raceId": 1,
+      "horseId": 12,
+      "stake": 100
+   },
+   {
+      "customerId": 2,
+      "raceId": 2,
+      "horseId": 22,
+      "stake": 150
+   },
+   {
+      "customerId": 2,
+      "raceId": 3,
+      "horseId": 31,
+      "stake": 200
+   },
+   {
+      "customerId": 3,
+      "raceId": 4,
+      "horseId": 43,
+      "stake": 250
+   },
+   {
+      "customerId": 3,
+      "raceId": 5,
+      "horseId": 53,
+      "stake": 300
+   },
+   {
+      "customerId": 3,
+      "raceId": 1,
+      "horseId": 13,
+      "stake": 100
+   },
+   {
+      "customerId": 4,
+      "raceId": 2,
+      "horseId": 21,
+      "stake": 150
+   },
+   {
+      "customerId": 4,
+      "raceId": 3,
+      "horseId": 31,
+      "stake": 200
+   },
+   {
+      "customerId": 4,
+      "raceId": 4,
+      "horseId": 43,
+      "stake": 250
+   },
+   {
+      "customerId": 5,
+      "raceId": 5,
+      "horseId": 54,
+      "stake": 300
+   },
+   {
+      "customerId": 5,
+      "raceId": 5,
+      "horseId": 54,
+      "stake": 70
+   },
+   {
+      "customerId": 5,
+      "raceId": 1,
+      "horseId": 12,
+      "stake": 300
+   },
+   {
+      "customerId": 5,
+      "raceId": 3,
+      "horseId": 33,
+      "stake": 150
+   },
+   {
+      "customerId": 5,
+      "raceId": 5,
+      "horseId": 51,
+      "stake": 300
+   },
+   {
+      "customerId": 6,
+      "raceId": 5,
+      "horseId": 55,
+      "stake": 300
+   },
+   {
+      "customerId": 6,
+      "raceId": 5,
+      "horseId": 54,
+      "stake": 70
+   },
+   {
+      "customerId": 6,
+      "raceId": 1,
+      "horseId": 11,
+      "stake": 300
+   },
+   {
+      "customerId": 6,
+      "raceId": 3,
+      "horseId": 22,
+      "stake": 150
+   },
+   {
+      "customerId": 6,
+      "raceId": 5,
+      "horseId": 33,
+      "stake": 300
+   },
+   {
+      "customerId": 7,
+      "raceId": 1,
+      "horseId": 12,
+      "stake": 300
+   },
+   {
+      "customerId": 7,
+      "raceId": 2,
+      "horseId": 22,
+      "stake": 70
+   },
+   {
+      "customerId": 7,
+      "raceId": 3,
+      "horseId": 32,
+      "stake": 300
+   },
+   {
+      "customerId": 7,
+      "raceId": 4,
+      "horseId": 42,
+      "stake": 150
+   },
+   {
+      "customerId": 7,
+      "raceId": 6,
+      "horseId": 62,
+      "stake": 300
+   }
+]

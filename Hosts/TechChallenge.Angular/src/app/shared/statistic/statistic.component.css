@@ -1,0 +1,61 @@
+.statistic {
+    margin: 1em;
+    min-width: 200px;
+    color: white;
+    text-align: center;
+    font-family: "Roboto";
+  }
+  
+  .icon {
+    font-size: 70px;
+    margin: 0px;
+    padding: 5px;
+    background:rgba(0,0,0,.1);
+  }
+  
+  .data {
+    padding: 1em;
+    vertical-align: middle;
+  }
+  
+  .value {
+  font-size: 40px;
+  }
+  
+  .label {
+    text-transform: uppercase;
+  }
+  
+  .horse-row{
+    border-bottom: 1px solid #d9d9d9;
+  }
+  .horse-name{
+    color:#005EB8;
+    font-size: large;
+    font-weight: bolder;
+    margin-bottom: 6px;
+  }
+  .horse-bet-container{
+    text-align: center;
+    border-left: solid 1px #E2E2E2;
+    display: table-cell;
+    vertical-align: center;
+    padding-bottom: 16px;
+    padding-left: 16px;
+  }  
+  .horse-bet{
+    color: #333;
+    text-align: center;
+  }
+  .horse-win-price{
+    color: #FF7802;
+    font-weight: bolder;
+    padding-top: 6px;
+}
+.prize-label{
+  color:#009DD9;; 
+  font-size: small;  
+  font-family: "Roboto";  
+}
+
+  
