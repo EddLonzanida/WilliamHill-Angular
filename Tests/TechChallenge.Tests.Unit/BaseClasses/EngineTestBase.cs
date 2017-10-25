@@ -9,7 +9,6 @@ using TechChallenge.Business.Common.Entities;
 
 namespace TechChallenge.Tests.Unit.BaseClasses
 {
-    
     public abstract class EngineTestBase< T1, T2> : IDisposable
         where T1 : IRequestAsync<T1, T2> where T2 : IResponse
     {

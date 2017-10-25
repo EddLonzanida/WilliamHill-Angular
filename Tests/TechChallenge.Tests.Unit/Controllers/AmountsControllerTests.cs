@@ -22,7 +22,6 @@ namespace TechChallenge.Tests.Unit.Controllers
                 Request = new HttpRequestMessage(),
                 Configuration = new HttpConfiguration()
             };
-
         }
 
         [Fact]

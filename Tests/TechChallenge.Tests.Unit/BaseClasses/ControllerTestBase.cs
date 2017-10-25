@@ -8,7 +8,6 @@ using TechChallenge.Business.Responses;
 
 namespace TechChallenge.Tests.Unit.BaseClasses
 {
-
     public abstract class ControllerTestBase<T> : IDisposable
         where T : ApiController
     {

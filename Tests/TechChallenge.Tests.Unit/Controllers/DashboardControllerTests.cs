@@ -12,7 +12,6 @@ using Xunit;
 
 namespace TechChallenge.Tests.Unit.Controllers
 {
-
     public class DashboardControllerTests : ControllerTestBase<DashboardController>
     {
         public DashboardControllerTests()
