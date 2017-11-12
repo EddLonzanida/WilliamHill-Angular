@@ -38,7 +38,7 @@ namespace TechChallenge.ApiHost.Api.Customers
         [Route("{Id}/Bets")]
         [HttpGet]
         [ResponseType(typeof(TotalBetCountResponse))]
-        public async Task<HttpResponseMessage> Bets(int Id)
+        public async Task<HttpResponseMessage> GetBets(int Id)
         {
             var request = new TotalBetCountRequest(Id);
             var response = await mediator.GetAsync(request);
@@ -49,7 +49,7 @@ namespace TechChallenge.ApiHost.Api.Customers
         [Route("Risks")]
         [HttpGet]
         [ResponseType(typeof(IList<RiskCustomerResponse>))]
-        public async Task<HttpResponseMessage> Risks()
+        public async Task<HttpResponseMessage> GetRisks()
         {
             var request = new RiskCustomerRequest();
             var response = await mediator.GetAsync(request);

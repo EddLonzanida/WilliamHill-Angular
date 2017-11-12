@@ -29,7 +29,7 @@ namespace TechChallenge.Tests.Unit.Controllers
         {
             mediator.GetAsync(Arg.Any<TotalBetAmountRequest>()).Returns(totalBetAmountResponseStub);
 
-            var response = await controller.Total();
+            var response = await controller.GetTotal();
 
             await mediator.Received().GetAsync(Arg.Any<TotalBetAmountRequest>());
             response.TryGetContentValue<double>(out double grandTotal);

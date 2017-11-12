@@ -39,7 +39,7 @@ namespace TechChallenge.Tests.Unit.Controllers
         {
             mediator.GetAsync(Arg.Any<TotalBetCountRequest>()).Returns(new TotalBetCountResponse(new List<CustomerBetCount>()));
 
-            var response = await controller.Bets(1);
+            var response = await controller.GetBets(1);
 
             await mediator.Received().GetAsync(Arg.Any<TotalBetCountRequest>());
         }
@@ -49,7 +49,7 @@ namespace TechChallenge.Tests.Unit.Controllers
         {
             mediator.GetAsync(Arg.Any<RiskCustomerRequest>()).Returns(new RiskCustomerResponse(new List<RiskCustomer>()));
 
-            var response = await controller.Risks();
+            var response = await controller.GetRisks();
 
             await mediator.Received().GetAsync(Arg.Any<RiskCustomerRequest>());
         }

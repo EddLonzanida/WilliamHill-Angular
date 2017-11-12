@@ -30,7 +30,7 @@ namespace TechChallenge.ApiHost.Api.Amounts
         [HttpGet]
         [ResponseType(typeof(double))]
         [Route("Total")]
-        public async Task<HttpResponseMessage> Total()
+        public async Task<HttpResponseMessage> GetTotal()
         {
             var request = new TotalBetAmountRequest();
             var response = await mediator.GetAsync(request);
