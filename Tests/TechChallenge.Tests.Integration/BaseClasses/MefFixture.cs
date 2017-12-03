@@ -13,12 +13,12 @@ namespace TechChallenge.Tests.Integration.BaseClasses
         public MefFixture()
         {
             Bootstrapper.Init(AppDomain.CurrentDomain.BaseDirectory, new[] { "TechChallenge*.dll" });
-            Factory = ClassFactory.MefContainer.GetExportedValue<IClassFactory>();
+            Factory = ClassFactory.Get();
         }
 
         public void Dispose()
         {
-            Factory.Container?.Dispose();
+            ClassFactory.Dispose();
         }
     }
 

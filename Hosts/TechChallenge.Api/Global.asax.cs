@@ -28,7 +28,10 @@ namespace TechChallenge.ApiHost
 
                 var rootFolder = System.Web.Hosting.HostingEnvironment.MapPath(@"~\bin");
                 Bootstrapper.Init(rootFolder, new[] { "TechChallenge*.dll" });
-                _logger = ClassFactory.MefContainer.GetExportedValue<Eml.Logger.ILogger>();
+
+                var classFactory = ClassFactory.Get();
+                _logger = classFactory.GetExport<Eml.Logger.ILogger>();
+
                 config.DependencyResolver = new MefDependencyResolver(ClassFactory.MefContainer); // web api controllers
                 GlobalConfiguration.Configure(WebApiConfig.Register);
 
