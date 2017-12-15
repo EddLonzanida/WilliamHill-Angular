@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Helpers;
 using TechChallenge.Business.Requests;
 using TechChallenge.Business.Responses;
 using Eml.Contracts.Repositories;
+using TechChallenge.Business.Common.Helpers;
 
 namespace TechChallenge.Business.RequestEngines
 {
     public class RaceStatEngine : IRequestAsyncEngine<RaceStatRequest, RaceStatResponse>
     {
         private readonly IDataRepositorySoftDeleteInt<Race> racesRepository;
+      
         private readonly IDataRepositorySoftDeleteInt<Bet> betsRepository;
 
         [ImportingConstructor]
@@ -28,6 +29,7 @@ namespace TechChallenge.Business.RequestEngines
         {
             var races = await EntityFactory.GetRaces(racesRepository);
             var bets = await EntityFactory.GetBets(betsRepository);
+
             var response = races
                 .Select(r => new RaceStat
                 {
@@ -53,8 +55,8 @@ namespace TechChallenge.Business.RequestEngines
                     .ToList()
                 })
                 .OrderBy(r => r.Start)
-                .ThenBy(r => r.Name)
-                ;
+                .ThenBy(r => r.Name);
+
             return new RaceStatResponse(response);
         }
 

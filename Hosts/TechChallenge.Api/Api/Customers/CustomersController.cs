@@ -28,20 +28,22 @@ namespace TechChallenge.ApiHost.Api.Customers
 
         [Route("")]
         [ResponseType(typeof(CustomerResponse))]
-        public async Task<HttpResponseMessage> Get()
+        public async Task<HttpResponseMessage> Get(int pageNumber = 1)
         {
-            var request = new CustomerRequest();
+            var request = new CustomerRequest(pageNumber);
             var response = await mediator.GetAsync(request);
+
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
         [Route("{Id}/Bets")]
         [HttpGet]
         [ResponseType(typeof(TotalBetCountResponse))]
-        public async Task<HttpResponseMessage> GetBets(int Id)
+        public async Task<HttpResponseMessage> GetBets(int Id, int pageNumber = 1)
         {
-            var request = new TotalBetCountRequest(Id);
+            var request = new TotalBetCountRequest(Id, pageNumber);
             var response = await mediator.GetAsync(request);
+
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 
@@ -49,10 +51,11 @@ namespace TechChallenge.ApiHost.Api.Customers
         [Route("Risks")]
         [HttpGet]
         [ResponseType(typeof(IList<RiskCustomerResponse>))]
-        public async Task<HttpResponseMessage> GetRisks()
+        public async Task<HttpResponseMessage> GetRisks(int pageNumber = 1)
         {
-            var request = new RiskCustomerRequest();
+            var request = new RiskCustomerRequest(pageNumber);
             var response = await mediator.GetAsync(request);
+
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 

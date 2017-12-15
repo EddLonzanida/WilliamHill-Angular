@@ -6,7 +6,6 @@ using TechChallenge.ApiHost;
 using TechChallenge;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
-
 namespace TechChallenge
 {
     public class SwaggerConfig
@@ -14,6 +13,7 @@ namespace TechChallenge
         public static void Register()
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
+
             try
             {
                 GlobalConfiguration.Configuration

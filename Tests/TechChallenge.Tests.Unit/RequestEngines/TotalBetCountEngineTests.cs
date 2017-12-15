@@ -24,9 +24,9 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         {
             List<Bet> nullBetData = null;
             betRepository.GetAsync().Returns(nullBetData);
-            var request = new TotalBetCountRequest(0);
+            var request = new TotalBetCountRequest(0, 1);
 
-            var response = await engine.GetAsync(request);
+            await engine.GetAsync(request);
 
             await betRepository.Received(1).GetAsync();
         }
@@ -35,7 +35,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldReturnCustomerBetCount()
         {
             betRepository.GetAsync().Returns(betStub);
-            var request = new TotalBetCountRequest(0);
+            var request = new TotalBetCountRequest(0, 1);
 
             var response = await engine.GetAsync(request);
 
@@ -60,7 +60,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldReturnSingleCustomerBetCount()
         {
             betRepository.GetAsync().Returns(betStub);
-            var request = new TotalBetCountRequest(1);
+            var request = new TotalBetCountRequest(1, 1);
 
             var response = await engine.GetAsync(request);
 

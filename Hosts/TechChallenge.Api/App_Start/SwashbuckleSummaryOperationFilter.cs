@@ -9,6 +9,7 @@ namespace TechChallenge.ApiHost
         public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
         {
             var header = operation.operationId.Split('_');
+
             if (header.Length > 1)
             {
                 //get underscore separated header 
@@ -20,6 +21,7 @@ namespace TechChallenge.ApiHost
             if (operation.parameters == null) return;
 
             var parameters = operation.parameters.Select(p => p.name);
+
             operation.summary = $"{operation.summary}({string.Join(", ", parameters)})";
         }
     }

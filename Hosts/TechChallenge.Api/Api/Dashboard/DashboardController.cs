@@ -28,10 +28,11 @@ namespace TechChallenge.ApiHost.Api.Dashboard
 
         [Route("")]
         [ResponseType(typeof(RaceStatResponse))]
-        public async Task<HttpResponseMessage> Get()
+        public async Task<HttpResponseMessage> Get(int pageNumber = 1)
         {
-            var request = new RaceStatRequest();
+            var request = new RaceStatRequest(pageNumber);
             var response = await mediator.GetAsync(request);
+
             return Request.CreateResponse(HttpStatusCode.OK, response);
         }
 

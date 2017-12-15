@@ -49,17 +49,20 @@
     <Reference Include="Eml.ConfigParser, Version=2.0.0.19, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.ConfigParser.2.0.0.19\lib\net462\Eml.ConfigParser.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Contracts.2.0.1.28\lib\net462\Eml.Contracts.dll</HintPath>
+    <Reference Include="Eml.Contracts, Version=2.0.1.30, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Contracts.2.0.1.30\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.DataRepository, Version=2.0.0.55, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.DataRepository.2.0.0.55\lib\net462\Eml.DataRepository.dll</HintPath>
+    <Reference Include="Eml.DataRepository, Version=2.0.0.120, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.DataRepository.2.0.0.120\lib\net462\Eml.DataRepository.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Mediator, Version=2.0.0.22, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Mediator.2.0.0.22\lib\net462\Eml.Mediator.dll</HintPath>
+    <Reference Include="Eml.ExplicitDispose.Api, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.ExplicitDispose.Api.2.0.0.1\lib\net462\Eml.ExplicitDispose.Api.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.MefBootstrapper, Version=2.0.1.39, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.MefBootstrapper.2.0.1.39\lib\net462\Eml.MefBootstrapper.dll</HintPath>
+    <Reference Include="Eml.Mediator, Version=2.0.0.23, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Mediator.2.0.0.23\lib\net462\Eml.Mediator.dll</HintPath>
+    </Reference>
+    <Reference Include="Eml.MefBootstrapper, Version=2.0.1.43, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.MefBootstrapper.2.0.1.43\lib\net462\Eml.MefBootstrapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -117,6 +120,10 @@
       <HintPath>..\..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
     </Reference>
@@ -156,6 +163,9 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.4.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
     </Reference>
@@ -178,7 +188,15 @@
   <ItemGroup>
     <Compile Include="BaseClasses\IntegrationTestBase.cs" />
     <Compile Include="BaseClasses\MefFixture.cs" />
-    <Compile Include="Repositories\WhenDiContainer.cs" />
+    <Compile Include="Controllers\WhenDiContainer.cs" />
+    <Compile Include="Migrations\IntegrationTestConfiguration.cs" />
+    <Compile Include="Migrations\IntegrationTestDbMigrator.cs" />
+    <Compile Include="DataRepositories\WhenDiContainer.cs" />
+    <Compile Include="RequestEngines\CustomerEngineTests.cs" />
+    <Compile Include="RequestEngines\RaceStatEngineTests.cs" />
+    <Compile Include="RequestEngines\RiskCustomerEngineTests.cs" />
+    <Compile Include="RequestEngines\TotalBetAmountEngineTests.cs" />
+    <Compile Include="RequestEngines\TotalBetCountEngineTests.cs" />
     <Compile Include="RequestEngines\WhenDiContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -200,6 +218,10 @@
     <ProjectReference Include="..\..\Data\TechChallenge.Data\TechChallenge.Data.csproj">
       <Project>{d126f5c7-6ed4-46f6-b397-46fcd283624f}</Project>
       <Name>TechChallenge.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Hosts\TechChallenge.Api\TechChallenge.ApiHost.csproj">
+      <Project>{1c6c8d13-7962-4d5a-9b4f-5285f324ff0b}</Project>
+      <Name>TechChallenge.ApiHost</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\TechChallenge.Contracts\TechChallenge.Contracts.csproj">
       <Project>{8720b43f-45ab-4527-a6a0-058443d63284}</Project>

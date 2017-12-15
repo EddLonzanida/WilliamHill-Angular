@@ -9,14 +9,11 @@ namespace TechChallenge.Tests.Integration.RequestEngines
 {
     public class WhenDiContainer : IntegrationTestBase
     {
-        public WhenDiContainer(MefFixture fixture) : base(fixture)
-        {
-        }
-
         [Fact]
         public void CustomerEngine_ShouldBeDiscoverable()
         {
             var exported = classFactory.GetExport<IRequestAsyncEngine<CustomerRequest, CustomerResponse>>();
+           
             exported.ShouldNotBeNull();
         }
 
@@ -24,6 +21,7 @@ namespace TechChallenge.Tests.Integration.RequestEngines
         public void RaceStatEngine_ShouldBeDiscoverable()
         {
             var exported = classFactory.GetExport<IRequestAsyncEngine<RaceStatRequest, RaceStatResponse>>();
+           
             exported.ShouldNotBeNull();
         }
 
@@ -31,6 +29,7 @@ namespace TechChallenge.Tests.Integration.RequestEngines
         public void RiskCustomerEngine_ShouldBeDiscoverable()
         {
             var exported = classFactory.GetExport<IRequestAsyncEngine<RiskCustomerRequest, RiskCustomerResponse>>();
+          
             exported.ShouldNotBeNull();
         }
 
@@ -38,6 +37,7 @@ namespace TechChallenge.Tests.Integration.RequestEngines
         public void TotalBetAmountEngine_ShouldBeDiscoverable()
         {
             var exported = classFactory.GetExport<IRequestAsyncEngine<TotalBetAmountRequest, TotalBetAmountResponse>>();
+            
             exported.ShouldNotBeNull();
         }
 
@@ -45,6 +45,7 @@ namespace TechChallenge.Tests.Integration.RequestEngines
         public void TotalBetCountEngine_ShouldBeDiscoverable()
         {
             var exported = classFactory.GetExport<IRequestAsyncEngine<TotalBetCountRequest, TotalBetCountResponse>>();
+           
             exported.ShouldNotBeNull();
         }
     }

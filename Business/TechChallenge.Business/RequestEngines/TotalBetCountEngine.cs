@@ -6,7 +6,7 @@ using Eml.Contracts.Repositories;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Helpers;
+using TechChallenge.Business.Common.Helpers;
 using TechChallenge.Business.Requests;
 using TechChallenge.Business.Responses;
 
@@ -44,6 +44,7 @@ namespace TechChallenge.Business.RequestEngines
                     .Where(r => r.Id == request.CustomerId);
                 return new TotalBetCountResponse(filteredCustomers);
             }
+
             return new TotalBetCountResponse(betCounts);
         }
 

@@ -27,7 +27,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
 
             var request = new TotalBetAmountRequest();
 
-            var response = await engine.GetAsync(request);
+            await engine.GetAsync(request);
 
             await betRepository.Received(1).GetAsync();
         }

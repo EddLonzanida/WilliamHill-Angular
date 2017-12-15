@@ -21,6 +21,7 @@ namespace TechChallenge.ApiHost
 
             var logger = LogManager.GetCurrentClassLogger();
             logger.Info("Application starting");
+
             try
             {
                 var config = GlobalConfiguration.Configuration;
@@ -47,10 +48,11 @@ namespace TechChallenge.ApiHost
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            const string msg = "An unhandled exception occurred";
             var exception = Server.GetLastError();
+
             if (exception == null) return;
 
-            const string msg = "An unhandled exception occurred";
             if (_logger == null)
             {
                 var logger = LogManager.GetCurrentClassLogger();
@@ -62,6 +64,7 @@ namespace TechChallenge.ApiHost
         protected void Application_End()
         {
             const string msg = "Application stopping";
+
             if (_logger == null)
             {
                 var logger = LogManager.GetCurrentClassLogger();
@@ -73,6 +76,7 @@ namespace TechChallenge.ApiHost
         private readonly EventHandler<ErrorEventArgs> _serializationErrorHandler = (sender, args) =>
         {
             var isHandled = args.ErrorContext.Error.Message.Contains("on 'System.Data.Entity.DynamicProxies.");
+
             if (isHandled) args.ErrorContext.Handled = true;
         };
     }

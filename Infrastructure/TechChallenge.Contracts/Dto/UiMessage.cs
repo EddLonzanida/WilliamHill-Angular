@@ -60,6 +60,7 @@ namespace TechChallenge.Contracts.Dto
         {
             var messages = _messages.ConvertAll(r => r.Replace(Environment.NewLine, "<br>"));
             var message = string.Join("<br>", messages.ToArray());
+
             return message;
         }
 
@@ -70,6 +71,7 @@ namespace TechChallenge.Contracts.Dto
         public string GetMessages()
         {
             const string pairsOfHtmlTags = @"<.*?>|</.*?>";
+
             var regex = new Regex(pairsOfHtmlTags, RegexOptions.IgnoreCase);
             var messages = _messages.ConvertAll(r => regex.Replace(r, string.Empty));
 
@@ -82,7 +84,9 @@ namespace TechChallenge.Contracts.Dto
             {
                 messages = messages.ConvertAll(r => r.Replace(tag.Key, tag.Value));
             });
+
             var message = string.Join(Environment.NewLine, messages.ToArray());
+
             return message;
         }
 

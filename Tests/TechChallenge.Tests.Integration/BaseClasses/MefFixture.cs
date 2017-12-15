@@ -1,29 +1,50 @@
 ﻿using System;
-using Eml.ClassFactory.Contracts;
+using Eml.DataRepository.Attributes;
+using Eml.DataRepository.Extensions;
 using Eml.Mef;
 using Xunit;
+using Xunit.Sdk;
 
 namespace TechChallenge.Tests.Integration.BaseClasses
 {
-    public class MefFixture : IDisposable
+    public sealed class MefFixture : IDisposable
     {
-        public const string CLASS_FIXTURE = "ClassFactory CollectionDefinition";
+        public const string COLLECTION_DEFINITION = "MefFixture CollectionDefinition";
 
-        public IClassFactory Factory { get; }
+        private readonly IMigrator dbMigration;
+
         public MefFixture()
         {
-            Bootstrapper.Init(AppDomain.CurrentDomain.BaseDirectory, new[] { "TechChallenge*.dll" });
-            Factory = ClassFactory.Get();
+            Console.WriteLine("Bootstrapper.Init()..");
+
+            Bootstrapper.Init("TechChallenge*.dll");
+            var classFactory = ClassFactory.Get();
+
+            dbMigration = classFactory.GetMigrator(Environments.INTEGRATIONTEST);
+            if (dbMigration == null)
+            {
+                throw new NullException("dbMigration not found..");
+            }
+
+            Console.WriteLine("DestroyDb if any..");
+            dbMigration.DestroyDb();
+
+            Console.WriteLine("CreateDb..");
+            dbMigration.CreateDb();
         }
 
         public void Dispose()
         {
+            Console.WriteLine("DisposeDatabase..");
+
+            dbMigration.DestroyDb();
+
             ClassFactory.Dispose();
         }
     }
 
 
-    [CollectionDefinition(MefFixture.CLASS_FIXTURE)]
+    [CollectionDefinition(MefFixture.COLLECTION_DEFINITION)]
     public class ClassFactoryFixtureCollectionDefinition : ICollectionFixture<MefFixture>
     {
         // This class has no code, and is never created. Its purpose is simply

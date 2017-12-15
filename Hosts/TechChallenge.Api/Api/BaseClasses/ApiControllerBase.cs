@@ -17,6 +17,7 @@ namespace TechChallenge.ApiHost.Api.BaseClasses
         protected void ValidateAuthorizedUser(string userRequested)
         {
             var userLoggedIn = User.Identity.Name;
+
             if (userLoggedIn != userRequested)
                 throw new SecurityException("Attempting to access data for another user.");
         }

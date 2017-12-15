@@ -27,6 +27,16 @@ namespace TechChallenge.ApiHost.Api.Amounts
             this.mediator = mediator;
         }
 
+        [Route("")]
+        [ResponseType(typeof(TotalBetAmountResponse))]
+        public async Task<HttpResponseMessage> Get()
+        {
+            var request = new TotalBetAmountRequest();
+            var response = await mediator.GetAsync(request);
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+        }
+
         [HttpGet]
         [ResponseType(typeof(double))]
         [Route("Total")]
@@ -35,16 +45,8 @@ namespace TechChallenge.ApiHost.Api.Amounts
             var request = new TotalBetAmountRequest();
             var response = await mediator.GetAsync(request);
             var grandTotal = response.CustomerBets.Sum(r => r.Totalstake);
-            return Request.CreateResponse(HttpStatusCode.OK, grandTotal);
-        }
 
-        [Route("")]
-        [ResponseType(typeof(TotalBetAmountResponse))]
-        public async Task<HttpResponseMessage> Get()
-        {
-            var request = new TotalBetAmountRequest();
-            var response = await mediator.GetAsync(request);
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            return Request.CreateResponse(HttpStatusCode.OK, grandTotal);
         }
 
         protected override void RegisterIDisposable(List<IDisposable> disposables)

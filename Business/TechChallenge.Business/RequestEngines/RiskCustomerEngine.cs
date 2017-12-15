@@ -5,17 +5,19 @@ using System.Threading.Tasks;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Helpers;
 using TechChallenge.Business.Requests;
 using TechChallenge.Business.Responses;
 using Eml.Contracts.Repositories;
+using TechChallenge.Business.Common.Helpers;
 
 namespace TechChallenge.Business.RequestEngines
 {
     public class RiskCustomerEngine : IRequestAsyncEngine<RiskCustomerRequest, RiskCustomerResponse>
     {
         private const double RISKY_AMOUNT = 200;
+
         private readonly IDataRepositorySoftDeleteInt<Customer> customersRepository;
+
         private readonly IDataRepositorySoftDeleteInt<Bet> betsRepository;
 
         [ImportingConstructor]
@@ -42,6 +44,7 @@ namespace TechChallenge.Business.RequestEngines
                 })
                 .Where(r => r.Bets.Any())
                 .OrderBy(r => r.Name);
+
             return new RiskCustomerResponse(riskCustomers);
         }
 

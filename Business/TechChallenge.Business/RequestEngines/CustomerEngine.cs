@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
 using System.Threading.Tasks;
 using Eml.Contracts.Repositories;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Helpers;
+using TechChallenge.Business.Common.Helpers;
 using TechChallenge.Business.Requests;
 using TechChallenge.Business.Responses;
 
@@ -25,11 +24,7 @@ namespace TechChallenge.Business.RequestEngines
         {
             var customers = await EntityFactory.GetCustomers(repository);
 
-            if (customers == null) return new CustomerResponse(new List<Customer>());
-            var response = customers
-                .OrderBy(r => r.Name)
-                .ThenBy(r => r.Id);
-            return new CustomerResponse(response);
+            return customers == null ? new CustomerResponse(new List<Customer>()) : new CustomerResponse(customers);
         }
 
         public void Dispose()

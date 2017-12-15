@@ -2,6 +2,6 @@
 {
     public static class ConnectionStrings
     {
-        public const string TechChallengeKey = "TechChallengeConnectionString";
+        public const string TechChallengeKey = "MainDbConnectionString";
     }
 }

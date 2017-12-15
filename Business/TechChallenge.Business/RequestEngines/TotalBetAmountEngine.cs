@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
-using TechChallenge.Business.Helpers;
 using TechChallenge.Business.Requests;
 using TechChallenge.Business.Responses;
 using Eml.Contracts.Repositories;
 using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Helpers;
 
 namespace TechChallenge.Business.RequestEngines
 {
@@ -37,6 +37,7 @@ namespace TechChallenge.Business.RequestEngines
                 })
                 .OrderBy(r => r.Totalstake)
                 .ThenBy(r => r.Id);
+
             return new TotalBetAmountResponse(betAmounts);
         }
 

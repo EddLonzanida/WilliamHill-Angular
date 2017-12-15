@@ -25,9 +25,9 @@ namespace TechChallenge.Tests.Unit.RequestEngines
             List<Bet> nullBetData = null;
             betRepository.GetAsync().Returns(nullBetData);
 
-            var request = new RiskCustomerRequest();
+            var request = new RiskCustomerRequest(1);
 
-            var response = await engine.GetAsync(request);
+            await engine.GetAsync(request);
 
             await betRepository.Received(1).GetAsync();
         }
@@ -37,7 +37,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         {
             betRepository.GetAsync().Returns(betStub);
             customerRepository.GetAsync().Returns(customerStub);
-            var request = new RiskCustomerRequest();
+            var request = new RiskCustomerRequest(1);
 
             var response = await engine.GetAsync(request);
 

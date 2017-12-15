@@ -7,6 +7,7 @@ namespace TechChallenge.Business.Responses
     public class CustomerResponse : IResponse
     {
         public IEnumerable<Customer> Customers { get; }
+
         public CustomerResponse(IEnumerable<Customer> customers)
         {
             Customers = customers;
