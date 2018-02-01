@@ -38,8 +38,8 @@
     <Reference Include="Eml.ConfigParser, Version=2.0.0.19, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.ConfigParser.2.0.0.19\lib\net462\Eml.ConfigParser.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Contracts, Version=2.0.1.30, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Contracts.2.0.1.30\lib\net462\Eml.Contracts.dll</HintPath>
+    <Reference Include="Eml.Contracts, Version=2.0.1.36, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Contracts.2.0.1.36\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="Eml.Mediator, Version=2.0.0.23, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.Mediator.2.0.0.23\lib\net462\Eml.Mediator.dll</HintPath>
