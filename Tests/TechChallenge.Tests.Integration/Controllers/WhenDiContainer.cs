@@ -7,7 +7,7 @@ using Xunit;
 
 namespace TechChallenge.Tests.Integration.Controllers
 {
-    public class WhenDiContainer : IntegrationTestBase
+    public class WhenDiContainer : IntegrationTestDiBase
     {
         [Fact]
         public void AmountsController_ShouldBeDiscoverable()

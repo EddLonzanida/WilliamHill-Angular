@@ -7,7 +7,7 @@ using Xunit;
 
 namespace TechChallenge.Tests.Integration.RequestEngines
 {
-    public class CustomerEngineTests : IntegrationTestBase
+    public class CustomerEngineTests : IntegrationTestDbBase
     {
         [Fact]
         public async Task Engine_ShouldRetrieveData()

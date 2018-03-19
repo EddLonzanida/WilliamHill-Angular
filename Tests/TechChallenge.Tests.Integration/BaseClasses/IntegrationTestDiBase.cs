@@ -1,20 +1,19 @@
 ﻿using Eml.ClassFactory.Contracts;
 using Eml.Mediator.Contracts;
-using Eml.Mef;
 using Xunit;
 
 namespace TechChallenge.Tests.Integration.BaseClasses
 {
-    [Collection(MefFixture.COLLECTION_DEFINITION)]
-    public abstract class IntegrationTestBase
+    [Collection(IntegrationTestDiFixture.COLLECTION_DEFINITION)]
+    public abstract class IntegrationTestDiBase
     {
-        protected readonly IClassFactory classFactory;
-
         protected readonly IMediator mediator;
 
-        protected IntegrationTestBase()
+        protected readonly IClassFactory classFactory;
+
+        protected IntegrationTestDiBase()
         {
-            classFactory = ClassFactory.Get();
+            classFactory = IntegrationTestDiFixture.ClassFactory;
             mediator = classFactory.GetExport<IMediator>();
         }
     }

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace TechChallenge.Tests.Integration.RequestEngines
 {
-    public class TotalBetAmountEngineTests : IntegrationTestBase
+    public class TotalBetAmountEngineTests : IntegrationTestDbBase
     {
         [Fact]
         public async Task Engine_ShouldHandleNullData()

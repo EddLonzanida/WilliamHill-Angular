@@ -7,7 +7,7 @@ using Xunit;
 
 namespace TechChallenge.Tests.Integration.RequestEngines
 {
-    public class RiskCustomerEngineTests : IntegrationTestBase
+    public class RiskCustomerEngineTests : IntegrationTestDbBase
     {
         [Fact]
         public async Task Engine_ShouldHandleNullData()

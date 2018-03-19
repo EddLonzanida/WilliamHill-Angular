@@ -9,6 +9,7 @@ namespace TechChallenge.Data.Migrations.Utils
         public static void Seed(TechChallengeDb context, string relativeFolder)
         {
             var intialData = Eml.DataRepository.Seed.GetStubs<Race>("races", relativeFolder);
+
             intialData.ForEach(r =>
             {
                 context.Races.AddOrUpdate(item => item.Id, r);

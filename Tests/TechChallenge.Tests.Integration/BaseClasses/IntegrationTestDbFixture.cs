@@ -1,4 +1,5 @@
 ﻿using System;
+using Eml.ClassFactory.Contracts;
 using Eml.DataRepository.Attributes;
 using Eml.DataRepository.Extensions;
 using Eml.Mef;
@@ -7,20 +8,21 @@ using Xunit.Sdk;
 
 namespace TechChallenge.Tests.Integration.BaseClasses
 {
-    public sealed class MefFixture : IDisposable
+    public sealed class IntegrationTestDbFixture : IDisposable
     {
-        public const string COLLECTION_DEFINITION = "MefFixture CollectionDefinition";
+        public const string COLLECTION_DEFINITION = "IntegrationTestDbFixture CollectionDefinition";
 
         private readonly IMigrator dbMigration;
 
-        public MefFixture()
+        public static IClassFactory ClassFactory { get; private set; }
+
+        public IntegrationTestDbFixture()
         {
             Console.WriteLine("Bootstrapper.Init()..");
 
-            Bootstrapper.Init("TechChallenge*.dll");
-            var classFactory = ClassFactory.Get();
+            ClassFactory = Bootstrapper.Init("TechChallenge*.dll");
 
-            dbMigration = classFactory.GetMigrator(Environments.INTEGRATIONTEST);
+            dbMigration = ClassFactory.GetMigrator(Environments.INTEGRATIONTEST);
             if (dbMigration == null)
             {
                 throw new NullException("dbMigration not found..");
@@ -39,13 +41,16 @@ namespace TechChallenge.Tests.Integration.BaseClasses
 
             dbMigration.DestroyDb();
 
-            ClassFactory.Dispose();
+            var container = ClassFactory.Container;
+
+            ClassFactory = null;
+            container.Dispose();
         }
     }
 
 
-    [CollectionDefinition(MefFixture.COLLECTION_DEFINITION)]
-    public class ClassFactoryFixtureCollectionDefinition : ICollectionFixture<MefFixture>
+    [CollectionDefinition(IntegrationTestDbFixture.COLLECTION_DEFINITION)]
+    public class ClassFactoryFixtureCollectionDefinition : ICollectionFixture<IntegrationTestDbFixture>
     {
         // This class has no code, and is never created. Its purpose is simply
         // to be the place to apply [CollectionDefinition] and all the

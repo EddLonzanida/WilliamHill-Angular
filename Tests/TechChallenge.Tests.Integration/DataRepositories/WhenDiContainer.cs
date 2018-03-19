@@ -6,7 +6,7 @@ using Xunit;
 
 namespace TechChallenge.Tests.Integration.DataRepositories
 {
-    public class WhenDiContainer : IntegrationTestBase
+    public class WhenDiContainer : IntegrationTestDiBase
     {
         [Fact]
         public void RaceRepository_ShouldBeDiscoverable()

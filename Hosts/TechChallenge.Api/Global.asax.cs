@@ -11,6 +11,8 @@ namespace TechChallenge.ApiHost
     public class WebApiApplication : System.Web.HttpApplication
     {
         private Eml.Logger.ILogger _logger;
+
+
         protected void Application_Start()
         {
             //use ApplicationInsights
@@ -28,12 +30,11 @@ namespace TechChallenge.ApiHost
                 config.Formatters.JsonFormatter.SerializerSettings.Error = _serializationErrorHandler; //Handle EF6 circular navigation properties
 
                 var rootFolder = System.Web.Hosting.HostingEnvironment.MapPath(@"~\bin");
-                Bootstrapper.Init(rootFolder, new[] { "TechChallenge*.dll" });
+                var classFactory = Bootstrapper.Init(rootFolder, new[] { "TechChallenge*.dll" });
 
-                var classFactory = ClassFactory.Get();
                 _logger = classFactory.GetExport<Eml.Logger.ILogger>();
 
-                config.DependencyResolver = new MefDependencyResolver(ClassFactory.MefContainer); // web api controllers
+                config.DependencyResolver = new MefDependencyResolver(classFactory.Container); // web api controllers
                 GlobalConfiguration.Configure(WebApiConfig.Register);
 
                 logger.Info("Application started");
