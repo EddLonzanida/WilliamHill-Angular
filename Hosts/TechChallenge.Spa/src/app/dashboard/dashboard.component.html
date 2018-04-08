@@ -2,7 +2,7 @@
 
 <div *ngIf="isReady()" class="ui-g">
   <app-statistic *ngFor="let stat of raceStatResponse.raceStats; let j = index " 
-  [label]="stat.status" [value]="stat.raceTotalAmount | currency :'USD':true:'1.0-2'" 
+  [label]="stat.status" [value]="stat.raceTotalAmount | currency :'USD':'symbol-narrow':'1.0-2'" 
   [icon]="icons[j % safeIndex]" 
   [colour]="colors[j % safeIndex]"
   [titleStyle]="titleStyles[j % safeIndex]"

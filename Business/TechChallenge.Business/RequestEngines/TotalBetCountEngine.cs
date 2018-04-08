@@ -2,7 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Eml.Contracts.Repositories;
+using Eml.DataRepository.Contracts;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;

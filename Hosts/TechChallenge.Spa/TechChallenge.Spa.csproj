@@ -1,6 +1,6 @@
 ﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -71,16 +72,15 @@
     <Content Include=".angular-cli.json" />
     <Content Include=".editorconfig" />
     <Content Include=".gitignore" />
-    <Content Include="LICENSE.md" />
     <Content Include="package.json" />
     <Content Include="src\assets\.gitkeep" />
-    <Content Include="src\tsconfig.json" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="src\tsconfig.app.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -89,8 +89,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="karma.conf.js" />
-    <Content Include="protractor.conf.js" />
     <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\app\dashboard\dashboard.component.css" />
@@ -114,23 +112,21 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
-    <TypeScriptCompile Include="src\app\dashboard\dashboard.component.spec.ts" />
     <TypeScriptCompile Include="src\app\dashboard\dashboard.component.ts" />
     <TypeScriptCompile Include="src\app\dashboard\dto\horse-stat.ts" />
     <TypeScriptCompile Include="src\app\dashboard\dto\race-stat.ts" />
-    <TypeScriptCompile Include="src\app\dashboard\race-stat.service.spec.ts" />
     <TypeScriptCompile Include="src\app\dashboard\race-stat.service.ts" />
     <TypeScriptCompile Include="src\app\dashboard\requests\race-stat-request.ts" />
     <TypeScriptCompile Include="src\app\dashboard\responses\race-stat-response.ts" />
-    <TypeScriptCompile Include="src\app\shared\busy-indicator\busy-indicator.component.spec.ts" />
     <TypeScriptCompile Include="src\app\shared\busy-indicator\busy-indicator.component.ts" />
-    <TypeScriptCompile Include="src\app\shared\statistic\statistic.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\shared\responses\search-response.ts" />
+    <TypeScriptCompile Include="src\app\shared\services\search.service.ts" />
     <TypeScriptCompile Include="src\app\shared\statistic\statistic.component.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
-    <TypeScriptCompile Include="src\test.ts" />
+    <TypeScriptCompile Include="src\typings.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -165,10 +161,10 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.7.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

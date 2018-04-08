@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Eml.DataRepository.Contracts;
 using NSubstitute;
 using TechChallenge.ApiHost.Api.Customers;
 using TechChallenge.Business.Common.Dto;
@@ -15,9 +16,13 @@ namespace TechChallenge.Tests.Unit.Controllers
 {
     public class CustomerControllerTests : ControllerTestBase<CustomersController>
     {
+        protected readonly IDataRepositorySoftDeleteInt<Customer> repository;
+
         public CustomerControllerTests()
         {
-            controller = new CustomersController(mediator)
+            repository = Substitute.For<IDataRepositorySoftDeleteInt<Customer>>();
+
+            controller = new CustomersController(mediator,repository)
             {
                 Request = new HttpRequestMessage(),
                 Configuration = new HttpConfiguration()

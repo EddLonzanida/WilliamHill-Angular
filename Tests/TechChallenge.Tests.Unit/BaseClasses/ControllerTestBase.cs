@@ -9,7 +9,7 @@ namespace TechChallenge.Tests.Unit.BaseClasses
     public abstract class ControllerTestBase<T> : IDisposable
         where T : ApiController
     {
-        private const string JSON_SOURCES = @"SampleData";
+        private const string SAMPLE_DATA_SOURCES = @"SampleDataSources";
 
         protected readonly IMediator mediator;
 
@@ -19,7 +19,7 @@ namespace TechChallenge.Tests.Unit.BaseClasses
 
         protected ControllerTestBase()
         {
-            totalBetAmountResponseStub = Eml.DataRepository.Seed.GetStub<TotalBetAmountResponse>("TotalBetAmountResponse", JSON_SOURCES);
+            totalBetAmountResponseStub = Eml.DataRepository.Seed.GetJsonStub<TotalBetAmountResponse>("TotalBetAmountResponse", SAMPLE_DATA_SOURCES);
 
             mediator = Substitute.For<IMediator>();
         }

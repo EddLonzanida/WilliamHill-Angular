@@ -7,8 +7,8 @@ using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Requests;
 using TechChallenge.Business.Responses;
-using Eml.Contracts.Repositories;
 using TechChallenge.Business.Common.Helpers;
+using Eml.DataRepository.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {
@@ -67,9 +67,9 @@ namespace TechChallenge.Business.RequestEngines
 
         private static double GetWinAmount(int raceId, int horseId, double odds, IEnumerable<Bet> bets)
         {
-            return bets
-                .Where(r => r.HorseId == horseId && r.RaceId == raceId)
-                .Sum(r => r.Stake * odds);
+            var betItems = bets
+                .Where(r => r.HorseId == horseId && r.RaceId == raceId).ToList();
+            return betItems.Sum(r => r.Stake * odds);
         }
 
         private static double GetRaceAmount(int raceId, IEnumerable<Bet> bets)

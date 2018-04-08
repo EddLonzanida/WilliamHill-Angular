@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Eml.Contracts.Repositories;
 using Eml.Mediator.Contracts;
 using NSubstitute;
 using TechChallenge.Business.Common.Entities;
 using Eml.DataRepository;
+using Eml.DataRepository.Contracts;
 
 namespace TechChallenge.Tests.Unit.BaseClasses
 {
     public abstract class EngineTestBase<T1, T2> : IDisposable
         where T1 : IRequestAsync<T1, T2> where T2 : IResponse
     {
-        private const string JSON_SOURCES = @"SampleData";
+        private const string SAMPLE_DATA_SOURCES = @"SampleDataSources";
 
         protected IRequestAsyncEngine<T1, T2> engine;
 
@@ -29,9 +29,9 @@ namespace TechChallenge.Tests.Unit.BaseClasses
 
         protected EngineTestBase()
         {
-            racesStub = Seed.GetStubs<Race>("races", JSON_SOURCES);
-            betStub = Seed.GetStubs<Bet>("bets", JSON_SOURCES);
-            customerStub = Seed.GetStubs<Customer>("customers", JSON_SOURCES);
+            racesStub = Seed.GetJsonStubs<Race>("races", SAMPLE_DATA_SOURCES);
+            betStub = Seed.GetJsonStubs<Bet>("bets", SAMPLE_DATA_SOURCES);
+            customerStub = Seed.GetJsonStubs<Customer>("customers", SAMPLE_DATA_SOURCES);
 
             raceRepository = Substitute.For<IDataRepositorySoftDeleteInt<Race>>();
             betRepository = Substitute.For<IDataRepositorySoftDeleteInt<Bet>>();

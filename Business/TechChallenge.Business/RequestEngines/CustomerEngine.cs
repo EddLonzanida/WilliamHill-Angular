@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using Eml.Contracts.Repositories;
+using Eml.DataRepository.Contracts;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Common.Helpers;

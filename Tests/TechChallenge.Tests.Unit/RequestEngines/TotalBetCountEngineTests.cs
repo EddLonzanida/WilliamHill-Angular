@@ -23,18 +23,18 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldHandleNullData()
         {
             List<Bet> nullBetData = null;
-            betRepository.GetAsync().Returns(nullBetData);
+            betRepository.GetAllAsync().Returns(nullBetData);
             var request = new TotalBetCountRequest(0, 1);
 
             await engine.GetAsync(request);
 
-            await betRepository.Received(1).GetAsync();
+            await betRepository.Received(1).GetAllAsync();
         }
 
         [Fact]
         public async Task Engine_ShouldReturnCustomerBetCount()
         {
-            betRepository.GetAsync().Returns(betStub);
+            betRepository.GetAllAsync().Returns(betStub);
             var request = new TotalBetCountRequest(0, 1);
 
             var response = await engine.GetAsync(request);
@@ -59,7 +59,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         [Fact]
         public async Task Engine_ShouldReturnSingleCustomerBetCount()
         {
-            betRepository.GetAsync().Returns(betStub);
+            betRepository.GetAllAsync().Returns(betStub);
             var request = new TotalBetCountRequest(1, 1);
 
             var response = await engine.GetAsync(request);

@@ -1,6 +1,8 @@
 ﻿using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.Application;
+using TechChallenge.ApiHost.App_Start;
 
 namespace TechChallenge.ApiHost
 {
@@ -8,6 +10,8 @@ namespace TechChallenge.ApiHost
     {
         public static void Register(HttpConfiguration config)
         {
+            config.Services.Add(typeof(IExceptionLogger), new GlobalExceptionLogger());
+
             // Web API configuration and services
             var formatters = config.Formatters;
             formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -17,7 +21,6 @@ namespace TechChallenge.ApiHost
 
             config.MapHttpAttributeRoutes();
 
-            // Redirect root to Swagger UI
             config.Routes.MapHttpRoute(
                 name: "Swagger UI",
                 routeTemplate: "",

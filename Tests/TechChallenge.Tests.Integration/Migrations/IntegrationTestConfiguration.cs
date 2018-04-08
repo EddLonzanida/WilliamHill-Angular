@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data.Entity.Migrations;
 using TechChallenge.Data;
-using TechChallenge.Data.Migrations.Utils;
+using TechChallenge.Data.Migrations.Seeders;
 
 namespace TechChallenge.Tests.Integration.Migrations
 {
     public class IntegrationTestConfiguration: DbMigrationsConfiguration<TechChallengeDb>
     {
-        private const string JSON_SOURCES = @"Migrations\JsonSources";
+        private const string SAMPLE_DATA_SOURCES = @"Migrations\SampleDataSources";
 
         public IntegrationTestConfiguration()
         {
@@ -19,9 +19,9 @@ namespace TechChallenge.Tests.Integration.Migrations
         {
             Console.WriteLine("Seeding Data..");
 
-            CustomerData.Seed(context, JSON_SOURCES);
-            RaceData.Seed(context, JSON_SOURCES);
-            BetData.Seed(context, JSON_SOURCES);
+            CustomerSeeder.Seed(context, SAMPLE_DATA_SOURCES);
+            RaceSeeder.Seed(context, SAMPLE_DATA_SOURCES);
+            BetSeeder.Seed(context, SAMPLE_DATA_SOURCES);
         }
     }
 }

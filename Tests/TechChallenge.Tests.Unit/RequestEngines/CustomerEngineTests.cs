@@ -21,24 +21,24 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         [Fact]
         public async Task Engine_ShouldRetrieveData()
         {
-            customerRepository.Get().Returns(customerStub);
+            customerRepository.GetAll().Returns(customerStub);
             var request = new CustomerRequest(1);
 
             await engine.GetAsync(request);
 
-            await customerRepository.Received(1).GetAsync();
+            await customerRepository.Received(1).GetAllAsync();
         }
 
         [Fact]
         public async Task Engine_ShouldHandleNullData()
         {
             List<Customer> nullData = null;
-            customerRepository.Get().Returns(nullData);
+            customerRepository.GetAll().Returns(nullData);
             var request = new CustomerRequest(1);
 
             var response = await engine.GetAsync(request);
 
-            await customerRepository.Received(1).GetAsync();
+            await customerRepository.Received(1).GetAllAsync();
             response.Customers.ShouldNotBe(null);
         }
     }

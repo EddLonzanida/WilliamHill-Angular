@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using TechChallenge.Business.Common.BaseClasses;
+using Eml.EntityBaseClasses;
 
 namespace TechChallenge.Business.Common.Entities
 {
-    public class Race : EntityBase
+    public class Race : EntityBaseSoftDeleteInt
     {
         public string Name { get; set; }
 

@@ -12,7 +12,7 @@ namespace TechChallenge.Tests.Integration.Migrations
     {
         [ImportingConstructor]
         public IntegrationTestDbMigration(IConfigBase<string, MainDbConnectionString> mainDbConnectionString)
-            : base(mainDbConnectionString.Value, true)
+            : base(mainDbConnectionString.Value)
         {
         }
     }

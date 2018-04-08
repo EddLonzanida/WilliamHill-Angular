@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TechChallenge.Business.Common.BaseClasses;
+using Eml.EntityBaseClasses;
 
 namespace TechChallenge.Business.Common.Entities
 {
-    public class Bet : EntityBase
+    public class Bet : EntityBaseSoftDeleteInt
     {
         [Required]
         [Display(Name = "Customer")]

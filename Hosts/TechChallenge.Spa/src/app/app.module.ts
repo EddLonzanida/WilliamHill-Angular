@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BusyIndicatorComponent } from './shared/busy-indicator/busy-indicator.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RaceStatService } from './dashboard/race-stat.service';
+import { SearchService } from './shared/services/search.service';
 import { StatisticComponent } from './shared/statistic/statistic.component';
 
 const appRoutes: Routes = [
@@ -39,7 +40,7 @@ const appRoutes: Routes = [
     SharedModule,
     MenuModule,
   ],
-  providers: [{ provide: 'BASE_URL', useFactory: getBaseUrl }, RaceStatService],
+  providers: [{ provide: 'BASE_URL', useFactory: getBaseUrl }, SearchService, RaceStatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -47,7 +48,4 @@ export class AppModule { }
 export function getBaseUrl() {
   return 'http://localhost:44340/';
 }
-
-
-
 

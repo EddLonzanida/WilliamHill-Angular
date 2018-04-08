@@ -1,4 +1,4 @@
-﻿using Eml.Contracts.Repositories;
+﻿using Eml.DataRepository.Contracts;
 using Shouldly;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Tests.Integration.BaseClasses;

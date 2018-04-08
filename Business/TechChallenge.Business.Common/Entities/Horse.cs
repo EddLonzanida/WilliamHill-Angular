@@ -1,14 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using TechChallenge.Business.Common.BaseClasses;
+using Eml.EntityBaseClasses;
 
 namespace TechChallenge.Business.Common.Entities
 {
-    public class Horse : EntityBase
+    public class Horse : EntityBaseSoftDeleteInt
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)] //This is not recommented in real scenario.
-        public override int Id { get; set; }
-
         [Required]
         [Display(Name = "Race")]
         public int RaceId { get; set; }

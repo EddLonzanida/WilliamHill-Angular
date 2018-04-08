@@ -7,8 +7,8 @@ using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Requests;
 using TechChallenge.Business.Responses;
-using Eml.Contracts.Repositories;
 using TechChallenge.Business.Common.Helpers;
+using Eml.DataRepository.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {

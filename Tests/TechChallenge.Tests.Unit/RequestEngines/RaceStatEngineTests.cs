@@ -26,20 +26,20 @@ namespace TechChallenge.Tests.Unit.RequestEngines
             List<Race> nullRaceData = null;
             List<Bet> nullBetData = null;
             raceRepository.GetAsync(Arg.Any<Func<IQueryable<Race>, IQueryable<Race>>>()).Returns(nullRaceData);
-            betRepository.GetAsync().Returns(nullBetData);
+            betRepository.GetAllAsync().Returns(nullBetData);
             var request = new RaceStatRequest(1);
 
             await engine.GetAsync(request);
 
             await raceRepository.Received(1).GetAsync(Arg.Any<Func<IQueryable<Race>, IQueryable<Race>>>());
-            await betRepository.Received(1).GetAsync();
+            await betRepository.Received(1).GetAllAsync();
         }
 
         [Fact]
         public async Task Engine_ShouldReturnRaceStatus()
         {
             raceRepository.GetAsync(Arg.Any<Func<IQueryable<Race>, IQueryable<Race>>>()).Returns(racesStub);
-            betRepository.GetAsync().Returns(betStub);
+            betRepository.GetAllAsync().Returns(betStub);
             var request = new RaceStatRequest(1);
 
             var response = await engine.GetAsync(request);
@@ -51,7 +51,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldSumAllRaceMoney()
         {
             raceRepository.GetAsync(Arg.Any<Func<IQueryable<Race>, IQueryable<Race>>>()).Returns(racesStub);
-            betRepository.GetAsync().Returns(betStub);
+            betRepository.GetAllAsync().Returns(betStub);
             var request = new RaceStatRequest(1);
 
             var response = await engine.GetAsync(request);
@@ -73,7 +73,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldReturnAllHorsesPerRace()
         {
             raceRepository.GetAsync(Arg.Any<Func<IQueryable<Race>, IQueryable<Race>>>()).Returns(racesStub);
-            betRepository.GetAsync().Returns(betStub);
+            betRepository.GetAllAsync().Returns(betStub);
             var request = new RaceStatRequest(1);
 
             var response = await engine.GetAsync(request);
@@ -95,7 +95,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldReturnHorseNames()
         {
             raceRepository.GetAsync(Arg.Any<Func<IQueryable<Race>, IQueryable<Race>>>()).Returns(racesStub);
-            betRepository.GetAsync().Returns(betStub);
+            betRepository.GetAllAsync().Returns(betStub);
             var request = new RaceStatRequest(1);
 
             var response = await engine.GetAsync(request);
@@ -117,7 +117,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldReturnHorseBetCount()
         {
             raceRepository.GetAsync(Arg.Any<Func<IQueryable<Race>, IQueryable<Race>>>()).Returns(racesStub);
-            betRepository.GetAsync().Returns(betStub);
+            betRepository.GetAllAsync().Returns(betStub);
             var request = new RaceStatRequest(1);
 
             var response = await engine.GetAsync(request);
@@ -168,7 +168,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldReturnTotalHorseWinPrize()
         {
             raceRepository.GetAsync(Arg.Any<Func<IQueryable<Race>, IQueryable<Race>>>()).Returns(racesStub);
-            betRepository.GetAsync().Returns(betStub);
+            betRepository.GetAllAsync().Returns(betStub);
             var request = new RaceStatRequest(1);
 
             var response = await engine.GetAsync(request);

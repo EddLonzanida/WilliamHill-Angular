@@ -23,20 +23,20 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldHandleNullData()
         {
             List<Bet> nullBetData = null;
-            betRepository.GetAsync().Returns(nullBetData);
+            betRepository.GetAllAsync().Returns(nullBetData);
 
             var request = new RiskCustomerRequest(1);
 
             await engine.GetAsync(request);
 
-            await betRepository.Received(1).GetAsync();
+            await betRepository.Received(1).GetAllAsync();
         }
 
         [Fact]
         public async Task Engine_ShouldReturnRiskCustomers()
         {
-            betRepository.GetAsync().Returns(betStub);
-            customerRepository.GetAsync().Returns(customerStub);
+            betRepository.GetAllAsync().Returns(betStub);
+            customerRepository.GetAllAsync().Returns(customerStub);
             var request = new RiskCustomerRequest(1);
 
             var response = await engine.GetAsync(request);

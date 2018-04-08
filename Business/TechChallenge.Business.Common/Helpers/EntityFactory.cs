@@ -2,16 +2,16 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using Eml.Contracts.Repositories;
+using Eml.DataRepository.Contracts;
 using TechChallenge.Business.Common.Entities;
 
 namespace TechChallenge.Business.Common.Helpers
 {
     public static class EntityFactory
     {
-        public static async Task<List<Customer>> GetCustomers(IDataRepositorySoftDeleteInt<Customer> repository)
+        public static async Task<List<Customer>> GetCustomers(IDataRepositoryBase<int, Customer> repository)
         {
-            var response = await repository.GetAsync();
+            var response = await repository.GetAllAsync();
 
             if (response == null) return await Task.FromResult(new List<Customer>());
 
@@ -21,16 +21,16 @@ namespace TechChallenge.Business.Common.Helpers
                 .ToList();
         }
 
-        public static async Task<List<Bet>> GetBets(IDataRepositorySoftDeleteInt<Bet> repository)
+        public static async Task<List<Bet>> GetBets(IDataRepositoryBase<int, Bet> repository)
         {
-            var response = await repository.GetAsync();
+            var response = await repository.GetAllAsync();
 
             if (response == null) return await Task.FromResult(new List<Bet>());
 
             return response.ToList();
         }
 
-        public static async Task<List<Race>> GetRaces(IDataRepositorySoftDeleteInt<Race> repository)
+        public static async Task<List<Race>> GetRaces(IDataRepositoryBase<int, Race> repository)
         {
             var response = await repository.GetAsync(r => r.Include(x => x.Horses));
 

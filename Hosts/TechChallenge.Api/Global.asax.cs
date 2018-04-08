@@ -10,7 +10,7 @@ namespace TechChallenge.ApiHost
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-        private Eml.Logger.ILogger _logger;
+        public static Eml.Logger.ILogger Logger { get; private set; }
 
 
         protected void Application_Start()
@@ -32,7 +32,7 @@ namespace TechChallenge.ApiHost
                 var rootFolder = System.Web.Hosting.HostingEnvironment.MapPath(@"~\bin");
                 var classFactory = Bootstrapper.Init(rootFolder, new[] { "TechChallenge*.dll" });
 
-                _logger = classFactory.GetExport<Eml.Logger.ILogger>();
+                Logger = classFactory.GetExport<Eml.Logger.ILogger>();
 
                 config.DependencyResolver = new MefDependencyResolver(classFactory.Container); // web api controllers
                 GlobalConfiguration.Configure(WebApiConfig.Register);
@@ -54,24 +54,24 @@ namespace TechChallenge.ApiHost
 
             if (exception == null) return;
 
-            if (_logger == null)
+            if (Logger == null)
             {
                 var logger = LogManager.GetCurrentClassLogger();
                 logger.Info(msg);
             }
-            else _logger.Log.Error(exception, msg);
+            else Logger.Log.Error(exception, msg);
         }
 
         protected void Application_End()
         {
             const string msg = "Application stopping";
 
-            if (_logger == null)
+            if (Logger == null)
             {
                 var logger = LogManager.GetCurrentClassLogger();
                 logger.Info(msg);
             }
-            else _logger.Log.Info(msg);
+            else Logger.Log.Info(msg);
         }
 
         private readonly EventHandler<ErrorEventArgs> _serializationErrorHandler = (sender, args) =>

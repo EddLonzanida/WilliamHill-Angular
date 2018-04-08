@@ -6,8 +6,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Eml.ControllerBase;
 using Eml.Mediator.Contracts;
-using TechChallenge.ApiHost.Api.BaseClasses;
 using TechChallenge.Business.Requests;
 using TechChallenge.Business.Responses;
 
@@ -18,12 +18,10 @@ namespace TechChallenge.ApiHost.Api.Dashboard
     [RoutePrefix("Dashboard")]
     public class DashboardController : ApiControllerBase
     {
-        private readonly IMediator mediator;
-
         [ImportingConstructor]
         public DashboardController(IMediator mediator)
+            : base(mediator)
         {
-            this.mediator = mediator;
         }
 
         [Route("")]
