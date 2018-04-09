@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Http;
+using Eml.DataRepository;
 using Eml.Mediator.Contracts;
 using NSubstitute;
 using TechChallenge.Business.Responses;
@@ -19,7 +20,7 @@ namespace TechChallenge.Tests.Unit.BaseClasses
 
         protected ControllerTestBase()
         {
-            totalBetAmountResponseStub = Eml.DataRepository.Seed.GetJsonStub<TotalBetAmountResponse>("TotalBetAmountResponse", SAMPLE_DATA_SOURCES);
+            totalBetAmountResponseStub = Seeder.GetJsonStub<TotalBetAmountResponse>("TotalBetAmountResponse", SAMPLE_DATA_SOURCES);
 
             mediator = Substitute.For<IMediator>();
         }

@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -10,6 +13,7 @@ using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Requests;
 using TechChallenge.Business.Responses;
 using TechChallenge.Tests.Unit.BaseClasses;
+using X.PagedList;
 using Xunit;
 
 namespace TechChallenge.Tests.Unit.Controllers
@@ -22,7 +26,7 @@ namespace TechChallenge.Tests.Unit.Controllers
         {
             repository = Substitute.For<IDataRepositorySoftDeleteInt<Customer>>();
 
-            controller = new CustomersController(mediator,repository)
+            controller = new CustomersController(mediator, repository)
             {
                 Request = new HttpRequestMessage(),
                 Configuration = new HttpConfiguration()
@@ -32,11 +36,18 @@ namespace TechChallenge.Tests.Unit.Controllers
         [Fact]
         public async Task Controller_ShouldGetAllCustomers()
         {
-            mediator.GetAsync(Arg.Any<CustomerRequest>()).Returns(new CustomerResponse(new List<Customer>()));
+            var pagedList = new PagedList<Customer>(null, 1, 10);
+            repository.GetPagedListAsync(Arg.Any<int>(),
+                    Arg.Any<Expression<Func<Customer, bool>>>(),
+                    Arg.Any<Func<IQueryable<Customer>, IQueryable<Customer>>>())
+                .Returns(pagedList);
 
             await controller.Get();
 
-            await mediator.Received().GetAsync(Arg.Any<CustomerRequest>());
+            await repository.Received()
+                .GetPagedListAsync(Arg.Any<int>(),
+                    Arg.Any<Expression<Func<Customer, bool>>>(),
+                    Arg.Any<Func<IQueryable<Customer>, IQueryable<Customer>>>());
         }
 
         [Fact]

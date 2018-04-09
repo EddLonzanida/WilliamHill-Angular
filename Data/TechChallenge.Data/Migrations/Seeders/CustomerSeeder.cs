@@ -11,7 +11,7 @@ namespace TechChallenge.Data.Migrations.Seeders
         {
             Seeder.Execute("Customers", () =>
             {
-                var intialData = Eml.DataRepository.Seed.GetJsonStubs<Customer>("customers", relativeFolder);
+                var intialData = Seeder.GetJsonStubs<Customer>("customers", relativeFolder);
 
                 intialData.ForEach(r => context.Customers.AddOrUpdate(item => item.Id, r));
                 context.DoSave("Customer");

@@ -55,8 +55,8 @@
     <Reference Include="Eml.ControllerBase, Version=2.0.0.5, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.ControllerBase.2.0.0.5\lib\net462\Eml.ControllerBase.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.DataRepository, Version=2.0.0.166, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.DataRepository.2.0.0.166\lib\net462\Eml.DataRepository.dll</HintPath>
+    <Reference Include="Eml.DataRepository, Version=2.0.0.167, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.DataRepository.2.0.0.167\lib\net462\Eml.DataRepository.dll</HintPath>
     </Reference>
     <Reference Include="Eml.EntityBaseClasses, Version=1.0.0.12, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.EntityBaseClasses.1.0.0.12\lib\net462\Eml.EntityBaseClasses.dll</HintPath>
