@@ -12,7 +12,6 @@ namespace TechChallenge.ApiHost
     {
         public static Eml.Logger.ILogger Logger { get; private set; }
 
-
         protected void Application_Start()
         {
             //use ApplicationInsights
