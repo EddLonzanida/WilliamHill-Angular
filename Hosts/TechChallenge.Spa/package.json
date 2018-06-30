@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "animate.css": "^3.6.1",
     "core-js": "^2.4.1",
     "dexie": "^2.0.2",
     "font-awesome": "^4.7.0",

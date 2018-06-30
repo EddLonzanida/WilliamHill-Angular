@@ -30,47 +30,48 @@ namespace TechChallenge.ApiHost.Api.Customers
         [Route("")]
         [ResponseType(typeof(SearchResponse<Customer>))]
         [HttpGet]
-        public override async Task<IHttpActionResult> Get(string search = "", int? page = 1, bool? desc = false, int? field = 0)
+        public async override Task<IHttpActionResult> GetItems(string search = "", int? page = 1, bool? desc = false, int? field = 0)
         {
-            return await base.Get(search, page, desc, field);
+            return await base.DoGetItemsAsync(search, page.Value, desc.Value, field.Value);
         }
 
         [Route("{id}")]
         [ResponseType(typeof(Customer))]
         [HttpGet]
-        public override async Task<IHttpActionResult> Get(int id)
+        public async override Task<IHttpActionResult> Get(int id)
         {
-            return await base.Get(id);
+            return await base.DoGetAsync(id);
         }
 
         [Route("Suggestions")]
         [HttpGet]
-        public override async Task<IHttpActionResult> Suggestions(string search = "")
+        public async override Task<IHttpActionResult> Suggestions(string search = "")
         {
-            return await base.Suggestions(search);
+            return await base.DoGetSuggestionsAsync(search);
         }
 
         [ResponseType(typeof(void))]
         [Route("{id}")]
-        public override async Task<IHttpActionResult> Put(int id, [FromBody] Customer item)
+        [HttpPut]
+        public async override Task<IHttpActionResult> Put(int id, [FromBody] Customer item)
         {
-            return await base.Put(id, item);
+            return await base.DoPutAsync(id, item);
         }
 
         [ResponseType(typeof(Customer))]
         [Route("")]
         [HttpPost]
-        public override Task<IHttpActionResult> Post([FromBody] Customer item)
+        public async override Task<IHttpActionResult> Post([FromBody] Customer item)
         {
-            return base.Post(item);
+            return await base.DoPostAsync(item);
         }
 
         [ResponseType(typeof(Customer))]
         [Route("{id}")]
         [HttpDelete]
-        public override async Task<IHttpActionResult> Delete(int id, string reason = "")
+        public async override Task<IHttpActionResult> Delete(int id, string reason = "")
         {
-            return await base.Delete(id, reason);
+            return await base.DoDeleteAsync(id, reason);
         }
 
         #endregion // SCAFFOLDINGS
@@ -96,16 +97,22 @@ namespace TechChallenge.ApiHost.Api.Customers
             return Ok(response);
         }
 
-        protected override async Task<SearchResponse<Customer>> GetAll(string search = "", int? page = 1, bool? desc = false, int? sortColumn = 0)
+        protected override Func<IQueryable<Customer>, IQueryable<Customer>> GetOrderBy(int sortColumn, bool isdesc)
+        {
+            Func<IQueryable<Customer>, IQueryable<Customer>> orderBy = r => r.OrderBy(x => x.Name);
+
+            if (isdesc) orderBy = r => r.OrderByDescending(x => x.Name);
+
+            return orderBy;
+        }
+
+        protected override async Task<SearchResponse<Customer>> GetItemsAsync(string search, int page, bool desc, int sortColumn)
         {
             search = search.ToLower();
             Expression<Func<Customer, bool>> whereClause = r => search == "" || r.Name.ToLower().Contains(search);
 
-            Func<IQueryable<Customer>, IQueryable<Customer>> orderBy = r => r.OrderBy(x => x.Name);
-
-            if (desc.Value) orderBy = r => r.OrderByDescending(x => x.Name);
-
-            var items = await repository.GetPagedListAsync(page.Value, whereClause, orderBy);
+            var orderBy = GetOrderBy(sortColumn, desc);
+            var items = await repository.GetPagedListAsync(page, whereClause, orderBy);
 
             return new SearchResponse<Customer>(items, items.TotalItemCount, repository.PageSize);
         }
