@@ -42,7 +42,7 @@ namespace TechChallenge.Tests.Unit.Controllers
                     Arg.Any<Func<IQueryable<Customer>, IQueryable<Customer>>>())
                 .Returns(pagedList);
 
-            await controller.GetItems();
+            await controller.Index();
 
             await repository.Received()
                 .GetPagedListAsync(Arg.Any<int>(),

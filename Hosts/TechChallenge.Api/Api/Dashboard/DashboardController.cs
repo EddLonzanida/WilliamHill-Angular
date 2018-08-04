@@ -16,7 +16,7 @@ namespace TechChallenge.ApiHost.Api.Dashboard
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     [RoutePrefix("Dashboard")]
-    public class DashboardController : ApiControllerBase
+    public class DashboardController : ControllerApiBase
     {
         [ImportingConstructor]
         public DashboardController(IMediator mediator)
@@ -25,8 +25,9 @@ namespace TechChallenge.ApiHost.Api.Dashboard
         }
 
         [Route("")]
+        [HttpGet]
         [ResponseType(typeof(RaceStatResponse))]
-        public async Task<HttpResponseMessage> Get(int pageNumber = 1)
+        public async Task<HttpResponseMessage> Index(int pageNumber = 1)
         {
             var request = new RaceStatRequest(pageNumber);
             var response = await mediator.GetAsync(request);

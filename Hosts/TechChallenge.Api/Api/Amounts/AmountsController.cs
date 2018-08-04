@@ -17,7 +17,7 @@ namespace TechChallenge.ApiHost.Api.Amounts
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     [RoutePrefix("Amounts")]
-    public class AmountsController : ApiControllerBase
+    public class AmountsController : ControllerApiBase
     {
         [ImportingConstructor]
         public AmountsController(IMediator mediator)
@@ -27,7 +27,7 @@ namespace TechChallenge.ApiHost.Api.Amounts
 
         [Route("")]
         [ResponseType(typeof(TotalBetAmountResponse))]
-        public async Task<HttpResponseMessage> Get()
+        public async Task<HttpResponseMessage> Index()
         {
             var request = new TotalBetAmountRequest();
             var response = await mediator.GetAsync(request);

@@ -28,7 +28,7 @@ namespace TechChallenge.Tests.Unit.Controllers
         {
             mediator.GetAsync(Arg.Any<RaceStatRequest>()).Returns(new RaceStatResponse(new List<RaceStat>()));
 
-            await controller.Get();
+            await controller.Index();
 
             await mediator.Received().GetAsync(Arg.Any<RaceStatRequest>());
         }

@@ -41,7 +41,7 @@ namespace TechChallenge.Tests.Unit.Controllers
         {
             mediator.GetAsync(Arg.Any<TotalBetAmountRequest>()).Returns(new TotalBetAmountResponse(new List<CustomerBetAmount>()));
 
-            await controller.Get();
+            await controller.Index();
 
             await mediator.Received().GetAsync(Arg.Any<TotalBetAmountRequest>());
         }
