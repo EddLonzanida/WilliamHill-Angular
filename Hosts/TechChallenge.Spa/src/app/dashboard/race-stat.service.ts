@@ -9,9 +9,8 @@ export class RaceStatService {
     }
 
     getStats() {
-        const controller = "dashboard";
+        const route = 'dashboard';
 
-        return this.searchService.request<RaceStatResponse>(controller);
+        return this.searchService.request<RaceStatResponse>(route);
     }
-
 }

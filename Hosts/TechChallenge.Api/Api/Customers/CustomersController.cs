@@ -19,7 +19,7 @@ namespace TechChallenge.ApiHost.Api.Customers
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    [RoutePrefix("api/Customer")]
+    [RoutePrefix("Customers")]
     public class CustomersController : CrudControllerApiBase<int, Customer, IndexRequest>
     {
         [ImportingConstructor]

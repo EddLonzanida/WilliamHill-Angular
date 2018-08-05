@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -26,25 +24,26 @@ namespace TechChallenge.ApiHost.Api.Amounts
         }
 
         [Route("")]
+        [HttpGet]
         [ResponseType(typeof(TotalBetAmountResponse))]
-        public async Task<HttpResponseMessage> Index()
+        public async Task<IHttpActionResult> Index()
         {
             var request = new TotalBetAmountRequest();
             var response = await mediator.GetAsync(request);
 
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            return Ok(response);
         }
 
         [HttpGet]
         [ResponseType(typeof(double))]
         [Route("Total")]
-        public async Task<HttpResponseMessage> GetTotal()
+        public async Task<IHttpActionResult> GetTotal()
         {
             var request = new TotalBetAmountRequest();
             var response = await mediator.GetAsync(request);
             var grandTotal = response.CustomerBets.Sum(r => r.Totalstake);
 
-            return Request.CreateResponse(HttpStatusCode.OK, grandTotal);
+            return Ok(response);
         }
 
         protected override void RegisterIDisposable(List<IDisposable> disposables)

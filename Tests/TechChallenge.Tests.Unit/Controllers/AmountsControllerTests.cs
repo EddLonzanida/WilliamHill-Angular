@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 using NSubstitute;
 using Shouldly;
 using TechChallenge.ApiHost.Api.Amounts;
@@ -32,8 +33,8 @@ namespace TechChallenge.Tests.Unit.Controllers
             var response = await controller.GetTotal();
 
             await mediator.Received().GetAsync(Arg.Any<TotalBetAmountRequest>());
-            response.TryGetContentValue<double>(out double grandTotal);
-            grandTotal.ShouldBe(6060);
+            var contentResult = response as OkNegotiatedContentResult<double>;
+            contentResult.Content.ShouldBe(6060);
         }
 
         [Fact]

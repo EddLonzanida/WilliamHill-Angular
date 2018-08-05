@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -27,12 +25,12 @@ namespace TechChallenge.ApiHost.Api.Dashboard
         [Route("")]
         [HttpGet]
         [ResponseType(typeof(RaceStatResponse))]
-        public async Task<HttpResponseMessage> Index(int pageNumber = 1)
+        public async Task<IHttpActionResult> Index(int? pageNumber = 1)
         {
-            var request = new RaceStatRequest(pageNumber);
+            var request = new RaceStatRequest(pageNumber.Value);
             var response = await mediator.GetAsync(request);
 
-            return Request.CreateResponse(HttpStatusCode.OK, response);
+            return Ok(response);
         }
 
         protected override void RegisterIDisposable(List<IDisposable> disposables)
