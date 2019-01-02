@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Eml.ControllerBase;
+using Eml.Mediator.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Eml.ControllerBase;
-using Eml.Mediator.Contracts;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 
-namespace TechChallenge.ApiHost.Api.Dashboard
+namespace TechChallenge.ApiHost.Controllers
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
@@ -27,7 +27,9 @@ namespace TechChallenge.ApiHost.Api.Dashboard
         [ResponseType(typeof(RaceStatResponse))]
         public async Task<IHttpActionResult> Index(int? pageNumber = 1)
         {
-            var request = new RaceStatRequest(pageNumber.Value);
+            var page = pageNumber ?? 1;
+
+            var request = new RaceStatAsyncRequest(page);
             var response = await mediator.GetAsync(request);
 
             return Ok(response);

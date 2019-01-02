@@ -2,7 +2,7 @@
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 
-namespace TechChallenge.Business.Responses
+namespace TechChallenge.Business.Common.Responses
 {
     public class RiskCustomerResponse : IResponse
     {

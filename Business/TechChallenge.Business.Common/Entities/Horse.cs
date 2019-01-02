@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Eml.EntityBaseClasses;
+﻿using Eml.EntityBaseClasses;
+using System.ComponentModel.DataAnnotations;
 
 namespace TechChallenge.Business.Common.Entities
 {

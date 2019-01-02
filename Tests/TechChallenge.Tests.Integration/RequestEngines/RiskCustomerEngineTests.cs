@@ -1,7 +1,7 @@
+using Shouldly;
 using System.Linq;
 using System.Threading.Tasks;
-using Shouldly;
-using TechChallenge.Business.Requests;
+using TechChallenge.Business.Common.Requests;
 using TechChallenge.Tests.Integration.BaseClasses;
 using Xunit;
 
@@ -12,7 +12,7 @@ namespace TechChallenge.Tests.Integration.RequestEngines
         [Fact]
         public async Task Engine_ShouldHandleNullData()
         {
-            var request = new RiskCustomerRequest(1);
+            var request = new RiskCustomerAsyncRequest(1);
 
             var response = await mediator.GetAsync(request);
 
@@ -22,7 +22,7 @@ namespace TechChallenge.Tests.Integration.RequestEngines
         [Fact]
         public async Task Engine_ShouldReturnRiskCustomers()
         {
-            var request = new RiskCustomerRequest(1);
+            var request = new RiskCustomerAsyncRequest(1);
 
             var response = await mediator.GetAsync(request);
 
@@ -30,5 +30,3 @@ namespace TechChallenge.Tests.Integration.RequestEngines
         }
     }
 }
-
-

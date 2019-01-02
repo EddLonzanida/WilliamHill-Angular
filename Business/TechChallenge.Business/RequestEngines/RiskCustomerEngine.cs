@@ -2,17 +2,18 @@
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
+using Eml.DataRepository.Contracts;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
 using TechChallenge.Business.Common.Helpers;
-using Eml.DataRepository.Contracts;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 
 namespace TechChallenge.Business.RequestEngines
 {
-    public class RiskCustomerEngine : IRequestAsyncEngine<RiskCustomerRequest, RiskCustomerResponse>
+	[PartCreationPolicy(CreationPolicy.NonShared)]
+    public class RiskCustomerEngine : IRequestAsyncEngine<RiskCustomerAsyncRequest, RiskCustomerResponse>
     {
         private const double RISKY_AMOUNT = 200;
 
@@ -27,7 +28,7 @@ namespace TechChallenge.Business.RequestEngines
             this.betsRepository = betsRepository;
         }
 
-        public async Task<RiskCustomerResponse> GetAsync(RiskCustomerRequest request)
+        public async Task<RiskCustomerResponse> GetAsync(RiskCustomerAsyncRequest request)
         {
             var customers = await EntityFactory.GetCustomers(customersRepository);
             var bets = await EntityFactory.GetBets(betsRepository);
@@ -59,8 +60,6 @@ namespace TechChallenge.Business.RequestEngines
 
         public void Dispose()
         {
-            customersRepository?.Dispose();
-            betsRepository?.Dispose();
         }
     }
 }

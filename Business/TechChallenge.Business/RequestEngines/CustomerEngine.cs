@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using Eml.DataRepository.Contracts;
+using Eml.Mediator.Contracts;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using Eml.DataRepository.Contracts;
-using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Common.Helpers;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 
 namespace TechChallenge.Business.RequestEngines
 {
-    public class CustomerEngine : IRequestAsyncEngine<CustomerRequest, CustomerResponse>
+    [PartCreationPolicy(CreationPolicy.NonShared)]
+    public class CustomerEngine : IRequestAsyncEngine<CustomerAsyncRequest, CustomerResponse>
     {
         private readonly IDataRepositorySoftDeleteInt<Customer> repository;
 
@@ -20,7 +21,7 @@ namespace TechChallenge.Business.RequestEngines
             this.repository = repository;
         }
 
-        public async Task<CustomerResponse> GetAsync(CustomerRequest request)
+        public async Task<CustomerResponse> GetAsync(CustomerAsyncRequest request)
         {
             var customers = await EntityFactory.GetCustomers(repository);
 
@@ -29,7 +30,6 @@ namespace TechChallenge.Business.RequestEngines
 
         public void Dispose()
         {
-            repository?.Dispose();
         }
     }
 }

@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Eml.ControllerBase;
+using Eml.Mediator.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Eml.ControllerBase;
-using Eml.Mediator.Contracts;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 
-namespace TechChallenge.ApiHost.Api.Amounts
+namespace TechChallenge.ApiHost.Controllers
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
@@ -28,7 +28,7 @@ namespace TechChallenge.ApiHost.Api.Amounts
         [ResponseType(typeof(TotalBetAmountResponse))]
         public async Task<IHttpActionResult> Index()
         {
-            var request = new TotalBetAmountRequest();
+            var request = new TotalBetAmountAsyncRequest();
             var response = await mediator.GetAsync(request);
 
             return Ok(response);
@@ -39,11 +39,11 @@ namespace TechChallenge.ApiHost.Api.Amounts
         [Route("Total")]
         public async Task<IHttpActionResult> GetTotal()
         {
-            var request = new TotalBetAmountRequest();
+            var request = new TotalBetAmountAsyncRequest();
             var response = await mediator.GetAsync(request);
             var grandTotal = response.CustomerBets.Sum(r => r.Totalstake);
 
-            return Ok(response);
+            return Ok(grandTotal);
         }
 
         protected override void RegisterIDisposable(List<IDisposable> disposables)

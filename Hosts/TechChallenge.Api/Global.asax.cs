@@ -21,11 +21,13 @@ namespace TechChallenge.ApiHost
             );
 
             var logger = LogManager.GetCurrentClassLogger();
+
             logger.Info("Application starting");
 
             try
             {
                 var config = GlobalConfiguration.Configuration;
+
                 config.Formatters.JsonFormatter.SerializerSettings.Error = _serializationErrorHandler; //Handle EF6 circular navigation properties
 
                 var rootFolder = System.Web.Hosting.HostingEnvironment.MapPath(@"~\bin");

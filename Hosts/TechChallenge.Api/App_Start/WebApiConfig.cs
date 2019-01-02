@@ -2,7 +2,6 @@
 using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.Application;
-using TechChallenge.ApiHost.App_Start;
 
 namespace TechChallenge.ApiHost
 {

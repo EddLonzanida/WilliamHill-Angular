@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using NSubstitute;
+using Shouldly;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NSubstitute;
-using Shouldly;
 using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 using TechChallenge.Business.RequestEngines;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
 using TechChallenge.Tests.Unit.BaseClasses;
 using Xunit;
 
 namespace TechChallenge.Tests.Unit.RequestEngines
 {
-    public class RiskCustomerEngineTests : EngineTestBase<RiskCustomerRequest, RiskCustomerResponse>
+    public class RiskCustomerEngineTests : EngineTestBase<RiskCustomerAsyncRequest, RiskCustomerResponse>
     {
         public RiskCustomerEngineTests()
         {
@@ -25,7 +25,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
             List<Bet> nullBetData = null;
             betRepository.GetAllAsync().Returns(nullBetData);
 
-            var request = new RiskCustomerRequest(1);
+            var request = new RiskCustomerAsyncRequest(1);
 
             await engine.GetAsync(request);
 
@@ -37,7 +37,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         {
             betRepository.GetAllAsync().Returns(betStub);
             customerRepository.GetAllAsync().Returns(customerStub);
-            var request = new RiskCustomerRequest(1);
+            var request = new RiskCustomerAsyncRequest(1);
 
             var response = await engine.GetAsync(request);
 

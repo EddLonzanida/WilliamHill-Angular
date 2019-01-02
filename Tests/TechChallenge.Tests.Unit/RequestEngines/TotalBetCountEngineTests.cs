@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using NSubstitute;
+using Shouldly;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NSubstitute;
-using Shouldly;
 using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 using TechChallenge.Business.RequestEngines;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
 using TechChallenge.Tests.Unit.BaseClasses;
 using Xunit;
 
 namespace TechChallenge.Tests.Unit.RequestEngines
 {
-    public class TotalBetCountEngineTests : EngineTestBase<TotalBetCountRequest, TotalBetCountResponse>
+    public class TotalBetCountEngineTests : EngineTestBase<TotalBetCountAsyncRequest, TotalBetCountResponse>
     {
         public TotalBetCountEngineTests()
         {
@@ -24,7 +24,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         {
             List<Bet> nullBetData = null;
             betRepository.GetAllAsync().Returns(nullBetData);
-            var request = new TotalBetCountRequest(0, 1);
+            var request = new TotalBetCountAsyncRequest(0, 1);
 
             await engine.GetAsync(request);
 
@@ -35,7 +35,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldReturnCustomerBetCount()
         {
             betRepository.GetAllAsync().Returns(betStub);
-            var request = new TotalBetCountRequest(0, 1);
+            var request = new TotalBetCountAsyncRequest(0, 1);
 
             var response = await engine.GetAsync(request);
 
@@ -60,7 +60,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldReturnSingleCustomerBetCount()
         {
             betRepository.GetAllAsync().Returns(betStub);
-            var request = new TotalBetCountRequest(1, 1);
+            var request = new TotalBetCountAsyncRequest(1, 1);
 
             var response = await engine.GetAsync(request);
 

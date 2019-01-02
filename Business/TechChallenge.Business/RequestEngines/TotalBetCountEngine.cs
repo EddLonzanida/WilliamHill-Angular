@@ -7,12 +7,13 @@ using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Common.Helpers;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 
 namespace TechChallenge.Business.RequestEngines
 {
-    public class TotalBetCountEngine : IRequestAsyncEngine<TotalBetCountRequest, TotalBetCountResponse>
+	[PartCreationPolicy(CreationPolicy.NonShared)]
+    public class TotalBetCountEngine : IRequestAsyncEngine<TotalBetCountAsyncRequest, TotalBetCountResponse>
     {
         private readonly IDataRepositorySoftDeleteInt<Bet> betsRepository;
 
@@ -22,7 +23,7 @@ namespace TechChallenge.Business.RequestEngines
             this.betsRepository = betsRepository;
         }
 
-        public async Task<TotalBetCountResponse> GetAsync(TotalBetCountRequest request)
+        public async Task<TotalBetCountResponse> GetAsync(TotalBetCountAsyncRequest request)
         {
             var bets = await EntityFactory.GetBets(betsRepository);
 
@@ -50,7 +51,6 @@ namespace TechChallenge.Business.RequestEngines
 
         public void Dispose()
         {
-            betsRepository?.Dispose();
         }
     }
 }

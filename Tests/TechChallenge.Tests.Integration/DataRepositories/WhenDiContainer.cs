@@ -8,6 +8,15 @@ namespace TechChallenge.Tests.Integration.DataRepositories
 {
     public class WhenDiContainer : IntegrationTestDiBase
     {
+        //[Theory]
+        //[ClassData(typeof(RepositoryClassData))]
+        //public void Repository_ShouldBeDiscoverable(Type type)
+        //{
+        //    var sut = classFactory.Container.GetExportedValueByType(type);
+
+        //    sut.ShouldNotBeNull();
+        //}
+
         [Fact]
         public void RaceRepository_ShouldBeDiscoverable()
         {

@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using NSubstitute;
+﻿using NSubstitute;
 using Shouldly;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 using TechChallenge.Business.RequestEngines;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
 using TechChallenge.Tests.Unit.BaseClasses;
 using Xunit;
 
 namespace TechChallenge.Tests.Unit.RequestEngines
 {
-    public class CustomerEngineTests : EngineTestBase<CustomerRequest, CustomerResponse>
+    public class CustomerEngineTests : EngineTestBase<CustomerAsyncRequest, CustomerResponse>
     {
         public CustomerEngineTests()
         {
@@ -22,7 +22,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         public async Task Engine_ShouldRetrieveData()
         {
             customerRepository.GetAll().Returns(customerStub);
-            var request = new CustomerRequest(1);
+            var request = new CustomerAsyncRequest(1);
 
             await engine.GetAsync(request);
 
@@ -34,7 +34,7 @@ namespace TechChallenge.Tests.Unit.RequestEngines
         {
             List<Customer> nullData = null;
             customerRepository.GetAll().Returns(nullData);
-            var request = new CustomerRequest(1);
+            var request = new CustomerAsyncRequest(1);
 
             var response = await engine.GetAsync(request);
 

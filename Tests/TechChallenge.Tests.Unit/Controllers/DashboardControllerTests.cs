@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using NSubstitute;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using NSubstitute;
-using TechChallenge.ApiHost.Api.Dashboard;
+using TechChallenge.ApiHost.Controllers;
 using TechChallenge.Business.Common.Dto;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 using TechChallenge.Tests.Unit.BaseClasses;
 using Xunit;
 
@@ -26,11 +26,11 @@ namespace TechChallenge.Tests.Unit.Controllers
         [Fact]
         public async Task Controller_ShouldGetAllCustomers()
         {
-            mediator.GetAsync(Arg.Any<RaceStatRequest>()).Returns(new RaceStatResponse(new List<RaceStat>()));
+            mediator.GetAsync(Arg.Any<RaceStatAsyncRequest>()).Returns(new RaceStatResponse(new List<RaceStat>()));
 
             await controller.Index();
 
-            await mediator.Received().GetAsync(Arg.Any<RaceStatRequest>());
+            await mediator.Received().GetAsync(Arg.Any<RaceStatAsyncRequest>());
         }
     }
 }

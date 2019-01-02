@@ -1,6 +1,5 @@
 ﻿using Eml.ClassFactory.Contracts;
 using Eml.Mediator.Contracts;
-using Eml.Mef;
 using Xunit;
 
 namespace TechChallenge.Tests.Integration.BaseClasses
@@ -11,6 +10,7 @@ namespace TechChallenge.Tests.Integration.BaseClasses
         protected readonly IClassFactory classFactory;
 
         protected readonly IMediator mediator;
+
         protected IntegrationTestDbBase()
         {
             classFactory = IntegrationTestDbFixture.ClassFactory;

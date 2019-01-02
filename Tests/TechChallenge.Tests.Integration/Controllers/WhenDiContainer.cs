@@ -1,36 +1,32 @@
-﻿using Shouldly;
-using TechChallenge.ApiHost.Api.Amounts;
-using TechChallenge.ApiHost.Api.Customers;
-using TechChallenge.ApiHost.Api.Dashboard;
+﻿using Eml.Extensions;
+using Eml.MefExtensions;
+using Shouldly;
+using System;
+using System.ComponentModel.Composition;
 using TechChallenge.Tests.Integration.BaseClasses;
+using TechChallenge.Tests.Integration.ClassData;
 using Xunit;
 
 namespace TechChallenge.Tests.Integration.Controllers
 {
     public class WhenDiContainer : IntegrationTestDiBase
     {
-        [Fact]
-        public void AmountsController_ShouldBeDiscoverable()
+        [Theory]
+        [ClassData(typeof(ControllerClassData))]
+        public void Controller_ShouldBeExportable(Type type)
         {
-            var exported = classFactory.GetExport<AmountsController>();
+            var sut = classFactory.Container.GetExportedValueByType(type);
 
-            exported.ShouldNotBeNull();
+            sut.ShouldNotBeNull();
         }
 
-        [Fact]
-        public void CustomersController_ShouldBeDiscoverable()
+        [Theory]
+        [ClassData(typeof(ControllerClassData))]
+        public void Controller_ShouldHaveExportAttributes(Type type)
         {
-            var exported = classFactory.GetExport<CustomersController>();
+            var sut = type.GetClassAttribute<ExportAttribute>();
 
-            exported.ShouldNotBeNull();
-        }
-
-        [Fact]
-        public void DashboardController_ShouldBeDiscoverable()
-        {
-            var exported = classFactory.GetExport<DashboardController>();
-
-            exported.ShouldNotBeNull();
+            sut.ShouldNotBeNull();
         }
     }
 }

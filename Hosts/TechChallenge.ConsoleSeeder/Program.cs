@@ -24,8 +24,7 @@ namespace TechChallenge.ConsoleSeeder
             {
                 Console.WriteLine("DestroyDb if any..");
 
-                dbMigration.DestroyDb();
-                dbMigration.CreateDb(DB_DIRECTORY);
+                dbMigration.Execute(DB_DIRECTORY);
 
                 Console.WriteLine("Done. Press enter to exit...");
             }

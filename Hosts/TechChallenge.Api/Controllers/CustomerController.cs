@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Eml.Contracts.Response;
+using Eml.ControllerBase;
+using Eml.DataRepository.Contracts;
+using Eml.Mediator.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -6,32 +10,26 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Eml.Contracts.Controllers;
-using Eml.ControllerBase;
-using Eml.DataRepository.Contracts;
-using Eml.Mediator.Contracts;
-using TechChallenge.ApiHost.Dto;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 
-namespace TechChallenge.ApiHost.Api.Customers
+namespace TechChallenge.ApiHost.Controllers
 {
+    [RoutePrefix("api/Customer")]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    [RoutePrefix("Customers")]
-    public class CustomersController : CrudControllerApiBase<int, Customer, IndexRequest>
+    public class CustomerController : CrudControllerApiBase<int, Customer, IndexRequest>
     {
         [ImportingConstructor]
-        public CustomersController(IMediator mediator, IDataRepositorySoftDeleteInt<Customer> repository)
+        public CustomerController(IMediator mediator, IDataRepositorySoftDeleteInt<Customer> repository)
             : base(mediator, repository)
         {
         }
 
-        #region SCAFFOLDINGS
         [Route("")]
-        [ResponseType(typeof(SearchResponse<Customer>))]
         [HttpGet]
+        [ResponseType(typeof(SearchResponse<Customer>))]
         public override async Task<IHttpActionResult> Index(int? page = 1, bool? desc = false, int? sortColumn = 0, string search = "")
         {
             var request = new IndexRequest(page, desc, sortColumn, search);
@@ -41,37 +39,27 @@ namespace TechChallenge.ApiHost.Api.Customers
         }
 
         [Route("{id}")]
-        [ResponseType(typeof(Customer))]
         [HttpGet]
+        [ResponseType(typeof(Customer))]
         public override async Task<IHttpActionResult> Details(int id)
         {
             return await DoDetailsAsync(id);
         }
 
-        [Route("Suggestions")]
-        [HttpGet]
-        public override async Task<IHttpActionResult> Suggestions(string search = "")
-        {
-            return await DoSuggestionsAsync(search);
-        }
-
-        [ResponseType(typeof(void))]
         [Route("{id}")]
         [HttpPut]
-        public override async Task<IHttpActionResult> Put(int id, [FromBody]Customer item)
+        public override async Task<IHttpActionResult> Edit(int id, [FromBody]Customer item)
         {
-            return await DoPutAsync(id, item);
+            return await DoEditAsync(id, item);
         }
 
-        [ResponseType(typeof(Customer))]
-        [Route("")]
         [HttpPost]
-        public override async Task<IHttpActionResult> Post([FromBody]Customer item)
+        [ResponseType(typeof(Customer))]
+        public override async Task<IHttpActionResult> Create([FromBody]Customer item)
         {
-            return await DoPostAsync(item);
+            return await DoCreateAsync(item);
         }
 
-        [ResponseType(typeof(Customer))]
         [Route("{id}")]
         [HttpDelete]
         public override async Task<IHttpActionResult> Delete(int id, string reason = "")
@@ -79,13 +67,20 @@ namespace TechChallenge.ApiHost.Api.Customers
             return await DoDeleteAsync(id, reason);
         }
 
-        #endregion // SCAFFOLDINGS
+        [HttpGet]
+        [ResponseType(typeof(string[]))]
+        public override async Task<IHttpActionResult> Suggestions(string search = "")
+        {
+            return await DoSuggestionsAsync(search);
+        }
+
+
         [Route("{Id}/Bets")]
         [HttpGet]
         [ResponseType(typeof(TotalBetCountResponse))]
         public async Task<IHttpActionResult> GetBets(int id, int pageNumber = 1)
         {
-            var request = new TotalBetCountRequest(id, pageNumber);
+            var request = new TotalBetCountAsyncRequest(id, pageNumber);
             var response = await mediator.GetAsync(request);
 
             return Ok(response);
@@ -96,17 +91,17 @@ namespace TechChallenge.ApiHost.Api.Customers
         [ResponseType(typeof(IList<RiskCustomerResponse>))]
         public async Task<IHttpActionResult> GetRisks(int pageNumber = 1)
         {
-            var request = new RiskCustomerRequest(pageNumber);
+            var request = new RiskCustomerAsyncRequest(pageNumber);
             var response = await mediator.GetAsync(request);
 
             return Ok(response);
         }
 
-        protected override Func<IQueryable<Customer>, IQueryable<Customer>> GetOrderBy(int sortColumn, bool isdesc)
+        protected override Func<IQueryable<Customer>, IOrderedQueryable<Customer>> GetOrderBy(int sortColumn, bool isDesc)
         {
-            Func<IQueryable<Customer>, IQueryable<Customer>> orderBy = r => r.OrderBy(x => x.Name);
+            Func<IQueryable<Customer>, IOrderedQueryable<Customer>> orderBy = r => r.OrderBy(x => x.Name);
 
-            if (isdesc) orderBy = r => r.OrderByDescending(x => x.Name);
+            if (isDesc) orderBy = r => r.OrderByDescending(x => x.Name);
 
             return orderBy;
         }
@@ -114,6 +109,7 @@ namespace TechChallenge.ApiHost.Api.Customers
         protected override async Task<ISearchResponse<Customer>> GetItemsAsync(IndexRequest request)
         {
             var search = request.Search.ToLower();
+
             Expression<Func<Customer, bool>> whereClause = r => search == "" || r.Name.ToLower().Contains(search);
 
             var orderBy = GetOrderBy(request.SortColumn, request.IsDescending);
@@ -123,18 +119,12 @@ namespace TechChallenge.ApiHost.Api.Customers
             return response;
         }
 
-
-
         protected override async Task<List<string>> GetSuggestionsAsync(string search = "")
         {
-            return await repository
-            .GetAutoCompleteIntellisenseAsync(r => search == "" || r.Name.ToLower().Contains(search),
-                r => r.OrderBy(s => s.Name),
-                r => r.Name);
-        }
+            search = search.ToLower();
 
-        protected override void RegisterIDisposable(List<IDisposable> disposables)
-        {
+            return await repository
+                .GetAutoCompleteIntellisenseAsync(r => search == "" || r.Name.ToLower().Contains(search), r => r.Name);
         }
     }
 }

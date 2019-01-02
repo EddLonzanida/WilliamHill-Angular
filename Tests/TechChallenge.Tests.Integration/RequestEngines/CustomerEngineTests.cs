@@ -1,7 +1,7 @@
+using Shouldly;
 using System.Linq;
 using System.Threading.Tasks;
-using Shouldly;
-using TechChallenge.Business.Requests;
+using TechChallenge.Business.Common.Requests;
 using TechChallenge.Tests.Integration.BaseClasses;
 using Xunit;
 
@@ -12,7 +12,7 @@ namespace TechChallenge.Tests.Integration.RequestEngines
         [Fact]
         public async Task Engine_ShouldRetrieveData()
         {
-            var request = new CustomerRequest(1);
+            var request = new CustomerAsyncRequest(1);
 
             var response = await mediator.GetAsync(request);
 
@@ -22,7 +22,7 @@ namespace TechChallenge.Tests.Integration.RequestEngines
         [Fact]
         public async Task Engine_ShouldHandleNullData()
         {
-            var request = new CustomerRequest(1);
+            var request = new CustomerAsyncRequest(1);
 
             var response = await mediator.GetAsync(request);
 

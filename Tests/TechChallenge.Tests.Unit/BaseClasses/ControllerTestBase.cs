@@ -1,9 +1,9 @@
-﻿using System;
-using System.Web.Http;
-using Eml.DataRepository;
+﻿using Eml.DataRepository;
 using Eml.Mediator.Contracts;
 using NSubstitute;
-using TechChallenge.Business.Responses;
+using System;
+using System.Web.Http;
+using TechChallenge.Business.Common.Responses;
 
 namespace TechChallenge.Tests.Unit.BaseClasses
 {

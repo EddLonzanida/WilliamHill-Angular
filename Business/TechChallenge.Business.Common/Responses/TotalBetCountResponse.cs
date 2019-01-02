@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Eml.Mediator.Contracts;
+﻿using Eml.Mediator.Contracts;
+using System.Collections.Generic;
 using TechChallenge.Business.Common.Dto;
 
-namespace TechChallenge.Business.Responses
+namespace TechChallenge.Business.Common.Responses
 {
     public class TotalBetCountResponse : IResponse
     {

@@ -18,11 +18,7 @@ namespace TechChallenge.Tests.Integration.BaseClasses
 
         public void Dispose()
         {
-            Console.WriteLine("Disposing ClassFactory..");
-
-            var container = ClassFactory.Container;
-            ClassFactory = null;
-            container.Dispose();
+            Eml.Mef.ClassFactory.Dispose(ClassFactory);
         }
     }
 

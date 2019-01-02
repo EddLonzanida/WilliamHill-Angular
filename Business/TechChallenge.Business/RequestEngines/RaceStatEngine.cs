@@ -1,21 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using Eml.DataRepository.Contracts;
+using Eml.Mediator.Contracts;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Requests;
-using TechChallenge.Business.Responses;
 using TechChallenge.Business.Common.Helpers;
-using Eml.DataRepository.Contracts;
+using TechChallenge.Business.Common.Requests;
+using TechChallenge.Business.Common.Responses;
 
 namespace TechChallenge.Business.RequestEngines
 {
-    public class RaceStatEngine : IRequestAsyncEngine<RaceStatRequest, RaceStatResponse>
+    [PartCreationPolicy(CreationPolicy.NonShared)]
+    public class RaceStatEngine : IRequestAsyncEngine<RaceStatAsyncRequest, RaceStatResponse>
     {
         private readonly IDataRepositorySoftDeleteInt<Race> racesRepository;
-      
+
         private readonly IDataRepositorySoftDeleteInt<Bet> betsRepository;
 
         [ImportingConstructor]
@@ -25,7 +26,7 @@ namespace TechChallenge.Business.RequestEngines
             this.betsRepository = betsRepository;
         }
 
-        public async Task<RaceStatResponse> GetAsync(RaceStatRequest request)
+        public async Task<RaceStatResponse> GetAsync(RaceStatAsyncRequest request)
         {
             var races = await EntityFactory.GetRaces(racesRepository);
             var bets = await EntityFactory.GetBets(betsRepository);
@@ -74,7 +75,7 @@ namespace TechChallenge.Business.RequestEngines
 
         private static double GetRaceAmount(int raceId, IEnumerable<Bet> bets)
         {
-            var amount =  bets
+            var amount = bets
                 .Where(r => r.RaceId == raceId)
                 .Sum(r => r.Stake);
             return amount;
@@ -82,8 +83,6 @@ namespace TechChallenge.Business.RequestEngines
 
         public void Dispose()
         {
-            racesRepository?.Dispose();
-            betsRepository?.Dispose();
         }
     }
 }
