@@ -2,7 +2,7 @@
 using System.Web.Http.Description;
 using Swashbuckle.Swagger;
 
-namespace TechChallenge.ApiHost
+namespace TechChallenge.Api
 {
     public class SwashbuckleSummaryOperationFilter : IOperationFilter
     {

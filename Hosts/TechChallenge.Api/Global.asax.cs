@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Http;
 using Eml.Mef;
 using Eml.MefDependencyResolver.Api;
@@ -6,9 +7,9 @@ using Newtonsoft.Json.Serialization;
 using NLog;
 using NLog.Config;
 
-namespace TechChallenge.ApiHost
+namespace TechChallenge.Api
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication : HttpApplication
     {
         public static Eml.Logger.ILogger Logger { get; private set; }
 

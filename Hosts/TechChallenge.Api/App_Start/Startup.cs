@@ -1,10 +1,10 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
-using TechChallenge.ApiHost;
+using TechChallenge.Api;
 
 [assembly: OwinStartup(typeof(Startup))]
-namespace TechChallenge.ApiHost
+namespace TechChallenge.Api
 {
     public class Startup
     {

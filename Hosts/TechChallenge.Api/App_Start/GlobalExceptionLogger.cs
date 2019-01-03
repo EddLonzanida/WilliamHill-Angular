@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
 
-namespace TechChallenge.ApiHost
+namespace TechChallenge.Api
 {
     public class GlobalExceptionLogger : ExceptionLogger
     {

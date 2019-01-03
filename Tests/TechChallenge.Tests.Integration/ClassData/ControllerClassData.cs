@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
-using TechChallenge.ApiHost;
+using TechChallenge.Api;
 using Xunit;
 
 namespace TechChallenge.Tests.Integration.ClassData

@@ -1,16 +1,16 @@
-﻿using Eml.ControllerBase;
-using Eml.Mediator.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Eml.ControllerBase;
+using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
 
-namespace TechChallenge.ApiHost.Controllers
+namespace TechChallenge.Api.Controllers
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]

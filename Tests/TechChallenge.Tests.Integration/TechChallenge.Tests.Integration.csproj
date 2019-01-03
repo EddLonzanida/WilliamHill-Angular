@@ -251,9 +251,9 @@
       <Project>{d126f5c7-6ed4-46f6-b397-46fcd283624f}</Project>
       <Name>TechChallenge.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Hosts\TechChallenge.Api\TechChallenge.ApiHost.csproj">
+    <ProjectReference Include="..\..\Hosts\TechChallenge.Api\TechChallenge.Api.csproj">
       <Project>{1c6c8d13-7962-4d5a-9b4f-5285f324ff0b}</Project>
-      <Name>TechChallenge.ApiHost</Name>
+      <Name>TechChallenge.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\TechChallenge.Contracts\TechChallenge.Contracts.csproj">
       <Project>{8720b43f-45ab-4527-a6a0-058443d63284}</Project>

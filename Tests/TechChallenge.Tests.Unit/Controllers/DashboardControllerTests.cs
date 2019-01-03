@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using TechChallenge.ApiHost.Controllers;
+using TechChallenge.Api.Controllers;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;

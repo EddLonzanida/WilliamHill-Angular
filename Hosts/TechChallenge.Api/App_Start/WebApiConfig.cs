@@ -3,7 +3,7 @@ using System.Web.Http.ExceptionHandling;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.Application;
 
-namespace TechChallenge.ApiHost
+namespace TechChallenge.Api
 {
     public static class WebApiConfig
     {

@@ -2,8 +2,8 @@ using System;
 using System.Web.Http;
 using WebActivatorEx;
 using Swashbuckle.Application;
-using TechChallenge.ApiHost;
 using TechChallenge;
+using TechChallenge.Api;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 namespace TechChallenge

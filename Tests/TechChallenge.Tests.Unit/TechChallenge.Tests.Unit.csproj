@@ -249,9 +249,9 @@
       <Project>{a614d654-0d64-40b3-8925-3c413dd70928}</Project>
       <Name>TechChallenge.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Hosts\TechChallenge.Api\TechChallenge.ApiHost.csproj">
+    <ProjectReference Include="..\..\Hosts\TechChallenge.Api\TechChallenge.Api.csproj">
       <Project>{1c6c8d13-7962-4d5a-9b4f-5285f324ff0b}</Project>
-      <Name>TechChallenge.ApiHost</Name>
+      <Name>TechChallenge.Api</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

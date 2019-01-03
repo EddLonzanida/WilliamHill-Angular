@@ -1,8 +1,4 @@
-﻿using Eml.Contracts.Response;
-using Eml.ControllerBase;
-using Eml.DataRepository.Contracts;
-using Eml.Mediator.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -10,11 +6,15 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Eml.Contracts.Response;
+using Eml.ControllerBase;
+using Eml.DataRepository.Contracts;
+using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
 
-namespace TechChallenge.ApiHost.Controllers
+namespace TechChallenge.Api.Controllers
 {
     [RoutePrefix("api/Customer")]
     [Export]
