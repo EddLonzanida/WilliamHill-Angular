@@ -13,6 +13,7 @@
     const string GET_SET = "{ get; set; }";
 
     var templateName = Path.GetFileName(Host.TemplateFile);
+    var applicationName = templateName.Replace("Db", "").Replace(".tt","");
     var templateNameWithoutExtension = Path.GetFileNameWithoutExtension(Host.TemplateFile);
     var hostServiceProvider = (IServiceProvider)Host;
     var dte = (EnvDTE.DTE)hostServiceProvider.GetService(typeof(EnvDTE.DTE));
@@ -38,12 +39,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using <#= PROJECT_NAME_THAT_CONTAINS_ENTITY #>.Entities;
+using <#= applicationName #>.Contracts.Infrastructure;
 using System.Data.Entity;
 
 namespace <#= fileNamespace #>
 {
     public class <#= templateNameWithoutExtension #> : DbContext
     {
+        public <#= templateNameWithoutExtension #>()
+            : base(ConnectionStrings.<#= applicationName #>Key)
+        {
+        }
+
 <# 
         var entitiesToEnumerate = GetEntities((EnvDTE80.DTE2)dte, dteProject, PROJECT_NAME_THAT_CONTAINS_ENTITY); //GetEntitiesToEnumerate(assembly, $"{PROJECT_NAME_THAT_CONTAINS_ENTITY}.Entities");
         var i = 0;

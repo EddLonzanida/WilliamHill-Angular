@@ -13,5 +13,7 @@ namespace TechChallenge.Business.Common.Entities
         public DateTime Start { get; set; }
 
         public virtual List<Horse> Horses { get; set; }
+
+        public virtual List<Bet> Bets { get; set; }
     }
 }

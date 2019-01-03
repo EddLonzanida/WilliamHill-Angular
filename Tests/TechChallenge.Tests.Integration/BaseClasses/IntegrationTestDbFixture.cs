@@ -10,19 +10,17 @@ namespace TechChallenge.Tests.Integration.BaseClasses
 {
     public class IntegrationTestDbFixture : IDisposable
     {
-        public const string COLLECTION_DEFINITION = "TestDbNetFull CollectionDefinition";
+        public const string COLLECTION_DEFINITION = "IntegrationTestDbFixture CollectionDefinition";
 
         private const string DB_DIRECTORY = "DataBase";
 
         public static IClassFactory ClassFactory { get; private set; }
 
-        private readonly IMigrator dbMigration;
-
         public IntegrationTestDbFixture()
         {
             ClassFactory = Bootstrapper.Init("TechChallenge*.dll");
 
-            dbMigration = ClassFactory.GetMigrator(Environments.PRODUCTION);
+           var dbMigration = ClassFactory.GetMigrator(Environments.PRODUCTION);
 
             if (dbMigration == null)
             {
@@ -35,7 +33,6 @@ namespace TechChallenge.Tests.Integration.BaseClasses
 
         public void Dispose()
         {
-            dbMigration.DestroyDb();
             Eml.Mef.ClassFactory.Dispose(ClassFactory);
         }
     }

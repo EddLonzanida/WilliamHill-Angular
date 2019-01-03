@@ -1,0 +1,127 @@
+[
+   {
+      "id": 1,
+      "name": "R1",
+      "start": "2017-09-21T02:00:00+00:00",
+      "status": "completed",
+      "horses": [
+         {
+            "id": 11,
+            "name": "Big Orange",
+            "odds": 5.5
+         },
+         {
+            "id": 12,
+            "name": "OUR IVANHOWE",
+            "odds": 1.5
+         },
+         {
+            "id": 13,
+            "name": "CURREN MIROTIC",
+            "odds": 3
+         }
+      ]
+   },
+   {
+      "id": 2,
+      "name": "R2",
+      "start": "2017-09-21T03:00:00+00:00",
+      "status": "completed",
+      "horses": [
+         {
+            "id": 21,
+            "name": "BONDI BEACH",
+            "odds": 5.5
+         },
+         {
+            "id": 22,
+            "name": "EXOSPHERIC",
+            "odds": 1.5
+         },
+         {
+            "id": 23,
+            "name": "HARTNELL",
+            "odds": 3
+         }
+      ]
+   },
+   {
+      "id": 3,
+      "name": "R3",
+      "start": "2017-09-21T04:00:00+00:00",
+      "status": "completed",
+      "horses": [
+         {
+            "id": 31,
+            "name": "WHO SHOT THEBARMAN",
+            "odds": 5.5
+         },
+         {
+            "id": 32,
+            "name": "WICKLOW BRAVE",
+            "odds": 1.5
+         },
+         {
+            "id": 33,
+            "name": "ALMOONQITH",
+            "odds": 3
+         }
+      ]
+   },
+   {
+      "id": 4,
+      "name": "R4",
+      "start": "2017-09-21T05:00:00+00:00",
+      "status": "pending",
+      "horses": [
+         {
+            "id": 41,
+            "name": "GALLANTE",
+            "odds": 5.5
+         },
+         {
+            "id": 42,
+            "name": "GRAND MARSHAL",
+            "odds": 1.5
+         },
+         {
+            "id": 43,
+            "name": "JAMEKA",
+            "odds": 3
+         }
+      ]
+   },
+   {
+      "id": 5,
+      "name": "R5",
+      "start": "2017-09-21T06:00:00+00:00",
+      "status": "pending",
+      "horses": [
+         {
+            "id": 51,
+            "name": "HEARTBREAK CITY",
+            "odds": 5.5
+         },
+         {
+            "id": 52,
+            "name": "SIR JOHN HAWKWOOD",
+            "odds": 1.5
+         },
+         {
+            "id": 53,
+            "name": "EXCESS KNOWLEDGE",
+            "odds": 13
+         },
+         {
+            "id": 54,
+            "name": "BEAUTIFUL ROMANCE",
+            "odds": 23
+         },
+         {
+            "id": 55,
+            "name": "ALMANDIN",
+            "odds": 10
+         }
+      ]
+   }
+]

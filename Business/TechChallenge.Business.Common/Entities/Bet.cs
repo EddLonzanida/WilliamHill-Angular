@@ -18,5 +18,9 @@ namespace TechChallenge.Business.Common.Entities
         public int RaceId { get; set; }
 
         public double Stake { get; set; }
+
+        public virtual Customer Customer { get; set; }
+
+        public virtual Race Race { get; set; }
     }
 }
