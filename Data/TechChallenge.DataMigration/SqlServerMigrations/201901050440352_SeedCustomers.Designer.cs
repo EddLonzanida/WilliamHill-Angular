@@ -7,13 +7,13 @@ namespace TechChallenge.DataMigration.SqlServerMigrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class SeedCustomers : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedCustomers));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901022130597_InitialCreate"; }
+            get { return "201901050440352_SeedCustomers"; }
         }
         
         string IMigrationMetadata.Source

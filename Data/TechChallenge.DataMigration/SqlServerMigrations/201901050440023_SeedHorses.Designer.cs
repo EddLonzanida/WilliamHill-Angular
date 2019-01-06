@@ -13,7 +13,7 @@ namespace TechChallenge.DataMigration.SqlServerMigrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201901022156082_SeedHorses"; }
+            get { return "201901050440023_SeedHorses"; }
         }
         
         string IMigrationMetadata.Source

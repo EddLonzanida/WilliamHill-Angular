@@ -6,9 +6,9 @@
 //  How to disable: Rename from TextTemplatingFileGenerator back to TextTemplatingFileGeneratorr
 // </auto-generated>
 //------------------------------------------------------------------------------
+using System.Data.Entity;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Contracts.Infrastructure;
-using System.Data.Entity;
 
 namespace TechChallenge.Data
 {
@@ -17,6 +17,7 @@ namespace TechChallenge.Data
         public TechChallengeDb()
             : base(ConnectionStrings.TechChallengeKey)
         {
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<Bet> Bets { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Eml.DataRepository.Contracts;
 using Shouldly;
 using TechChallenge.Business.Common.Entities;
+using TechChallenge.Data.Contracts;
 using TechChallenge.Tests.Integration.BaseClasses;
 using Xunit;
 

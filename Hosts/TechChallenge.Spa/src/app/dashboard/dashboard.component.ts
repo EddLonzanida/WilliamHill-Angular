@@ -8,6 +8,7 @@ import { RaceStatService } from './race-stat.service';
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements AfterViewInit {
+
     isBusy = true;
     hasErrors = false;
     raceStatResponse = new RaceStatResponse();
@@ -15,36 +16,42 @@ export class DashboardComponent implements AfterViewInit {
     titleStyles: string[] = [];
     icons: string[] = [];
     safeIndex = 0;
-    constructor(private raceStatService: RaceStatService) { }
-    ngAfterViewInit(): void {
-        this.setColorArrays();
 
+    constructor(private raceStatService: RaceStatService) { }
+
+    ngAfterViewInit(): void {
+
+        this.setColorArrays();
         this.search();
+
     }
+
     search() {
+
         this.isBusy = true;
-        this.raceStatService.getStats()
-            .then(r => {
-                this.raceStatResponse = r;
-                this.safeIndex = r.raceStats.length;
-                if (this.safeIndex > 5) { this.safeIndex = 5 };
-                this.isBusy = false;
-                this.hasErrors = false;
-                console.warn(`getStats: ${r.raceStats}`);
-                console.warn(r.raceStats);
-            })
-            .catch(e => {
-                this.isBusy = false;
-                this.hasErrors = true;
-            });
+        this.raceStatService.getStats().subscribe(r => {
+            this.raceStatResponse = r;
+            this.safeIndex = r.raceStats.length;
+            if (this.safeIndex > 5) { this.safeIndex = 5 };
+            this.isBusy = false;
+            this.hasErrors = false;
+            console.warn(`getStats: ${r.raceStats}`);
+            console.warn(r.raceStats);
+        }, error => this.handleError());
     }
+
     isReady(): boolean {
-        let isready = true;
-        if (!this.raceStatResponse) { isready = false; }
+
+        let bReady = true;
+
+        if (!this.raceStatResponse) { bReady = false; }
         if (this.raceStatResponse.raceStats.length === 0) { return false; }
-        return isready;
+
+        return bReady;
     }
+
     private setColorArrays() {
+
         this.colors.push('#00ACAC');
         this.colors.push('#2F8EE5');
         this.colors.push('#6C76AF');
@@ -61,5 +68,13 @@ export class DashboardComponent implements AfterViewInit {
         this.icons.push('fa-area-chart');
         this.icons.push('fa-cogs');
         this.icons.push('fa-bolt');
+
+    }
+
+    private handleError() {
+
+        this.isBusy = false;
+        this.hasErrors = true;
+
     }
 }

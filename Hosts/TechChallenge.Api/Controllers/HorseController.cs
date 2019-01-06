@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Eml.Contracts.Response;
+using Eml.ControllerBase;
+using Eml.Extensions;
+using Eml.Mediator.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -6,19 +10,16 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Eml.Contracts.Response;
-using Eml.ControllerBase;
-using Eml.DataRepository.Contracts;
-using Eml.Extensions;
-using Eml.Mediator.Contracts;
+using TechChallenge.Api.Controllers.BaseClasses;
 using TechChallenge.Business.Common.Entities;
+using TechChallenge.Data.Contracts;
 
 namespace TechChallenge.Api.Controllers
 {
-    [RoutePrefix("api/Horse")]
+    [RoutePrefix("Horse")]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class HorseController : CrudControllerApiWithParentBase<int, Horse, IndexWithParentRequest<int>>
+    public class HorseController : CrudControllerApiWithParentBase<Horse, IndexWithParentRequest<int>>
     {
         [ImportingConstructor]
         public HorseController(IMediator mediator, IDataRepositorySoftDeleteInt<Horse> repository)
@@ -52,6 +53,7 @@ namespace TechChallenge.Api.Controllers
             return await DoEditAsync(id, item);
         }
 
+        [Route("Create")]
         [HttpPost]
         [ResponseType(typeof(Horse))]
         public override async Task<IHttpActionResult> Create([FromBody]Horse item)
@@ -66,6 +68,7 @@ namespace TechChallenge.Api.Controllers
             return await DoDeleteAsync(id, reason);
         }
 
+        [Route("Suggestions")]
         [HttpGet]
         [ResponseType(typeof(string[]))]
         public override async Task<IHttpActionResult> Suggestions(string search = "")
@@ -76,7 +79,7 @@ namespace TechChallenge.Api.Controllers
         [Route("{parentId}/Index")]
         [HttpGet]
         [ResponseType(typeof(SearchResponse<Horse>))]
-        public override async Task<IHttpActionResult> IndexWithParent(int parentId, int? page, bool? desc, int? sortColumn, string search = "")
+        public override async Task<IHttpActionResult> IndexWithParent(int parentId, int? page = 1, bool? desc = false, int? sortColumn = 0, string search = "")
         {
             var request = new IndexWithParentRequest<int>(parentId, page, desc, sortColumn, search);
             var response = await DoIndexWithParentAsync(request);
@@ -115,15 +118,15 @@ namespace TechChallenge.Api.Controllers
             search = search.ToLower();
 
             return await repository
-				.GetAutoCompleteIntellisenseAsync(r => search == "" || r.Name.ToLower().Contains(search) , r => r.Name);
+                .GetAutoCompleteIntellisenseAsync(r => search == "" || r.Name.ToLower().Contains(search), r => r.Name);
         }
-		
+
         protected override async Task<List<string>> GetSuggestionsAsync(int parentId, string search = "")
         {
             search = search.ToLower();
 
             return await repository
-                .GetAutoCompleteIntellisenseAsync(r => r.RaceId == parentId && (search == "" || r.Name.ToLower().Contains(search)) , r => r.Name);
+                .GetAutoCompleteIntellisenseAsync(r => r.RaceId == parentId && (search == "" || r.Name.ToLower().Contains(search)), r => r.Name);
         }
 
         protected override Func<IQueryable<Horse>, IOrderedQueryable<Horse>> GetOrderBy(int sortColumn, bool isDesc)
@@ -136,7 +139,7 @@ namespace TechChallenge.Api.Controllers
             {
                 switch (eSortColumn)
                 {
-					case eHorse.Name:
+                    case eHorse.Name:
 
                         orderBy = r => r.OrderByDescending(x => x.Name);
                         break;
@@ -150,7 +153,7 @@ namespace TechChallenge.Api.Controllers
 
             switch (eSortColumn)
             {
-				case eHorse.Name:
+                case eHorse.Name:
 
                     orderBy = r => r.OrderBy(x => x.Name);
                     break;

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {
   MenuModule, PanelModule,
@@ -19,7 +18,7 @@ import { StatisticComponent } from './shared/statistic/statistic.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent }
 ];
 
 @NgModule({
@@ -35,10 +34,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     PanelModule,
-    HttpModule,
     HttpClientModule,
     SharedModule,
-    MenuModule,
+    MenuModule
   ],
   providers: [{ provide: 'BASE_URL', useFactory: getBaseUrl }, SearchService, RaceStatService],
   bootstrap: [AppComponent]

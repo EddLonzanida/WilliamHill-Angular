@@ -52,11 +52,11 @@
     <Reference Include="Eml.Contracts, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.Contracts.2.2.0.2\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.ControllerBase, Version=2.2.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.ControllerBase.2.2.0.4\lib\net462\Eml.ControllerBase.dll</HintPath>
+    <Reference Include="Eml.ControllerBase, Version=2.2.0.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.ControllerBase.2.2.0.14\lib\net462\Eml.ControllerBase.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.DataRepository, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.2\lib\net462\Eml.DataRepository.dll</HintPath>
+    <Reference Include="Eml.DataRepository, Version=2.2.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.6\lib\net462\Eml.DataRepository.dll</HintPath>
     </Reference>
     <Reference Include="Eml.EntityBaseClasses, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.EntityBaseClasses.2.2.0.2\lib\net462\Eml.EntityBaseClasses.dll</HintPath>
@@ -151,8 +151,8 @@
     <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>

@@ -20,7 +20,7 @@ namespace TechChallenge.Tests.Integration.BaseClasses
         {
             ClassFactory = Bootstrapper.Init("TechChallenge*.dll");
 
-           var dbMigration = ClassFactory.GetMigrator(Environments.PRODUCTION);
+            var dbMigration = ClassFactory.GetMigrator(Environments.PRODUCTION);
 
             if (dbMigration == null)
             {

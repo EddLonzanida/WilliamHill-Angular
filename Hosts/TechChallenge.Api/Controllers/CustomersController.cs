@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Eml.Contracts.Response;
+using Eml.ControllerBase;
+using Eml.Mediator.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -6,23 +9,23 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Eml.Contracts.Response;
-using Eml.ControllerBase;
-using Eml.DataRepository.Contracts;
-using Eml.Mediator.Contracts;
+using TechChallenge.Api.Controllers.BaseClasses;
+using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
+using TechChallenge.Data;
+using TechChallenge.Data.Contracts;
 
 namespace TechChallenge.Api.Controllers
 {
-    [RoutePrefix("api/Customer")]
+    [RoutePrefix("Customers")]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CustomerController : CrudControllerApiBase<int, Customer, IndexRequest>
+    public class CustomersController : CrudControllerApiBase<Customer, IndexRequest>
     {
         [ImportingConstructor]
-        public CustomerController(IMediator mediator, IDataRepositorySoftDeleteInt<Customer> repository)
+        public CustomersController(IMediator mediator, IDataRepositorySoftDeleteInt<Customer> repository)
             : base(mediator, repository)
         {
         }
@@ -43,7 +46,9 @@ namespace TechChallenge.Api.Controllers
         [ResponseType(typeof(Customer))]
         public override async Task<IHttpActionResult> Details(int id)
         {
-            return await DoDetailsAsync(id);
+            var result = await DoDetailsAsync(id);
+
+            return result;
         }
 
         [Route("{id}")]
@@ -53,6 +58,7 @@ namespace TechChallenge.Api.Controllers
             return await DoEditAsync(id, item);
         }
 
+        [Route("Create")]
         [HttpPost]
         [ResponseType(typeof(Customer))]
         public override async Task<IHttpActionResult> Create([FromBody]Customer item)
@@ -67,6 +73,7 @@ namespace TechChallenge.Api.Controllers
             return await DoDeleteAsync(id, reason);
         }
 
+        [Route("Suggestions")]
         [HttpGet]
         [ResponseType(typeof(string[]))]
         public override async Task<IHttpActionResult> Suggestions(string search = "")
@@ -74,23 +81,49 @@ namespace TechChallenge.Api.Controllers
             return await DoSuggestionsAsync(search);
         }
 
-
-        [Route("{Id}/Bets")]
+        [Route("{Id}/BetCount")]
         [HttpGet]
         [ResponseType(typeof(TotalBetCountResponse))]
-        public async Task<IHttpActionResult> GetBets(int id, int pageNumber = 1)
+        public async Task<IHttpActionResult> GetBetCount(int id)
         {
+            const int pageNumber = 1;
+
             var request = new TotalBetCountAsyncRequest(id, pageNumber);
             var response = await mediator.GetAsync(request);
 
             return Ok(response);
         }
 
-        [Route("Risks")]
+        [Route("BetAmount")]
+        [HttpGet]
+        [ResponseType(typeof(TotalBetAmountResponse))]
+        public async Task<IHttpActionResult> GetBetAmount()
+        {
+            var request = new TotalBetAmountAsyncRequest();
+            var response = await mediator.GetAsync(request);
+
+            return Ok(response);
+        }
+
+        [Route("{Id}/BetAmount")]
+        [HttpGet]
+        [ResponseType(typeof(CustomerBetAmount))]
+        public async Task<IHttpActionResult> GetBetAmount(int id)
+        {
+            var request = new TotalBetAmountAsyncRequest(id);
+            var betAmount = await mediator.GetAsync(request);
+            var response = betAmount.CustomerBets.FirstOrDefault(r => r.Id == id);
+
+            return Ok(response);
+        }
+
+        [Route("Risk")]
         [HttpGet]
         [ResponseType(typeof(IList<RiskCustomerResponse>))]
-        public async Task<IHttpActionResult> GetRisks(int pageNumber = 1)
+        public async Task<IHttpActionResult> GetRisk()
         {
+            const int pageNumber = 1;
+
             var request = new RiskCustomerAsyncRequest(pageNumber);
             var response = await mediator.GetAsync(request);
 
@@ -104,6 +137,11 @@ namespace TechChallenge.Api.Controllers
             if (isDesc) orderBy = r => r.OrderByDescending(x => x.Name);
 
             return orderBy;
+        }
+
+        protected override async Task<Customer> DeleteItemAsync(TechChallengeDb db, int id, string reason)
+        {
+            return await repository.DeleteAsync(db, id, reason);
         }
 
         protected override async Task<ISearchResponse<Customer>> GetItemsAsync(IndexRequest request)

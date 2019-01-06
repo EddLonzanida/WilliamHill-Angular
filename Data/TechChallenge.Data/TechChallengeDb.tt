@@ -49,6 +49,7 @@ namespace <#= fileNamespace #>
         public <#= templateNameWithoutExtension #>()
             : base(ConnectionStrings.<#= applicationName #>Key)
         {
+            Configuration.ProxyCreationEnabled = false;
         }
 
 <# 

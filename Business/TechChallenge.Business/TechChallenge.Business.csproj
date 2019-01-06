@@ -41,8 +41,8 @@
     <Reference Include="Eml.Contracts, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.Contracts.2.2.0.2\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.DataRepository, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.2\lib\net462\Eml.DataRepository.dll</HintPath>
+    <Reference Include="Eml.DataRepository, Version=2.2.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.6\lib\net462\Eml.DataRepository.dll</HintPath>
     </Reference>
     <Reference Include="Eml.EntityBaseClasses, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.EntityBaseClasses.2.2.0.2\lib\net462\Eml.EntityBaseClasses.dll</HintPath>
@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\EntityFactory.cs" />
     <Compile Include="RequestEngines\CustomerEngine.cs" />
     <Compile Include="RequestEngines\RaceStatEngine.cs" />
     <Compile Include="RequestEngines\RiskCustomerEngine.cs" />
@@ -91,6 +92,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\TechChallenge.Data\TechChallenge.Data.csproj">
+      <Project>{d126f5c7-6ed4-46f6-b397-46fcd283624f}</Project>
+      <Name>TechChallenge.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TechChallenge.Business.Common\TechChallenge.Business.Common.csproj">
       <Project>{33b71a2c-7964-4a36-a80d-892de61b1a25}</Project>
       <Name>TechChallenge.Business.Common</Name>

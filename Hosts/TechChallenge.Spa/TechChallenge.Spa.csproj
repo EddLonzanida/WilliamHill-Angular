@@ -69,16 +69,24 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".angular-cli.json" />
-    <Content Include=".editorconfig" />
     <Content Include=".gitignore" />
+    <Content Include="CreateAngular.ps1" />
+    <Content Include=".editorconfig" />
+    <Content Include="angular.json" />
     <Content Include="package.json" />
+    <None Include="packages.config" />
+    <Content Include="src\app\dashboard\dashboard.component.css" />
+    <Content Include="src\app\dashboard\dashboard.component.html" />
+    <Content Include="src\app\shared\statistic\statistic.component.css" />
+    <Content Include="src\app\shared\statistic\statistic.component.html" />
     <Content Include="src\assets\.gitkeep" />
+    <Content Include="src\browserslist" />
+    <Content Include="src\tsconfig.app.json" />
+    <Content Include="src\tsconfig.spec.json" />
+    <Content Include="src\tslint.json" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
-    <Content Include="src\tsconfig.app.json" />
-    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -89,16 +97,11 @@
   <ItemGroup>
     <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
-    <Content Include="src\app\dashboard\dashboard.component.css" />
-    <Content Include="src\app\dashboard\dashboard.component.html" />
     <Content Include="src\app\shared\busy-indicator\busy-indicator.component.css" />
     <Content Include="src\app\shared\busy-indicator\busy-indicator.component.html" />
-    <Content Include="src\app\shared\statistic\statistic.component.css" />
-    <Content Include="src\app\shared\statistic\statistic.component.html" />
-    <Content Include="src\assets\img\logo.png" />
-    <Content Include="src\assets\img\TechChallenge-logo9.png" />
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
+    <Content Include="src\karma.conf.js" />
     <Content Include="src\styles.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -106,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\app.component.ts" />
@@ -124,10 +130,9 @@
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
-    <TypeScriptCompile Include="src\typings.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Folder Include="src\assets\img\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

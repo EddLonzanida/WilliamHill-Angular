@@ -6,9 +6,10 @@ using Eml.DataRepository.Contracts;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Common.Helpers;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
+using TechChallenge.Business.Helpers;
+using TechChallenge.Data.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {
@@ -30,8 +31,9 @@ namespace TechChallenge.Business.RequestEngines
 
         public async Task<RiskCustomerResponse> GetAsync(RiskCustomerAsyncRequest request)
         {
+            var betRequest = new TotalBetAmountAsyncRequest();
             var customers = await EntityFactory.GetCustomers(customersRepository);
-            var bets = await EntityFactory.GetBets(betsRepository);
+            var bets = await EntityFactory.GetBets(betsRepository, betRequest);
 
             if (bets == null) return new RiskCustomerResponse(new List<RiskCustomer>());
             if (customers == null) return new RiskCustomerResponse(new List<RiskCustomer>());

@@ -7,20 +7,16 @@ namespace TechChallenge.Business.Common.Entities
     {
         [Required]
         [Display(Name = "Customer")]
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
 
         [Required]
         [Display(Name = "Horse")]
-        public int HorseId { get; set; }
+        public int? HorseId { get; set; }
 
         [Required]
         [Display(Name = "Race")]
-        public int RaceId { get; set; }
+        public int? RaceId { get; set; }
 
         public double Stake { get; set; }
-
-        public virtual Customer Customer { get; set; }
-
-        public virtual Race Race { get; set; }
     }
 }

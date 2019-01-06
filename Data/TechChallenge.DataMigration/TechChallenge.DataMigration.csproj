@@ -40,8 +40,8 @@
     <Reference Include="Eml.Contracts, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.Contracts.2.2.0.2\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.DataRepository, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.2\lib\net462\Eml.DataRepository.dll</HintPath>
+    <Reference Include="Eml.DataRepository, Version=2.2.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.6\lib\net462\Eml.DataRepository.dll</HintPath>
     </Reference>
     <Reference Include="Eml.EntityBaseClasses, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.EntityBaseClasses.2.2.0.2\lib\net462\Eml.EntityBaseClasses.dll</HintPath>
@@ -86,25 +86,25 @@
     <Compile Include="Seeders\BetSeeder.cs" />
     <Compile Include="Seeders\CustomerSeeder.cs" />
     <Compile Include="Seeders\RaceSeeder.cs" />
-    <Compile Include="SqlServerMigrations\201901022130597_InitialCreate.cs" />
-    <Compile Include="SqlServerMigrations\201901022130597_InitialCreate.Designer.cs">
-      <DependentUpon>201901022130597_InitialCreate.cs</DependentUpon>
+    <Compile Include="SqlServerMigrations\201901050435511_InitialCreate.cs" />
+    <Compile Include="SqlServerMigrations\201901050435511_InitialCreate.Designer.cs">
+      <DependentUpon>201901050435511_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerMigrations\201901022155305_SeedRaces.cs" />
-    <Compile Include="SqlServerMigrations\201901022155305_SeedRaces.Designer.cs">
-      <DependentUpon>201901022155305_SeedRaces.cs</DependentUpon>
+    <Compile Include="SqlServerMigrations\201901050439202_SeedRaces.cs" />
+    <Compile Include="SqlServerMigrations\201901050439202_SeedRaces.Designer.cs">
+      <DependentUpon>201901050439202_SeedRaces.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerMigrations\201901022156082_SeedHorses.cs" />
-    <Compile Include="SqlServerMigrations\201901022156082_SeedHorses.Designer.cs">
-      <DependentUpon>201901022156082_SeedHorses.cs</DependentUpon>
+    <Compile Include="SqlServerMigrations\201901050440023_SeedHorses.cs" />
+    <Compile Include="SqlServerMigrations\201901050440023_SeedHorses.Designer.cs">
+      <DependentUpon>201901050440023_SeedHorses.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerMigrations\201901022156276_SeedCustomers.cs" />
-    <Compile Include="SqlServerMigrations\201901022156276_SeedCustomers.Designer.cs">
-      <DependentUpon>201901022156276_SeedCustomers.cs</DependentUpon>
+    <Compile Include="SqlServerMigrations\201901050440352_SeedCustomers.cs" />
+    <Compile Include="SqlServerMigrations\201901050440352_SeedCustomers.Designer.cs">
+      <DependentUpon>201901050440352_SeedCustomers.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerMigrations\201901022157004_SeedBets.cs" />
-    <Compile Include="SqlServerMigrations\201901022157004_SeedBets.Designer.cs">
-      <DependentUpon>201901022157004_SeedBets.cs</DependentUpon>
+    <Compile Include="SqlServerMigrations\201901050441165_SeedBets.cs" />
+    <Compile Include="SqlServerMigrations\201901050441165_SeedBets.Designer.cs">
+      <DependentUpon>201901050441165_SeedBets.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -130,22 +130,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="SqlServerMigrations\201901022130597_InitialCreate.resx">
-      <DependentUpon>201901022130597_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="SqlServerMigrations\201901050435511_InitialCreate.resx">
+      <DependentUpon>201901050435511_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlServerMigrations\201901022155305_SeedRaces.resx">
-      <DependentUpon>201901022155305_SeedRaces.cs</DependentUpon>
+    <EmbeddedResource Include="SqlServerMigrations\201901050439202_SeedRaces.resx">
+      <DependentUpon>201901050439202_SeedRaces.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlServerMigrations\201901022156082_SeedHorses.resx">
-      <DependentUpon>201901022156082_SeedHorses.cs</DependentUpon>
+    <EmbeddedResource Include="SqlServerMigrations\201901050440023_SeedHorses.resx">
+      <DependentUpon>201901050440023_SeedHorses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlServerMigrations\201901022156276_SeedCustomers.resx">
-      <DependentUpon>201901022156276_SeedCustomers.cs</DependentUpon>
+    <EmbeddedResource Include="SqlServerMigrations\201901050440352_SeedCustomers.resx">
+      <DependentUpon>201901050440352_SeedCustomers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlServerMigrations\201901022157004_SeedBets.resx">
-      <DependentUpon>201901022157004_SeedBets.cs</DependentUpon>
+    <EmbeddedResource Include="SqlServerMigrations\201901050441165_SeedBets.resx">
+      <DependentUpon>201901050441165_SeedBets.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

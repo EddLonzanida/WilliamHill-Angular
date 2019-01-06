@@ -6,9 +6,10 @@ using Eml.DataRepository.Contracts;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Common.Helpers;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
+using TechChallenge.Business.Helpers;
+using TechChallenge.Data.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {
@@ -25,7 +26,7 @@ namespace TechChallenge.Business.RequestEngines
 
         public async Task<TotalBetAmountResponse> GetAsync(TotalBetAmountAsyncRequest request)
         {
-            var bets = await EntityFactory.GetBets(betsRepository);
+            var bets = await EntityFactory.GetBets(betsRepository, request);
 
             if (bets == null) return new TotalBetAmountResponse(new List<CustomerBetAmount>());
 
@@ -33,10 +34,10 @@ namespace TechChallenge.Business.RequestEngines
                 .GroupBy(r => new { customerId = r.CustomerId })
                 .Select(g => new CustomerBetAmount
                 {
-                    Id = g.Key.customerId,
-                    Totalstake = g.Sum(r => r.Stake)
+                    Id = g.Key.customerId ?? default(int),
+                    TotalStake = g.Sum(r => r.Stake)
                 })
-                .OrderBy(r => r.Totalstake)
+                .OrderBy(r => r.TotalStake)
                 .ThenBy(r => r.Id);
 
             return new TotalBetAmountResponse(betAmounts);

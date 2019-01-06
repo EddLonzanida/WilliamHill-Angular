@@ -5,14 +5,16 @@ namespace TechChallenge.Business.Common.Requests
 {
     public class TotalBetAmountAsyncRequest : IRequestAsync<TotalBetAmountAsyncRequest, TotalBetAmountResponse>
     {
-        public int PageNumber { get; }
+        public int PageNumber { get; } = 1;
+
+        public int CustomerId { get; }
 
         /// <summary>
         /// This request will be processed by <see cref="TotalBetAmountEngine"/>.
         /// </summary>
-        public TotalBetAmountAsyncRequest()
+        public TotalBetAmountAsyncRequest(int customerId = 0)
         {
-            PageNumber = 1;
+            CustomerId = customerId;
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿using Eml.DataRepository.Contracts;
-using Eml.Mediator.Contracts;
+﻿using Eml.Mediator.Contracts;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Common.Helpers;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
+using TechChallenge.Business.Helpers;
+using TechChallenge.Data.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {

@@ -6,6 +6,6 @@ namespace TechChallenge.Business.Common.Dto
     {
         public int Id { get; set; }
 
-        public double Totalstake { get; set; }
+        public double TotalStake { get; set; }
     }
 }

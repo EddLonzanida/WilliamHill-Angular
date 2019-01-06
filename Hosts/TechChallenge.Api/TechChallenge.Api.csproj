@@ -59,11 +59,11 @@
     <Reference Include="Eml.Contracts, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.Contracts.2.2.0.2\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.ControllerBase, Version=2.2.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.ControllerBase.2.2.0.4\lib\net462\Eml.ControllerBase.dll</HintPath>
+    <Reference Include="Eml.ControllerBase, Version=2.2.0.14, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.ControllerBase.2.2.0.14\lib\net462\Eml.ControllerBase.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.DataRepository, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.2\lib\net462\Eml.DataRepository.dll</HintPath>
+    <Reference Include="Eml.DataRepository, Version=2.2.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.6\lib\net462\Eml.DataRepository.dll</HintPath>
     </Reference>
     <Reference Include="Eml.EntityBaseClasses, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.EntityBaseClasses.2.2.0.2\lib\net462\Eml.EntityBaseClasses.dll</HintPath>
@@ -309,15 +309,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AmountsController.cs" />
     <Compile Include="App_Start\GlobalExceptionLogger.cs" />
+    <Compile Include="Controllers\BaseClasses\CrudControllerApiBase.cs" />
+    <Compile Include="Controllers\BaseClasses\CrudControllerApiWithParentBase.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="App_Start\LowercaseDocumentFilter.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\SwashbuckleSummaryOperationFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HorseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

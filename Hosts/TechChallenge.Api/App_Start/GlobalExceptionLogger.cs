@@ -8,7 +8,7 @@ namespace TechChallenge.Api
     {
         public override async Task LogAsync(ExceptionLoggerContext context, CancellationToken cancellationToken)
         {
-            await Task.Run(() => WebApiApplication.Logger.Log.Error(context.Exception));
+            await Task.Run(() => WebApiApplication.Logger.Log.Error(context.Exception), cancellationToken);
 
             await base.LogAsync(context, cancellationToken);
         }

@@ -175,6 +175,7 @@ namespace TechChallenge
                         // alternative implementation for ISwaggerProvider with the CustomProvider option.
                         //
                         //c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
+                       //
                         c.OperationFilter<SwashbuckleSummaryOperationFilter>();
                         c.DocumentFilter<LowercaseDocumentFilter>();
                     })

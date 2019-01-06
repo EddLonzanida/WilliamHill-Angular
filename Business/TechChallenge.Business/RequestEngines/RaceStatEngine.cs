@@ -6,9 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Business.Common.Helpers;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
+using TechChallenge.Business.Helpers;
+using TechChallenge.Data.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {
@@ -28,8 +29,9 @@ namespace TechChallenge.Business.RequestEngines
 
         public async Task<RaceStatResponse> GetAsync(RaceStatAsyncRequest request)
         {
+            var betRequest = new TotalBetAmountAsyncRequest();
             var races = await EntityFactory.GetRaces(racesRepository);
-            var bets = await EntityFactory.GetBets(betsRepository);
+            var bets = await EntityFactory.GetBets(betsRepository, betRequest);
 
             var response = races
                 .Select(r => new RaceStat

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechChallenge.Business.Common.Entities;
+using TechChallenge.Data.Contracts;
 using Xunit;
 
 namespace TechChallenge.Tests.Integration.ClassData

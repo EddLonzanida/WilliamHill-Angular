@@ -48,14 +48,13 @@ namespace TechChallenge.Tests.Unit.RequestEngines
             var c5 = response.CustomerBets.First(r => r.Id == 5);
             var c6 = response.CustomerBets.First(r => r.Id == 6);
             var c7 = response.CustomerBets.First(r => r.Id == 7);
-            c1.Totalstake.ShouldBe(700);
-            c2.Totalstake.ShouldBe(750);
-            c3.Totalstake.ShouldBe(650);
-            c4.Totalstake.ShouldBe(600);
-            c5.Totalstake.ShouldBe(1120);
-            c6.Totalstake.ShouldBe(1120);
-            c7.Totalstake.ShouldBe(1120);
-
+            c1.TotalStake.ShouldBe(700);
+            c2.TotalStake.ShouldBe(750);
+            c3.TotalStake.ShouldBe(650);
+            c4.TotalStake.ShouldBe(600);
+            c5.TotalStake.ShouldBe(1120);
+            c6.TotalStake.ShouldBe(1120);
+            c7.TotalStake.ShouldBe(1120);
         }
     }
 }

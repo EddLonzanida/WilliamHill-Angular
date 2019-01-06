@@ -5,6 +5,7 @@ using NSubstitute;
 using TechChallenge.Business.Common.Entities;
 using Eml.DataRepository;
 using Eml.DataRepository.Contracts;
+using TechChallenge.Data.Contracts;
 
 namespace TechChallenge.Tests.Unit.BaseClasses
 {

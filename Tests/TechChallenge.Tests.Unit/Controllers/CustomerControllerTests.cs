@@ -7,18 +7,21 @@ using System.Linq.Expressions;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
+using Shouldly;
 using TechChallenge.Api.Controllers;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
+using TechChallenge.Data.Contracts;
 using TechChallenge.Tests.Unit.BaseClasses;
 using X.PagedList;
 using Xunit;
 
 namespace TechChallenge.Tests.Unit.Controllers
 {
-    public class CustomerControllerTests : ControllerTestBase<CustomerController>
+    public class CustomerControllerTests : ControllerTestBase<CustomersController>
     {
         protected readonly IDataRepositorySoftDeleteInt<Customer> repository;
 
@@ -26,7 +29,7 @@ namespace TechChallenge.Tests.Unit.Controllers
         {
             repository = Substitute.For<IDataRepositorySoftDeleteInt<Customer>>();
 
-            controller = new CustomerController(mediator, repository)
+            controller = new CustomersController(mediator, repository)
             {
                 Request = new HttpRequestMessage(),
                 Configuration = new HttpConfiguration()
@@ -53,7 +56,7 @@ namespace TechChallenge.Tests.Unit.Controllers
         {
             mediator.GetAsync(Arg.Any<TotalBetCountAsyncRequest>()).Returns(new TotalBetCountResponse(new List<CustomerBetCount>()));
 
-            await controller.GetBets(1);
+            await controller.GetBetCount(1);
 
             await mediator.Received().GetAsync(Arg.Any<TotalBetCountAsyncRequest>());
         }
@@ -63,9 +66,19 @@ namespace TechChallenge.Tests.Unit.Controllers
         {
             mediator.GetAsync(Arg.Any<RiskCustomerAsyncRequest>()).Returns(new RiskCustomerResponse(new List<RiskCustomer>()));
 
-            await controller.GetRisks();
+            await controller.GetRisk();
 
             await mediator.Received().GetAsync(Arg.Any<RiskCustomerAsyncRequest>());
+        }
+
+        [Fact]
+        public async Task Controller_ShouldGetAllAmountsPerCustomer()
+        {
+            mediator.GetAsync(Arg.Any<TotalBetAmountAsyncRequest>()).Returns(new TotalBetAmountResponse(new List<CustomerBetAmount>()));
+
+            await controller.GetBetAmount();
+
+            await mediator.Received().GetAsync(Arg.Any<TotalBetAmountAsyncRequest>());
         }
     }
 }

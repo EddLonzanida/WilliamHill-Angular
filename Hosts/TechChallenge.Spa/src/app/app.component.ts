@@ -3,58 +3,69 @@ import { Menu } from 'primeng/menu';
 import { MenuItem } from "primeng/primeng";
 import { Router } from "@angular/router";
 
-declare var jQuery :any;
+declare var jQuery: any;
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-  menuItems: MenuItem[];
-  miniMenuItems: MenuItem[];
+    menuItems: MenuItem[];
+    miniMenuItems: MenuItem[];
 
-  @ViewChild('bigMenu') bigMenu : Menu;
-  @ViewChild('smallMenu') smallMenu : Menu;
+    @ViewChild('bigMenu') bigMenu: Menu;
+    @ViewChild('smallMenu') smallMenu: Menu;
 
-  constructor(private router : Router) {
-
-  }
-
-  ngOnInit() {
-
-    let handleSelected = function(event) {
-      let allMenus = jQuery(event.originalEvent.target).closest('ul');
-      let allLinks = allMenus.find('.menu-selected');
-
-      allLinks.removeClass("menu-selected");
-      let selected = jQuery(event.originalEvent.target).closest('a');
-      selected.addClass('menu-selected');
+    constructor(private router: Router) {
     }
 
-    this.menuItems = [
-      {label: 'Dashboard', icon: 'fa-home', routerLink: ['/dashboard'], command: (event) => handleSelected(event)}
-    ]
+    ngOnInit() {
 
-    this.miniMenuItems = [];
-    this.menuItems.forEach( (item : MenuItem) => {
-      let miniItem = { icon: item.icon, routerLink: item.routerLink }
-      this.miniMenuItems.push(miniItem);
-    })
+        const handleSelected = event => {
 
-  }
+            const allMenus = jQuery(event.originalEvent.target).closest('ul');
+            const allLinks = allMenus.find('.menu-selected');
+            const selected = jQuery(event.originalEvent.target).closest('a');
 
-  selectInitialMenuItemBasedOnUrl() {
-    let path = document.location.pathname;
-    let menuItem = this.menuItems.find( (item) => { return item.routerLink[0] == path });
-    if (menuItem) {
-      let selectedIcon = this.bigMenu.container.querySelector(`.${menuItem.icon}`);
-      jQuery(selectedIcon).closest('li').addClass('menu-selected');
+            allLinks.removeClass("menu-selected");
+            selected.addClass('menu-selected');
+
+        };
+
+        this.menuItems = [
+            {
+                label: 'Dashboard',
+                icon: 'fa fa-home',
+                routerLink: ['/dashboard'],
+                command: (event) => handleSelected(event)
+            }
+        ];
+        this.miniMenuItems = [];
+        this.menuItems.forEach((item: MenuItem) => {
+
+            const miniItem = { icon: item.icon, routerLink: item.routerLink };
+
+            this.miniMenuItems.push(miniItem);
+
+        });
     }
-  }
 
-  ngAfterViewInit() {
-    this.selectInitialMenuItemBasedOnUrl();
-  }
+    selectInitialMenuItemBasedOnUrl() {
+
+        const path = document.location.pathname;
+        const menuItem = this.menuItems.find((item) => { return item.routerLink[0] == path });
+
+        if (menuItem) {
+
+            const selectedIcon = this.bigMenu.containerViewChild.nativeElement.querySelector(`.${menuItem.icon}`);
+
+            jQuery(selectedIcon).closest('li').addClass('menu-selected');
+        }
+    }
+
+    ngAfterViewInit() {
+        this.selectInitialMenuItemBasedOnUrl();
+    }
 }

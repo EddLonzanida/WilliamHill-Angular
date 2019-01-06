@@ -11,9 +11,9 @@ using TechChallenge.Business.Common.Responses;
 
 namespace TechChallenge.Api.Controllers
 {
+    [RoutePrefix("Dashboard")]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    [RoutePrefix("Dashboard")]
     public class DashboardController : ControllerApiBase
     {
         [ImportingConstructor]
