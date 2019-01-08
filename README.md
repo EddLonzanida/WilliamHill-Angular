@@ -14,10 +14,10 @@ update-database -verbose
 ```
 
 ## Run the application
-2. Press F5 to run the back-end webapi using **IIS Express**
-3. Open **Powershell**
-4. Navigate to TechChallenge\Hosts\TechChallenge.Spa
-5. In the console, type the command below then press enter to execute
+1. Press F5 to run the back-end webapi using **IIS Express**
+2. Open **Powershell**
+3. Navigate to TechChallenge\Hosts\TechChallenge.Spa
+4. In the console, type the command below then press enter to execute
 ```javascript
 npm start
 ```
