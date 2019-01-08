@@ -21,8 +21,8 @@ update-database -verbose
 ```javascript
 npm start
 ```
-## Documentation [here](https://raw.githubusercontent.com/EddLonzanida/TechChallenge-WebApi/master/Docs/TechChallenge%20-%20SolutionArchitecture.docx)
+## Documentation [here](https://raw.githubusercontent.com/EddLonzanida/WilliamHill-Angular/master/Docs/TechChallenge%20-%20SolutionArchitecture.docx)
 
 ### Quick View
-![](https://github.com/EddLonzanida/TechChallenge-WebApi/blob/master/Docs/Art/QuickView.png)
+![](https://github.com/EddLonzanida/WilliamHill-Angular/blob/master/Docs/Art/QuickView.png)
 
