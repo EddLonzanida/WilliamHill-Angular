@@ -58,7 +58,7 @@ namespace TechChallenge.Api.Controllers
             return await DoEditAsync(id, item);
         }
 
-        [Route("Create")]
+        [Route("")]
         [HttpPost]
         [ResponseType(typeof(Customer))]
         public override async Task<IHttpActionResult> Create([FromBody]Customer item)
