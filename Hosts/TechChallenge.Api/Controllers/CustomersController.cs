@@ -1,15 +1,21 @@
 ﻿using Eml.Contracts.Response;
 using Eml.ControllerBase;
 using Eml.Mediator.Contracts;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TechChallenge.Api.Controllers.BaseClasses;
+using TechChallenge.Api.Utils;
 using TechChallenge.Business.Common.Dto;
 using TechChallenge.Business.Common.Entities;
 using TechChallenge.Business.Common.Requests;
@@ -28,6 +34,33 @@ namespace TechChallenge.Api.Controllers
         public CustomersController(IMediator mediator, IDataRepositorySoftDeleteInt<Customer> repository)
             : base(mediator, repository)
         {
+        }
+
+        [Route("DownloadReport")]
+        [SwaggerResponseContentType(responseType: "application/octet-stream", Exclusive = true)]
+        [HttpPost]
+        [ResponseType(typeof(MemoryStream))]
+        public async Task<HttpResponseMessage> DownloadReport(string fileName)
+        {
+            using (var xls = ExcelUtil.CreateCustomerExcel(fileName))
+            {
+                var memoryStream = await ExcelUtil.GetCustomers(repository, xls);
+                var response = Request.CreateResponse(HttpStatusCode.OK);
+
+                response.Content = new ByteArrayContent(memoryStream.GetBuffer());
+
+                SetResponseHeaders(response.Content, xls, memoryStream);
+
+                return response;
+            }
+        }
+
+        private void SetResponseHeaders(HttpContent content, ExcelPackage xls, MemoryStream memoryStream)
+        {
+            content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            content.Headers.ContentDisposition.FileName = xls.Workbook.Properties.Title;
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.ms-excel");
+            content.Headers.ContentLength = memoryStream.Length;
         }
 
         [Route("")]

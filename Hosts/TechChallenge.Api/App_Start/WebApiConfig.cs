@@ -1,7 +1,8 @@
-﻿using System.Web.Http;
-using System.Web.Http.ExceptionHandling;
-using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json.Serialization;
 using Swashbuckle.Application;
+using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
+using TechChallenge.Api.Utils;
 
 namespace TechChallenge.Api
 {
@@ -14,6 +15,7 @@ namespace TechChallenge.Api
             // Web API configuration and services
             var formatters = config.Formatters;
 
+           // formatters.Insert(0, new BinaryMediaTypeFormatter());
             formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             formatters.Remove(config.Formatters.XmlFormatter);
             formatters.JsonFormatter.Indent = true;

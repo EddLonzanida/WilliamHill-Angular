@@ -4,6 +4,7 @@ using WebActivatorEx;
 using Swashbuckle.Application;
 using TechChallenge;
 using TechChallenge.Api;
+using TechChallenge.Api.Utils;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 namespace TechChallenge
@@ -175,8 +176,9 @@ namespace TechChallenge
                         // alternative implementation for ISwaggerProvider with the CustomProvider option.
                         //
                         //c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
-                       //
+                        //
                         c.OperationFilter<SwashbuckleSummaryOperationFilter>();
+                        c.OperationFilter<ResponseContentTypeOperationFilter>();
                         c.DocumentFilter<LowercaseDocumentFilter>();
                     })
                     .EnableSwaggerUi(c =>
