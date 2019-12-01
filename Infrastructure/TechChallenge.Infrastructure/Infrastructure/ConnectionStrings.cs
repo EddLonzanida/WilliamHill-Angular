@@ -1,4 +1,4 @@
-﻿namespace TechChallenge.Contracts.Infrastructure
+﻿namespace TechChallenge.Infrastructure.Infrastructure
 {
     public static class ConnectionStrings
     {

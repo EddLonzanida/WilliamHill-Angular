@@ -1,12 +1,11 @@
 using System;
 using System.Web.Http;
-using WebActivatorEx;
 using Swashbuckle.Application;
-using TechChallenge;
 using TechChallenge.Api;
+using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
-namespace TechChallenge
+namespace TechChallenge.Api
 {
     public class SwaggerConfig
     {

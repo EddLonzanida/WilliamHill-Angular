@@ -158,11 +158,7 @@
     <Compile Include="Extensions\DbExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DataRepositorySoftDelete.cs" />
-    <Compile Include="TechChallengeDb.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TechChallengeDb.tt</DependentUpon>
-    </Compile>
+    <Compile Include="TechChallengeDb.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -171,19 +167,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TechChallengeDb.tt">
+    <None Include="TechChallengeDb.ttt">
       <Generator>TextTemplatingFileGeneratorr</Generator>
-      <LastGenOutput>TechChallengeDb.cs</LastGenOutput>
-    </Content>
+      <LastGenOutput>TechChallengeDb1.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\TechChallenge.Business.Common\TechChallenge.Business.Common.csproj">
       <Project>{33b71a2c-7964-4a36-a80d-892de61b1a25}</Project>
       <Name>TechChallenge.Business.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Infrastructure\TechChallenge.Contracts\TechChallenge.Contracts.csproj">
+    <ProjectReference Include="..\..\Infrastructure\TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj">
       <Project>{8720b43f-45ab-4527-a6a0-058443d63284}</Project>
-      <Name>TechChallenge.Contracts</Name>
+      <Name>TechChallenge.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

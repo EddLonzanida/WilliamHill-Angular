@@ -7,8 +7,8 @@
     <ProjectGuid>{8720B43F-45AB-4527-A6A0-058443D63284}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TechChallenge.Contracts</RootNamespace>
-    <AssemblyName>TechChallenge.Contracts</AssemblyName>
+    <RootNamespace>TechChallenge.Infrastructure</RootNamespace>
+    <AssemblyName>TechChallenge.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -55,9 +55,7 @@
     <Compile Include="Infrastructure\ConnectionStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dto\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config">

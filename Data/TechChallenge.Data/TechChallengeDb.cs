@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 using System.Data.Entity;
 using TechChallenge.Business.Common.Entities;
-using TechChallenge.Contracts.Infrastructure;
+using TechChallenge.Infrastructure.Infrastructure;
 
 namespace TechChallenge.Data
 {
