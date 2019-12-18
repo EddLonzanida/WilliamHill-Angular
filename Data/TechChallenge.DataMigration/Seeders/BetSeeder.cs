@@ -2,7 +2,7 @@
 using Eml.DataRepository.Extensions;
 using Eml.Extensions;
 using System.Data.Entity.Migrations;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 using TechChallenge.Data;
 
 namespace TechChallenge.DataMigration.Seeders

@@ -1,7 +1,12 @@
-﻿using Eml.Contracts.Response;
-using Eml.ControllerBase;
+﻿using Eml.Contracts.Requests;
+using Eml.Contracts.Responses;
 using Eml.Extensions;
-using Eml.Mediator.Contracts;
+using TechChallenge.Api.Controllers.BaseClasses.TechChallengeDb;
+using TechChallenge.Business.Common.Dto.TechChallengeDb;
+using TechChallenge.Business.Common.Dto.TechChallengeDb.EntityHelpers;
+using TechChallenge.Business.Common.Dto.TechChallengeDb.SortEnums;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
+using TechChallenge.Data.Repositories.TechChallengeDb.Contracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -10,130 +15,132 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using TechChallenge.Api.Controllers.BaseClasses;
-using TechChallenge.Business.Common.Entities;
-using TechChallenge.Data.Contracts;
 
 namespace TechChallenge.Api.Controllers
 {
-    [RoutePrefix("Horse")]
+    [RoutePrefix("api/Horse")]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class HorseController : CrudControllerApiWithParentBase<Horse, IndexWithParentRequest<int>>
+    public class HorseController : CrudControllerApiSoftDeletableIntBase<Horse
+        , HorseIndexRequest
+        , HorseIndexResponse
+        , HorseEditCreateRequest
+        , HorseDetailsCreateResponse
+        , ITechChallengeDataRepositorySoftDeleteInt<Horse>>
     {
         [ImportingConstructor]
-        public HorseController(IMediator mediator, IDataRepositorySoftDeleteInt<Horse> repository)
-            : base(mediator, repository)
+        public HorseController(ITechChallengeDataRepositorySoftDeleteInt<Horse> repository)
+            : base(repository)
         {
         }
 
+        #region CRUD
         [Route("")]
         [HttpGet]
-        [ResponseType(typeof(SearchResponse<Horse>))]
-        public override async Task<IHttpActionResult> Index(int? page = 1, bool? desc = false, int? sortColumn = 0, string search = "")
+        [ResponseType(typeof(HorseIndexResponse))]
+        public override async Task<IHttpActionResult> Index([FromUri]HorseIndexRequest request)
         {
-            var request = new IndexWithParentRequest<int>(default, page, desc, sortColumn, search, false);
-            var response = await DoIndexAsync(request);
-
-            return Ok(response);
-        }
-
-        [Route("{id}")]
-        [HttpGet]
-        [ResponseType(typeof(Horse))]
-        public override async Task<IHttpActionResult> Details(int id)
-        {
-            return await DoDetailsAsync(id);
-        }
-
-        [Route("{id}")]
-        [HttpPut]
-        public override async Task<IHttpActionResult> Edit(int id, [FromBody]Horse item)
-        {
-            return await DoEditAsync(id, item);
-        }
-
-        [Route("")]
-        [HttpPost]
-        [ResponseType(typeof(Horse))]
-        public override async Task<IHttpActionResult> Create([FromBody]Horse item)
-        {
-            return await DoCreateAsync(item);
-        }
-
-        [Route("{id}")]
-        [HttpDelete]
-        public override async Task<IHttpActionResult> Delete(int id, string reason = "")
-        {
-            return await DoDeleteAsync(id, reason);
+            return await DoIndexAsync(request);
         }
 
         [Route("Suggestions")]
-        [HttpGet]
-        [ResponseType(typeof(string[]))]
+        [ResponseType(typeof(List<string>))]
         public override async Task<IHttpActionResult> Suggestions(string search = "")
         {
             return await DoSuggestionsAsync(search);
         }
 
-        [Route("{parentId}/Index")]
+        [Route("{id}")]
         [HttpGet]
-        [ResponseType(typeof(SearchResponse<Horse>))]
-        public override async Task<IHttpActionResult> IndexWithParent(int parentId, int? page = 1, bool? desc = false, int? sortColumn = 0, string search = "")
+        [ResponseType(typeof(HorseDetailsCreateResponse))]
+        public override async Task<IHttpActionResult> Details(int id)
         {
-            var request = new IndexWithParentRequest<int>(parentId, page, desc, sortColumn, search);
-            var response = await DoIndexWithParentAsync(request);
-
-            return Ok(response);
+            return await DoDetailsAsync(id);
         }
 
-        [Route("{parentId}/Suggestions")]
-        [HttpGet]
-        [ResponseType(typeof(string[]))]
-        public override async Task<IHttpActionResult> SuggestionsWithParent(int parentId, string search = "")
+        [Route("")]
+        [HttpPost]
+        [ResponseType(typeof(HorseDetailsCreateResponse))]
+        public override async Task<IHttpActionResult> Create([FromBody]HorseEditCreateRequest request)
         {
-            return await DoSuggestionsWithParentAsync(parentId, search);
+            return await DoCreateAsync(request);
         }
 
-        protected override async Task<ISearchResponse<Horse>> GetItemsAsync(IndexWithParentRequest<int> request)
+        [Route("")]
+        [HttpPut]
+        public override async Task<IHttpActionResult> Edit([FromBody]HorseEditCreateRequest request)
         {
-            var search = request.Search.ToLower();
+            return await DoEditAsync(request);
+        }
 
-            Expression<Func<Horse, bool>> whereClause = r => search == null || search == "" || r.Name.ToLower().Contains(search);
+        [Route("{id}")]
+        [HttpDelete]
+        public override async Task<IHttpActionResult> Delete(int id, [FromBody]string reason)
+        {
+            return await DoDeleteAsync(id, reason);
+        }
+        #endregion // CRUD
 
-            if (request.HasParent)
-            {
-                whereClause = whereClause.And(r => r.RaceId == request.ParentId);
-            }
+        #region CRUD HELPERS
+        protected override async Task<HorseDetailsCreateResponse> EditItemAsync(HorseEditCreateRequest request)
+        {
+            var entity = request.ToEntity();
 
-            var orderBy = GetOrderBy(request.SortColumn, request.IsDescending);
-            var items = await repository.GetPagedListAsync(request.Page, whereClause, orderBy);
-            var response = new SearchResponse<Horse>(items, items.TotalItemCount, repository.PageSize);
+            await repository.UpdateAsync(entity);
 
-            return response;
+            return entity.ToDto();
+        }
+
+        protected override async Task<HorseDetailsCreateResponse> AddItemAsync(HorseEditCreateRequest request)
+        {
+            var entity = request.ToEntity();
+            
+            var newEntity = await repository.AddAsync(entity);
+
+            return newEntity.ToDto();
         }
 
         protected override async Task<List<string>> GetSuggestionsAsync(string search = "")
         {
-            search = search.ToLower();
+            search = string.IsNullOrWhiteSpace(search) ? string.Empty : search;
 
             return await repository
-                .GetAutoCompleteIntellisenseAsync(r => search == "" || r.Name.ToLower().Contains(search), r => r.Name);
+                .GetAutoCompleteIntellisenseAsync(r => search == "" || r.Name.Contains(search)
+                    , r => r.Name);
         }
 
-        protected override async Task<List<string>> GetSuggestionsAsync(int parentId, string search = "")
+        protected override async Task<HorseIndexResponse> GetItemsAsync(HorseIndexRequest request)
         {
-            search = search.ToLower();
+            var search = request.Search;
 
-            return await repository
-                .GetAutoCompleteIntellisenseAsync(r => r.RaceId == parentId && (search == "" || r.Name.ToLower().Contains(search)), r => r.Name);
+            Expression<Func<Horse, bool>> whereClause = r => search == null
+                                                               || search == ""
+                                                               || r.Name.Contains(search);
+
+            var items = await GetItemsAsync(request, whereClause);
+
+            return new HorseIndexResponse(items.Items, items.RecordCount, items.RowsPerPage);
         }
 
-        protected override Func<IQueryable<Horse>, IOrderedQueryable<Horse>> GetOrderBy(int sortColumn, bool isDesc)
+        protected async Task<SearchResponse<Horse>> GetItemsAsync(HorseIndexRequest request, Expression<Func<Horse, bool>> whereClause)
         {
-            Func<IQueryable<Horse>, IOrderedQueryable<Horse>> orderBy = null;
+            var orderBy = GetOrderBy(request.SortColumn, request.IsDescending);
+            var result = await repository.GetPagedListAsync(request.Page, whereClause, orderBy);
+            var response = new SearchResponse<Horse>(result.ToList(), result.TotalItemCount, result.PageSize);
 
-            var eSortColumn = (eHorse)sortColumn;
+            return response;
+        }
+
+        protected Func<IQueryable<Horse>, IOrderedQueryable<Horse>> GetOrderBy(string sortColumn, bool isDesc)
+        {
+            Func<IQueryable<Horse>, IOrderedQueryable<Horse>> orderBy;
+
+            if (string.IsNullOrWhiteSpace(sortColumn))
+            {
+                sortColumn = "Name"; //Default sort column
+            }
+
+            var eSortColumn = (eHorse)Enum.Parse(typeof(eHorse), sortColumn, true);
 
             if (isDesc)
             {
@@ -145,7 +152,7 @@ namespace TechChallenge.Api.Controllers
                         break;
 
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new ArgumentOutOfRangeException($"sortColumn: [{sortColumn}] is not supported.");
                 }
 
                 return orderBy;
@@ -159,10 +166,18 @@ namespace TechChallenge.Api.Controllers
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException($"sortColumn: [{sortColumn}] is not supported.");
             }
 
             return orderBy;
         }
+
+        protected override async Task<HorseDetailsCreateResponse> GetItemAsync(int id)
+        {
+            var item = await repository.GetAsync(id);
+
+            return item?.ToDto();
+        }
+        #endregion // CRUD HELPERS
     }
 }

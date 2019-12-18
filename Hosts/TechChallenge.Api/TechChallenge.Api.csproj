@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
-  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,44 +51,42 @@
     <Reference Include="Eml.ClassFactory.Contracts, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.ClassFactory.Contracts.2.2.0\lib\net462\Eml.ClassFactory.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.ConfigParser, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.ConfigParser.2.2.0\lib\net462\Eml.ConfigParser.dll</HintPath>
+    <Reference Include="Eml.ConfigParser, Version=2.2.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.ConfigParser.2.2.0.12\lib\net462\Eml.ConfigParser.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Contracts, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Contracts.2.2.0.2\lib\net462\Eml.Contracts.dll</HintPath>
+    <Reference Include="Eml.Contracts, Version=2.2.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Contracts.2.2.0.10\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.ControllerBase, Version=2.2.0.14, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.ControllerBase.2.2.0.14\lib\net462\Eml.ControllerBase.dll</HintPath>
+    <Reference Include="Eml.ControllerBase, Version=2.2.0.74, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.ControllerBase.2.2.0.74\lib\net462\Eml.ControllerBase.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.DataRepository, Version=2.2.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.6\lib\net462\Eml.DataRepository.dll</HintPath>
+    <Reference Include="Eml.DataRepository, Version=2.2.0.35, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.35\lib\net462\Eml.DataRepository.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.EntityBaseClasses, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.EntityBaseClasses.2.2.0.2\lib\net462\Eml.EntityBaseClasses.dll</HintPath>
+    <Reference Include="Eml.DataRepository.MsSql, Version=0.1.0.18, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Eml.DataRepository.MsSql.0.1.0.18\lib\net462\Eml.DataRepository.MsSql.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.ExplicitDispose.Api, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.ExplicitDispose.Api.2.2.0\lib\net462\Eml.ExplicitDispose.Api.dll</HintPath>
+    <Reference Include="Eml.ExplicitDispose.Api, Version=2.2.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.ExplicitDispose.Api.2.2.0.1\lib\net462\Eml.ExplicitDispose.Api.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Extensions, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Extensions.2.2.0\lib\net462\Eml.Extensions.dll</HintPath>
+    <Reference Include="Eml.Extensions, Version=2.2.0.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Extensions.2.2.0.25\lib\net462\Eml.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Eml.Logger, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.Logger.1.2.0\lib\net462\Eml.Logger.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Mediator, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Mediator.2.2.0\lib\net462\Eml.Mediator.dll</HintPath>
+    <Reference Include="Eml.Mediator, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Mediator.2.2.0.2\lib\net462\Eml.Mediator.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.MefBootstrapper, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.MefBootstrapper.2.2.0\lib\net462\Eml.MefBootstrapper.dll</HintPath>
+    <Reference Include="Eml.MefBootstrapper, Version=2.2.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.MefBootstrapper.2.2.0.8\lib\net462\Eml.MefBootstrapper.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.MefDependencyResolver.Api, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.MefDependencyResolver.Api.2.2.0\lib\net462\Eml.MefDependencyResolver.Api.dll</HintPath>
+    <Reference Include="Eml.MefDependencyResolver.Api, Version=2.2.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.MefDependencyResolver.Api.2.2.0.6\lib\net462\Eml.MefDependencyResolver.Api.dll</HintPath>
     </Reference>
     <Reference Include="Eml.MefExtensions, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.MefExtensions.1.2.0\lib\net462\Eml.MefExtensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Eml.SoftDelete, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.SoftDelete.1.0.0.9\lib\net462\Eml.SoftDelete.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -98,35 +94,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.8.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.8.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.8.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.Web, Version=2.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Web.2.8.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.WindowsServer, Version=2.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.WindowsServer.2.8.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationInsights, Version=2.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.2.8.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationInsights.NLogTarget, Version=2.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.NLogTarget.2.8.1\lib\net45\Microsoft.ApplicationInsights.NLogTarget.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.5\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=5.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -173,7 +142,7 @@
       <HintPath>..\..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
@@ -310,15 +279,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\GlobalExceptionLogger.cs" />
-    <Compile Include="Controllers\BaseClasses\CrudControllerApiBase.cs" />
-    <Compile Include="Controllers\BaseClasses\CrudControllerApiWithParentBase.cs" />
+    <Compile Include="Controllers\BaseClasses\TechChallengeDb\CrudControllerApiSoftDeletableIntBase.cs" />
+    <Compile Include="Controllers\BaseClasses\TechChallengeDb\CrudControllerApiWithParentSoftDeletableIntBase.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="App_Start\LowercaseDocumentFilter.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\SwashbuckleSummaryOperationFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HorseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -329,13 +298,10 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Service References\AzureAD\ConnectedService.json" />
     <None Include="NLog.xsd">
@@ -360,6 +326,10 @@
       <Project>{d126f5c7-6ed4-46f6-b397-46fcd283624f}</Project>
       <Name>TechChallenge.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj">
+      <Project>{8720b43f-45ab-4527-a6a0-058443d63284}</Project>
+      <Name>TechChallenge.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -380,9 +350,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1971</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:44340/api</IISUrl>
+          <IISUrl>http://localhost:44344/api</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost:44340/swagger/ui/index</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost:44344/swagger/ui/index</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -408,8 +378,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
   </Target>
   <Import Project="..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />

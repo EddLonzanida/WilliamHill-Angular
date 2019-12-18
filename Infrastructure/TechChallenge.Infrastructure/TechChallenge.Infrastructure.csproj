@@ -33,11 +33,11 @@
     <Reference Include="Eml.ClassFactory.Contracts, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.ClassFactory.Contracts.2.2.0\lib\net462\Eml.ClassFactory.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.ConfigParser, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.ConfigParser.2.2.0\lib\net462\Eml.ConfigParser.dll</HintPath>
+    <Reference Include="Eml.ConfigParser, Version=2.2.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.ConfigParser.2.2.0.12\lib\net462\Eml.ConfigParser.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Contracts, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Contracts.2.2.0.2\lib\net462\Eml.Contracts.dll</HintPath>
+    <Reference Include="Eml.Contracts, Version=2.2.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Contracts.2.2.0.10\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -52,10 +52,18 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\ConnectionStrings.cs" />
+    <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="Configurations\IntellisenseCountConfigParser.cs" />
+    <Compile Include="Configurations\PageSizeConfigParser.cs" />
+    <Compile Include="Configurations\TechChallengeConnectionStringParser.cs" />
+    <Compile Include="ConnectionStrings.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Contracts\ITechChallengeDbEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config">

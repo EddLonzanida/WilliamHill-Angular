@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Eml.Contracts.Entities;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 
 namespace TechChallenge.Business.Common.Dto
 {

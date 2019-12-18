@@ -3,7 +3,7 @@ using Shouldly;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
 using TechChallenge.Business.RequestEngines;

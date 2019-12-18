@@ -1,5 +1,4 @@
-﻿using Eml.DataRepository.Contracts;
-using NSubstitute;
+﻿using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,29 +6,27 @@ using System.Linq.Expressions;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Results;
-using Shouldly;
 using TechChallenge.Api.Controllers;
 using TechChallenge.Business.Common.Dto;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
-using TechChallenge.Data.Contracts;
+using TechChallenge.Data.Repositories.TechChallengeDb.Contracts;
 using TechChallenge.Tests.Unit.BaseClasses;
 using X.PagedList;
 using Xunit;
-
+ 
 namespace TechChallenge.Tests.Unit.Controllers
 {
-    public class CustomerControllerTests : ControllerTestBase<CustomersController>
+    public class CustomerControllerTests : ControllerTestBase<CustomerController>
     {
-        protected readonly IDataRepositorySoftDeleteInt<Customer> repository;
+        protected readonly ITechChallengeDataRepositorySoftDeleteInt<Customer> repository;
 
         public CustomerControllerTests()
         {
-            repository = Substitute.For<IDataRepositorySoftDeleteInt<Customer>>();
+            repository = Substitute.For<ITechChallengeDataRepositorySoftDeleteInt<Customer>>();
 
-            controller = new CustomersController(mediator, repository)
+            controller = new CustomerController(mediator, repository)
             {
                 Request = new HttpRequestMessage(),
                 Configuration = new HttpConfiguration()
@@ -44,7 +41,7 @@ namespace TechChallenge.Tests.Unit.Controllers
                     Arg.Any<Func<IQueryable<Customer>, IOrderedQueryable<Customer>>>())
                 .Returns(pagedList);
 
-            await controller.Index();
+            await controller.Index(null);
 
             await repository.Received()
                 .GetPagedListAsync(Arg.Any<int>(), Arg.Any<Expression<Func<Customer, bool>>>(),

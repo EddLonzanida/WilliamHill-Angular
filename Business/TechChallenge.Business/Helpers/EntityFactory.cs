@@ -1,17 +1,17 @@
-﻿using Eml.DataRepository.Contracts;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 using TechChallenge.Business.Common.Requests;
-using TechChallenge.Data;
+using TechChallenge.Data.Repositories.TechChallengeDb.Contracts;
 
 namespace TechChallenge.Business.Helpers
 {
     public static class EntityFactory
     {
-        public static async Task<List<Customer>> GetCustomers(IDataRepositoryBase<int, Customer, TechChallengeDb> repository)
+        public static async Task<List<Customer>> GetCustomers(ITechChallengeDataRepositorySoftDeleteInt<Customer> repository)
         {
             var response = await repository.GetAllAsync();
 
@@ -23,7 +23,7 @@ namespace TechChallenge.Business.Helpers
                 .ToList();
         }
 
-        public static async Task<List<Bet>> GetBets(IDataRepositoryBase<int, Bet, TechChallengeDb> repository, TotalBetAmountAsyncRequest request)
+        public static async Task<List<Bet>> GetBets(ITechChallengeDataRepositorySoftDeleteInt<Bet> repository, TotalBetAmountAsyncRequest request)
         {
             if (request.CustomerId > 0)
             {
@@ -33,15 +33,15 @@ namespace TechChallenge.Business.Helpers
             return await repository.GetAllAsync();
         }
 
-        public static async Task<List<Race>> GetRaces(IDataRepositoryBase<int, Race, TechChallengeDb> repository)
+        public static async Task<List<Race>> GetRaces(ITechChallengeDataRepositorySoftDeleteInt<Race> repository)
         {
-            var response = await repository.GetAsync(r => r.Include(x => x.Horses));
+            Func<IQueryable<Race>, IOrderedQueryable<Race>> orderBy = race => race.OrderBy(x => x.Start).ThenBy(x => x.Name);
+
+            var response = await repository.GetAsync(r => r.Include(x => x.Horses), orderBy, 1);
 
             if (response == null) return await Task.FromResult(new List<Race>());
 
             return response
-                .OrderBy(r => r.Start)
-                .ThenBy(r => r.Name)
                 .ToList();
         }
     }

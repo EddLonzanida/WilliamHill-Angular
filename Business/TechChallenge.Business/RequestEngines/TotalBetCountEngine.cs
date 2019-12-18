@@ -2,24 +2,23 @@
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Eml.DataRepository.Contracts;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
 using TechChallenge.Business.Helpers;
-using TechChallenge.Data.Contracts;
+using TechChallenge.Data.Repositories.TechChallengeDb.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {
 	[PartCreationPolicy(CreationPolicy.NonShared)]
     public class TotalBetCountEngine : IRequestAsyncEngine<TotalBetCountAsyncRequest, TotalBetCountResponse>
     {
-        private readonly IDataRepositorySoftDeleteInt<Bet> betsRepository;
+        private readonly ITechChallengeDataRepositorySoftDeleteInt<Bet> betsRepository;
 
         [ImportingConstructor]
-        public TotalBetCountEngine(IDataRepositorySoftDeleteInt<Bet> betsRepository)
+        public TotalBetCountEngine(ITechChallengeDataRepositorySoftDeleteInt<Bet> betsRepository)
         {
             this.betsRepository = betsRepository;
         }
@@ -35,7 +34,7 @@ namespace TechChallenge.Business.RequestEngines
                 .GroupBy(r => new { customerId = r.CustomerId })
                 .Select(g => new CustomerBetCount
                 {
-                    Id = g.Key.customerId ?? default(int),
+                    Id = g.Key.customerId,
                     TotalBets = g.Count()
                 })
                 .OrderBy(r => r.TotalBets)

@@ -35,26 +35,20 @@
     <Reference Include="Eml.ClassFactory.Contracts, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.ClassFactory.Contracts.2.2.0\lib\net462\Eml.ClassFactory.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.ConfigParser, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.ConfigParser.2.2.0\lib\net462\Eml.ConfigParser.dll</HintPath>
+    <Reference Include="Eml.ConfigParser, Version=2.2.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.ConfigParser.2.2.0.12\lib\net462\Eml.ConfigParser.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Contracts, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Contracts.2.2.0.2\lib\net462\Eml.Contracts.dll</HintPath>
+    <Reference Include="Eml.Contracts, Version=2.2.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Contracts.2.2.0.10\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.DataRepository, Version=2.2.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.6\lib\net462\Eml.DataRepository.dll</HintPath>
+    <Reference Include="Eml.DataRepository, Version=2.2.0.35, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.35\lib\net462\Eml.DataRepository.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.EntityBaseClasses, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.EntityBaseClasses.2.2.0.2\lib\net462\Eml.EntityBaseClasses.dll</HintPath>
+    <Reference Include="Eml.Extensions, Version=2.2.0.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Extensions.2.2.0.25\lib\net462\Eml.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Extensions, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Extensions.2.2.0\lib\net462\Eml.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Eml.Mediator, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Mediator.2.2.0\lib\net462\Eml.Mediator.dll</HintPath>
-    </Reference>
-    <Reference Include="Eml.SoftDelete, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.SoftDelete.1.0.0.9\lib\net462\Eml.SoftDelete.dll</HintPath>
+    <Reference Include="Eml.Mediator, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Mediator.2.2.0.2\lib\net462\Eml.Mediator.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -66,7 +60,7 @@
       <HintPath>..\..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -154,21 +148,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\BaseClasses\EntityBase.cs" />
-    <Compile Include="Entities\Bet.cs" />
-    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="BaseClasses\EntityIntBase.cs" />
+    <Compile Include="BaseClasses\EntitySoftDeletableIntBase.cs" />
+    <Compile Include="Dto\TechChallengeDb\CustomerDetailsCreateResponse.cs" />
+    <Compile Include="Dto\TechChallengeDb\CustomerEditCreateRequest.cs" />
+    <Compile Include="Dto\TechChallengeDb\CustomerIndexRequest.cs" />
+    <Compile Include="Dto\TechChallengeDb\CustomerIndexResponse.cs" />
+    <Compile Include="Dto\TechChallengeDb\EntityHelpers\CustomerExtensions.cs" />
+    <Compile Include="Dto\TechChallengeDb\EntityHelpers\HorseExtensions.cs" />
+    <Compile Include="Dto\TechChallengeDb\HorseDetailsCreateResponse.cs" />
+    <Compile Include="Dto\TechChallengeDb\HorseEditCreateRequest.cs" />
+    <Compile Include="Dto\TechChallengeDb\HorseIndexRequest.cs" />
+    <Compile Include="Dto\TechChallengeDb\HorseIndexResponse.cs" />
+    <Compile Include="Dto\TechChallengeDb\SortEnums\CustomerEnum.cs" />
+    <Compile Include="Dto\TechChallengeDb\SortEnums\HorseEnum.cs" />
+    <Compile Include="Entities\TechChallengeDb\Bet.cs" />
+    <Compile Include="Entities\TechChallengeDb\Customer.cs" />
     <Compile Include="Dto\CustomerBetAmount.cs" />
     <Compile Include="Dto\CustomerBetCount.cs" />
-    <Compile Include="Entities\EntitySortableFieldEnums.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntitySortableFieldEnums.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Horse.cs" />
     <Compile Include="Dto\HorseStat.cs" />
-    <Compile Include="Entities\Race.cs" />
+    <Compile Include="Entities\TechChallengeDb\Race.cs" />
     <Compile Include="Dto\RaceStat.cs" />
     <Compile Include="Dto\RiskCustomer.cs" />
+    <Compile Include="Entities\TechChallengeDb\Horse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\CustomerAsyncRequest.cs" />
     <Compile Include="Requests\RaceStatAsyncRequest.cs" />
@@ -185,16 +187,22 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Entities\EntitySortableFieldEnums.tt">
+    <ProjectReference Include="..\..\Infrastructure\TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj">
+      <Project>{8720b43f-45ab-4527-a6a0-058443d63284}</Project>
+      <Name>TechChallenge.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entities\EntitySortableFieldEnums.ttt">
       <Generator>TextTemplatingFileGeneratorr</Generator>
-      <LastGenOutput>EntitySortableFieldEnums.cs</LastGenOutput>
-    </Content>
+      <LastGenOutput>EntitySortableFieldEnums1.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

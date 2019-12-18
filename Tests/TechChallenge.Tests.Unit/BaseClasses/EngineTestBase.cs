@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Eml.DataRepository;
 using Eml.Mediator.Contracts;
 using NSubstitute;
-using TechChallenge.Business.Common.Entities;
-using Eml.DataRepository;
-using Eml.DataRepository.Contracts;
-using TechChallenge.Data.Contracts;
-
+using System;
+using System.Collections.Generic;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
+using TechChallenge.Data.Repositories.TechChallengeDb.Contracts;
 namespace TechChallenge.Tests.Unit.BaseClasses
 {
     public abstract class EngineTestBase<T1, T2> : IDisposable
@@ -22,11 +20,11 @@ namespace TechChallenge.Tests.Unit.BaseClasses
 
         protected readonly List<Customer> customerStub;
 
-        protected readonly IDataRepositorySoftDeleteInt<Race> raceRepository;
+        protected readonly ITechChallengeDataRepositorySoftDeleteInt<Race> raceRepository;
 
-        protected readonly IDataRepositorySoftDeleteInt<Bet> betRepository;
+        protected readonly ITechChallengeDataRepositorySoftDeleteInt<Bet> betRepository;
 
-        protected readonly IDataRepositorySoftDeleteInt<Customer> customerRepository;
+        protected readonly ITechChallengeDataRepositorySoftDeleteInt<Customer> customerRepository;
 
         protected EngineTestBase()
         {
@@ -34,17 +32,17 @@ namespace TechChallenge.Tests.Unit.BaseClasses
             betStub = Seeder.GetJsonStubs<Bet>("bets", SAMPLE_DATA_SOURCES);
             customerStub = Seeder.GetJsonStubs<Customer>("customers", SAMPLE_DATA_SOURCES);
 
-            raceRepository = Substitute.For<IDataRepositorySoftDeleteInt<Race>>();
-            betRepository = Substitute.For<IDataRepositorySoftDeleteInt<Bet>>();
-            customerRepository = Substitute.For<IDataRepositorySoftDeleteInt<Customer>>();
+            raceRepository = Substitute.For<ITechChallengeDataRepositorySoftDeleteInt<Race>>();
+            betRepository = Substitute.For<ITechChallengeDataRepositorySoftDeleteInt<Bet>>();
+            customerRepository = Substitute.For<ITechChallengeDataRepositorySoftDeleteInt<Customer>>();
         }
 
         public void Dispose()
         {
             engine?.Dispose();
-            raceRepository?.Dispose();
-            betRepository?.Dispose();
-            customerRepository?.Dispose();
+            //raceRepository?.Dispose();
+            //betRepository?.Dispose();
+            //customerRepository?.Dispose();
         }
     }
 }

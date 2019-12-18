@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
 using TechChallenge.Business.Helpers;
-using TechChallenge.Data.Contracts;
+using TechChallenge.Data.Repositories.TechChallengeDb.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CustomerEngine : IRequestAsyncEngine<CustomerAsyncRequest, CustomerResponse>
     {
-        private readonly IDataRepositorySoftDeleteInt<Customer> repository;
+        private readonly ITechChallengeDataRepositorySoftDeleteInt<Customer> repository;
 
         [ImportingConstructor]
-        public CustomerEngine(IDataRepositorySoftDeleteInt<Customer> repository)
+        public CustomerEngine(ITechChallengeDataRepositorySoftDeleteInt<Customer> repository)
         {
             this.repository = repository;
         }

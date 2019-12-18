@@ -34,20 +34,21 @@
     <Reference Include="Eml.ClassFactory.Contracts, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.ClassFactory.Contracts.2.2.0\lib\net462\Eml.ClassFactory.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.ConfigParser, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.ConfigParser.2.2.0\lib\net462\Eml.ConfigParser.dll</HintPath>
+    <Reference Include="Eml.ConfigParser, Version=2.2.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.ConfigParser.2.2.0.12\lib\net462\Eml.ConfigParser.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Contracts, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Contracts.2.2.0.2\lib\net462\Eml.Contracts.dll</HintPath>
+    <Reference Include="Eml.Contracts, Version=2.2.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Contracts.2.2.0.10\lib\net462\Eml.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.DataRepository, Version=2.2.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.6\lib\net462\Eml.DataRepository.dll</HintPath>
+    <Reference Include="Eml.DataRepository, Version=2.2.0.35, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.DataRepository.2.2.0.35\lib\net462\Eml.DataRepository.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.EntityBaseClasses, Version=2.2.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.EntityBaseClasses.2.2.0.2\lib\net462\Eml.EntityBaseClasses.dll</HintPath>
+    <Reference Include="Eml.DataRepository.MsSql, Version=0.1.0.18, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Eml.DataRepository.MsSql.0.1.0.18\lib\net462\Eml.DataRepository.MsSql.dll</HintPath>
     </Reference>
-    <Reference Include="Eml.Extensions, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Eml.Extensions.2.2.0\lib\net462\Eml.Extensions.dll</HintPath>
+    <Reference Include="Eml.Extensions, Version=2.2.0.25, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Eml.Extensions.2.2.0.25\lib\net462\Eml.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Eml.Mediator, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Eml.Mediator.2.2.0\lib\net462\Eml.Mediator.dll</HintPath>
@@ -59,7 +60,7 @@
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -80,37 +81,43 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainDbMigrator.cs" />
-    <Compile Include="MigrationConfiguration.cs" />
+    <Compile Include="Migrators\TechChallengeDbMigrationConfiguration.cs" />
+    <Compile Include="Migrators\TechChallengeDbMigrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seeders\BetSeeder.cs" />
     <Compile Include="Seeders\CustomerSeeder.cs" />
     <Compile Include="Seeders\RaceSeeder.cs" />
-    <Compile Include="SqlServerMigrations\201901050435511_InitialCreate.cs" />
-    <Compile Include="SqlServerMigrations\201901050435511_InitialCreate.Designer.cs">
-      <DependentUpon>201901050435511_InitialCreate.cs</DependentUpon>
+    <Compile Include="TechChallengeDb.cs" />
+    <Compile Include="TechChallengeDbMigrations\201912071137134_SeedRaces.cs" />
+    <Compile Include="TechChallengeDbMigrations\201912071137134_SeedRaces.Designer.cs">
+      <DependentUpon>201912071137134_SeedRaces.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerMigrations\201901050439202_SeedRaces.cs" />
-    <Compile Include="SqlServerMigrations\201901050439202_SeedRaces.Designer.cs">
-      <DependentUpon>201901050439202_SeedRaces.cs</DependentUpon>
+    <Compile Include="TechChallengeDbMigrations\201912071137455_SeedHorses.cs" />
+    <Compile Include="TechChallengeDbMigrations\201912071137455_SeedHorses.Designer.cs">
+      <DependentUpon>201912071137455_SeedHorses.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerMigrations\201901050440023_SeedHorses.cs" />
-    <Compile Include="SqlServerMigrations\201901050440023_SeedHorses.Designer.cs">
-      <DependentUpon>201901050440023_SeedHorses.cs</DependentUpon>
+    <Compile Include="TechChallengeDbMigrations\201912071138002_SeedCustomers.cs" />
+    <Compile Include="TechChallengeDbMigrations\201912071138002_SeedCustomers.Designer.cs">
+      <DependentUpon>201912071138002_SeedCustomers.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerMigrations\201901050440352_SeedCustomers.cs" />
-    <Compile Include="SqlServerMigrations\201901050440352_SeedCustomers.Designer.cs">
-      <DependentUpon>201901050440352_SeedCustomers.cs</DependentUpon>
+    <Compile Include="TechChallengeDbMigrations\201912071138175_SeedBets.cs" />
+    <Compile Include="TechChallengeDbMigrations\201912071138175_SeedBets.Designer.cs">
+      <DependentUpon>201912071138175_SeedBets.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlServerMigrations\201901050441165_SeedBets.cs" />
-    <Compile Include="SqlServerMigrations\201901050441165_SeedBets.Designer.cs">
-      <DependentUpon>201901050441165_SeedBets.cs</DependentUpon>
+    <Compile Include="TechChallengeDbMigrations\Scripts\NLogSql.cs" />
+    <Compile Include="TechChallengeDbMigrations\201912071120546_InitialCreate.cs" />
+    <Compile Include="TechChallengeDbMigrations\201912071120546_InitialCreate.Designer.cs">
+      <DependentUpon>201912071120546_InitialCreate.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Business\TechChallenge.Business.Common\TechChallenge.Business.Common.csproj">
       <Project>{33b71a2c-7964-4a36-a80d-892de61b1a25}</Project>
       <Name>TechChallenge.Business.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj">
+      <Project>{8720b43f-45ab-4527-a6a0-058443d63284}</Project>
+      <Name>TechChallenge.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\TechChallenge.Data\TechChallenge.Data.csproj">
       <Project>{d126f5c7-6ed4-46f6-b397-46fcd283624f}</Project>
@@ -131,21 +138,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SqlServerMigrations\201901050435511_InitialCreate.resx">
-      <DependentUpon>201901050435511_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="TechChallengeDbMigrations\201912071120546_InitialCreate.resx">
+      <DependentUpon>201912071120546_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlServerMigrations\201901050439202_SeedRaces.resx">
-      <DependentUpon>201901050439202_SeedRaces.cs</DependentUpon>
+    <EmbeddedResource Include="TechChallengeDbMigrations\201912071137134_SeedRaces.resx">
+      <DependentUpon>201912071137134_SeedRaces.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlServerMigrations\201901050440023_SeedHorses.resx">
-      <DependentUpon>201901050440023_SeedHorses.cs</DependentUpon>
+    <EmbeddedResource Include="TechChallengeDbMigrations\201912071137455_SeedHorses.resx">
+      <DependentUpon>201912071137455_SeedHorses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlServerMigrations\201901050440352_SeedCustomers.resx">
-      <DependentUpon>201901050440352_SeedCustomers.cs</DependentUpon>
+    <EmbeddedResource Include="TechChallengeDbMigrations\201912071138002_SeedCustomers.resx">
+      <DependentUpon>201912071138002_SeedCustomers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SqlServerMigrations\201901050441165_SeedBets.resx">
-      <DependentUpon>201901050441165_SeedBets.cs</DependentUpon>
+    <EmbeddedResource Include="TechChallengeDbMigrations\201912071138175_SeedBets.resx">
+      <DependentUpon>201912071138175_SeedBets.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

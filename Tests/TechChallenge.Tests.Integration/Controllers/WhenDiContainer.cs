@@ -1,15 +1,15 @@
 ﻿using Eml.Extensions;
-using Eml.MefExtensions;
 using Shouldly;
 using System;
 using System.ComponentModel.Composition;
+using Eml.MefExtensions;
 using TechChallenge.Tests.Integration.BaseClasses;
 using TechChallenge.Tests.Integration.ClassData;
 using Xunit;
 
 namespace TechChallenge.Tests.Integration.Controllers
 {
-    public class WhenDiContainer : IntegrationTestDiBase
+    public class WhenDiContainer : IntegrationTestDbBase
     {
         [Theory]
         [ClassData(typeof(ControllerClassData))]

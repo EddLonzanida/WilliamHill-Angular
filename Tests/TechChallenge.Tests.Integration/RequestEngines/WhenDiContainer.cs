@@ -7,7 +7,7 @@ using Xunit;
 
 namespace TechChallenge.Tests.Integration.RequestEngines
 {
-    public class WhenDiContainer : IntegrationTestDiBase
+    public class WhenDiContainer : IntegrationTestDbBase
     {
         [Fact]
         public void CustomerEngine_ShouldBeDiscoverable()

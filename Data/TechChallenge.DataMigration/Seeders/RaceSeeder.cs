@@ -3,7 +3,7 @@ using Eml.DataRepository;
 using Eml.DataRepository.Extensions;
 using Eml.Extensions;
 using TechChallenge.Data;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 
 namespace TechChallenge.DataMigration.Seeders
 {

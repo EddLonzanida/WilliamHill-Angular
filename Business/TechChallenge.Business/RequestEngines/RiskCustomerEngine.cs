@@ -2,14 +2,13 @@
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
-using Eml.DataRepository.Contracts;
 using Eml.Mediator.Contracts;
 using TechChallenge.Business.Common.Dto;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
 using TechChallenge.Business.Helpers;
-using TechChallenge.Data.Contracts;
+using TechChallenge.Data.Repositories.TechChallengeDb.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {
@@ -18,12 +17,12 @@ namespace TechChallenge.Business.RequestEngines
     {
         private const double RISKY_AMOUNT = 200;
 
-        private readonly IDataRepositorySoftDeleteInt<Customer> customersRepository;
+        private readonly ITechChallengeDataRepositorySoftDeleteInt<Customer> customersRepository;
 
-        private readonly IDataRepositorySoftDeleteInt<Bet> betsRepository;
+        private readonly ITechChallengeDataRepositorySoftDeleteInt<Bet> betsRepository;
 
         [ImportingConstructor]
-        public RiskCustomerEngine(IDataRepositorySoftDeleteInt<Customer> customersRepository, IDataRepositorySoftDeleteInt<Bet> betsRepository)
+        public RiskCustomerEngine(ITechChallengeDataRepositorySoftDeleteInt<Customer> customersRepository, ITechChallengeDataRepositorySoftDeleteInt<Bet> betsRepository)
         {
             this.customersRepository = customersRepository;
             this.betsRepository = betsRepository;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Eml.Mediator.Contracts;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 
 namespace TechChallenge.Business.Common.Responses
 {

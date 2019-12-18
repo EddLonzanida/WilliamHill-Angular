@@ -1,44 +1,37 @@
-using Eml.DataRepository.Contracts;
-using Eml.EntityBaseClasses;
 using Eml.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TechChallenge.Business.Common.Entities;
-using TechChallenge.Data.Contracts;
-using Xunit;
+using TechChallenge.Business.Common.BaseClasses;
+using TechChallenge.Data.Repositories.TechChallengeDb.Contracts;
+using TechChallenge.Infrastructure.Contracts;
+using TechChallenge.Tests.Integration.BaseClasses;
 
 namespace TechChallenge.Tests.Integration.ClassData
 {
-    public class RepositoryClassData : TheoryData<Type>
+    public class RepositoryClassData : ClassDataBase<Type>
     {
-        private static List<Type> _concreteClasses;
+        private static List<Type> _repositories;
 
         public RepositoryClassData()
-        {
-            var dataRepositoryInt = typeof(IDataRepositorySoftDeleteInt<>);
-
-            if (_concreteClasses == null)
+            : base(() =>
             {
+                var dataRepositoryInt = typeof(ITechChallengeDataRepositorySoftDeleteInt<>);
 
-                _concreteClasses = typeof(Horse).Assembly
-                   .GetClasses(type => !type.IsAbstract
-                                       && typeof(EntityBaseInt).IsAssignableFrom(type)
-                                       && !type.IsEnum
-                                       && type.Namespace != null
-                                       && type.Namespace.EndsWith("Entities"))
-                   .Select(type =>
-                   {
-                       Type[] typeArgs = { type };
+                return _repositories ?? (_repositories = typeof(EntitySoftDeletableIntBase).Assembly
+                           .GetClasses(type => typeof(ITechChallengeDbEntity).IsAssignableFrom(type)
+                                               && !type.IsAbstract
+                                               && !type.IsEnum
+                                               && type.Namespace != null
+                                               && type.Namespace.Contains("Business.Common.Entities"))
+                           .Select(type =>
+                           {
+                               Type[] typeArgs = { type };
 
-                       return dataRepositoryInt.MakeGenericType(typeArgs);
-                   }).ToList();
-            }
-
-            foreach (var type in _concreteClasses)
-            {
-                Add(type);
-            }
-        }
+                               return dataRepositoryInt.MakeGenericType(typeArgs);
+                           })
+                           .ToList());
+            })
+        { }
     }
 }

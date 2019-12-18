@@ -1,9 +1,9 @@
 ﻿using Eml.ClassFactory.Contracts;
-using Eml.DataRepository.Attributes;
 using Eml.DataRepository.Extensions;
 using Eml.Mef;
 using System;
 using System.Data;
+using TechChallenge.Infrastructure;
 using Xunit;
 
 namespace TechChallenge.Tests.Integration.BaseClasses
@@ -12,15 +12,16 @@ namespace TechChallenge.Tests.Integration.BaseClasses
     {
         public const string COLLECTION_DEFINITION = "IntegrationTestDbFixture CollectionDefinition";
 
-        private const string DB_DIRECTORY = "DataBase";
-
         public static IClassFactory ClassFactory { get; private set; }
 
         public IntegrationTestDbFixture()
         {
             ClassFactory = Bootstrapper.Init("TechChallenge*.dll");
 
-            var dbMigration = ClassFactory.GetMigrator(Environments.PRODUCTION);
+            ConnectionStrings.SetOneTime();
+            ApplicationSettings.SetOneTime();
+
+            var dbMigration = ClassFactory.GetMigrator(DbNames.TechChallenge);
 
             if (dbMigration == null)
             {
@@ -28,7 +29,7 @@ namespace TechChallenge.Tests.Integration.BaseClasses
             }
 
             // Exclude SqlServerMigrations files before running this.  Seeders and SqlSeeders are mutually exclusive.
-            dbMigration.Execute(DB_DIRECTORY);
+            dbMigration.Execute();
         }
 
         public void Dispose()

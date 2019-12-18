@@ -1,27 +1,26 @@
-﻿using Eml.DataRepository.Contracts;
-using Eml.Mediator.Contracts;
+﻿using Eml.Mediator.Contracts;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
 using TechChallenge.Business.Common.Dto;
-using TechChallenge.Business.Common.Entities;
+using TechChallenge.Business.Common.Entities.TechChallengeDb;
 using TechChallenge.Business.Common.Requests;
 using TechChallenge.Business.Common.Responses;
 using TechChallenge.Business.Helpers;
-using TechChallenge.Data.Contracts;
+using TechChallenge.Data.Repositories.TechChallengeDb.Contracts;
 
 namespace TechChallenge.Business.RequestEngines
 {
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class RaceStatEngine : IRequestAsyncEngine<RaceStatAsyncRequest, RaceStatResponse>
     {
-        private readonly IDataRepositorySoftDeleteInt<Race> racesRepository;
+        private readonly ITechChallengeDataRepositorySoftDeleteInt<Race> racesRepository;
 
-        private readonly IDataRepositorySoftDeleteInt<Bet> betsRepository;
+        private readonly ITechChallengeDataRepositorySoftDeleteInt<Bet> betsRepository;
 
         [ImportingConstructor]
-        public RaceStatEngine(IDataRepositorySoftDeleteInt<Race> racesRepository, IDataRepositorySoftDeleteInt<Bet> betsRepository)
+        public RaceStatEngine(ITechChallengeDataRepositorySoftDeleteInt<Race> racesRepository, ITechChallengeDataRepositorySoftDeleteInt<Bet> betsRepository)
         {
             this.racesRepository = racesRepository;
             this.betsRepository = betsRepository;
