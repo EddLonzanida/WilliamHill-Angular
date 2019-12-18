@@ -1,0 +1,10 @@
+<app-busy-indicator [isBusy]="isBusy" title="Searching.."></app-busy-indicator>
+<div *ngIf="isReady()" class="ui-g">
+    <app-statistics *ngFor="let stat of raceStatResponse.raceStats; let j = index " [label]="stat.status" [value]="stat.raceTotalAmount | currency :'USD':'symbol-narrow':'1.0-2'" [icon]="icons[j % safeIndex]" [colour]="colors[j % safeIndex]" [titleStyle]="titleStyles[j % safeIndex]"
+        [horseStats]="stat.horseStats" class="ui-g-12 ui-md-6 ui-lg-3 animated fadeInRight"></app-statistics>
+</div>
+<div *ngIf="!isBusy" class="ui-g">
+    <div class="data ui-g-12 ">
+        <label *ngIf="hasErrors" class="error-message animated fadeInDown ">Opps.. something went wrong. Please try again.</label>
+    </div>
+</div>

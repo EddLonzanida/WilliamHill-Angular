@@ -70,10 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="CreateAngular.ps1" />
     <Content Include=".editorconfig" />
     <Content Include="angular.json" />
     <Content Include="package.json" />
+    <Content Include="CreateWilliamHillAngular.ps1" />
     <None Include="packages.config" />
     <Content Include="src\app\dashboard\dashboard.component.css" />
     <Content Include="src\app\dashboard\dashboard.component.html" />

@@ -1,15 +1,16 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { RaceStatResponse } from './responses/race-stat-response';
-import { RaceStatService } from './race-stat.service';
+import { Component, AfterViewInit } from '@angular/core';
+import { RaceStatResponse } from '../../responses/race-stat-response';
+import { RaceStatService } from 'src/app/shared/services/race-stat.service';
+import { BusyIndicatorComponent } from 'src/app/shared/busy-indicator/busy-indicator.component';
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css']
+  selector: 'app-dashboard-home',
+  templateUrl: './dashboard-home.component.html',
+  styleUrls: ['./dashboard-home.component.css']
 })
-export class DashboardComponent implements AfterViewInit {
+export class DashboardHomeComponent implements AfterViewInit {
 
-    isBusy = true;
+  isBusy = true;
     hasErrors = false;
     raceStatResponse = new RaceStatResponse();
     colors: string[] = [];

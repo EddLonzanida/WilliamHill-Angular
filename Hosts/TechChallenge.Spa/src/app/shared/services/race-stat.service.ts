@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { RaceStatResponse } from './responses/race-stat-response';
-import { SearchService } from "../shared/services/search.service";
+import { SearchService } from './search.service';
+import { RaceStatResponse } from 'src/app/modules/responses/race-stat-response';
 
-@Injectable()
+@Injectable(({ providedIn: "root" }) as any)
 export class RaceStatService {
 
     constructor(private readonly searchService: SearchService) {

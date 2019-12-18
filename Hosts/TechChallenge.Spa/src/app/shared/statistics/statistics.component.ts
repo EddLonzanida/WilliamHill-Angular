@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HorseStat } from '../../dashboard/dto/horse-stat';
+import { HorseStat } from 'src/app/modules/dto/horse-stat';
 
 @Component({
-  selector: 'app-statistic',
-  templateUrl: './statistic.component.html',
-  styleUrls: ['./statistic.component.css']
+  selector: 'app-statistics',
+  templateUrl: './statistics.component.html',
+  styleUrls: ['./statistics.component.css']
 })
-export class StatisticComponent implements OnInit {
+export class StatisticsComponent implements OnInit {
   @Input() icon: string;
   @Input() label: string;
   @Input() value: string;
@@ -17,5 +17,4 @@ export class StatisticComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

@@ -1,49 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import {
-  MenuModule, PanelModule,
-  SharedModule
-} from 'primeng/primeng';
-
-import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BusyIndicatorComponent } from './shared/busy-indicator/busy-indicator.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { RaceStatService } from './dashboard/race-stat.service';
-import { SearchService } from './shared/services/search.service';
-import { StatisticComponent } from './shared/statistic/statistic.component';
-
-const appRoutes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent }
-];
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AppSharedModule } from './shared/app-shared.module';
+import { ModulesComponent } from './modules/modules.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BusyIndicatorComponent,
-    DashboardComponent,
-    StatisticComponent
+    ModulesComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    PanelModule,
-    HttpClientModule,
-    SharedModule,
-    MenuModule
+    AppSharedModule
   ],
-  providers: [{ provide: 'BASE_URL', useFactory: getBaseUrl }, SearchService, RaceStatService],
+  exports: [
+    AppSharedModule,
+  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-export function getBaseUrl() {
-    return 'http://localhost:44340/api/';
-}
-

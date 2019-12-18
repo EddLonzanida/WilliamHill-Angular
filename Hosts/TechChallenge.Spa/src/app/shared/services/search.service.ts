@@ -1,93 +1,73 @@
-import { Injectable, Inject } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
-import { Observable, of, throwError } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
-
-import { SearchResponse } from "../responses/search-response";
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { SearchResponseBase } from "../responses/search-response-base";
+import { appSettings } from 'src/environments/environment';
 
 @Injectable(({ providedIn: "root" }) as any)
 export class SearchService {
-    private readonly baseUrl: string;
+  private readonly baseUrl: string;
 
-    constructor(private readonly httpClient: HttpClient, @Inject("BASE_URL") baseUrl: string) {
+  constructor(private readonly httpClient: HttpClient) {
+    this.baseUrl = appSettings.apiRoot;
+  }
 
-        this.baseUrl = baseUrl;
+  getSuggestions(controller: string, query: string) {
+    const action = "suggestions";
+    const route = `${controller}/${action}`;
+    const param = { search: query };
 
-    }
+    return this.request<string[]>("getSuggestions", route, param);
+  }
 
-    getSuggestions(controller: string, query: string) {
+  search<TRequest, TResponse>(route: string, request: TRequest) {
+    return this.request<SearchResponseBase<TResponse>>("search", route, request);
+  }
 
-        const action = "suggestions";
-        const route = `${controller}/${action}`;
-        const param = { search: query };
+  request<TResponse>(operation: string, route: string, params?: any): Observable<TResponse> {
+    const httpParams = this.toHttpParams(params);
+    const config = { params: httpParams }
+    const url = `${this.baseUrl}${route}`;
 
-        return this.request<string[]>("getSuggestions", route, param);
-    }
+    return this.httpClient.get<TResponse>(url, config).pipe(
+      catchError(this.handleError<TResponse>(operation, {} as TResponse))
+    );
+  }
 
-    search<TRequest, TResponse>(route: string, request: TRequest) {
+  private toHttpParams(obj: Object): HttpParams {
+    let params = new HttpParams();
 
-        return this.request<SearchResponse<TResponse>>("search", route, request);
+    if (!obj) return params;
 
-    }
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
 
-    request<TResponse>(operation: string, route: string, params?: any): Observable<TResponse> {
+        const val = obj[key];
 
-        const httpParams = this.toHttpParams(params);
-        const config = { params: httpParams }
-        const url = `${this.baseUrl}${route}`;
-
-        return this.httpClient.get<TResponse>(url, config).pipe(
-
-            catchError(this.handleError<TResponse>(operation, {} as TResponse))
-
-        );
-    }
-
-
-    private toHttpParams(obj: Object): HttpParams {
-
-        let params = new HttpParams();
-
-        if (!obj) return params;
-
-        for (const key in obj) {
-
-            if (obj.hasOwnProperty(key)) {
-
-                const val = obj[key];
-
-                if (val !== null && val !== undefined) {
-
-                    params = params.append(key, val.toString());
-
-                }
-            }
+        if (val !== null && val !== undefined) {
+          params = params.append(key, val.toString());
         }
-        return params;
+      }
     }
+    return params;
+  }
 
-    private log(message: string) {
+  private log(message: string) {
+    console.log(message);
+  }
 
-        console.log(message);
-        // this.messageService.add(`SearchService: ${message}`);
+  private handleError<T>(operation = "operation", result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      // console.error(error); // log to console instead
 
-    }
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
 
-
-    private handleError<T>(operation = "operation", result?: T) {
-
-        return (error: any): Observable<T> => {
-
-            // TODO: send the error to remote logging infrastructure
-            console.error(error); // log to console instead
-
-            // TODO: better job of transforming error for user consumption
-            this.log(`${operation} failed: ${error.message}`);
-
-            // Let the app keep running by returning an empty result.
-            // return of(result as T);
-            return throwError(error);
-
-        };
-    }
+      // Let the app keep running by returning an empty result.
+      // return of(result as T);
+      return throwError(error);
+    };
+  }
 }

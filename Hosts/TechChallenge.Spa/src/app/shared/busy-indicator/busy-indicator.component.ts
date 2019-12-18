@@ -10,3 +10,4 @@ export class BusyIndicatorComponent  {
   @Input() isBusy: boolean;
   constructor() { }
 }
+
