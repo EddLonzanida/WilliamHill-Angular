@@ -1,5 +1,5 @@
 # TechChallenge
-* Test project for William Hill Australia using Angular 7
+* Test project for William Hill Australia using Angular 8
 * Demo app using [Eml*](https://www.nuget.org/packages?q=EddLonzanida) NuGets.
 * Check out [EmlExtensions.vsix](https://marketplace.visualstudio.com/items?itemName=eDuDeTification.EmlExtensions) to automate the creation of controllers, views, seeders, and more!.
 
