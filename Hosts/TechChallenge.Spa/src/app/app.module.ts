@@ -18,7 +18,7 @@ import { ModulesComponent } from './modules/modules.component';
     AppSharedModule
   ],
   exports: [
-    AppSharedModule,
+    AppSharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

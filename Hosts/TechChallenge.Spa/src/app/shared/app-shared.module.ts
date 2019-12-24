@@ -7,21 +7,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule, PanelModule } from 'primeng/primeng';
 import { MenuModule } from 'primeng/menu';
+import { EmlCheckboxComponent } from './eml-checkbox/eml-checkbox.component';
 
 @NgModule({
   declarations: [
     BusyIndicatorComponent,
     StatisticsComponent,
-    DebuggerPipe
+    DebuggerPipe,
+    EmlCheckboxComponent
   ],
   imports: [
     PanelModule,
-    MenuModule,
-    CommonModule,
+    CommonModule
   ],
   exports: [
     CommonModule,
     BusyIndicatorComponent,
+    EmlCheckboxComponent,
     StatisticsComponent,
     DebuggerPipe,
     ReactiveFormsModule,

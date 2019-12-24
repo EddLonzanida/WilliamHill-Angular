@@ -72,21 +72,28 @@
     <Content Include=".gitignore" />
     <Content Include=".editorconfig" />
     <Content Include="angular.json" />
+    <Content Include="karma.conf.js" />
     <Content Include="package.json" />
     <Content Include="CreateWilliamHillAngular.ps1" />
-    <None Include="packages.config" />
     <Content Include="src\app\dashboard\dashboard.component.css" />
     <Content Include="src\app\dashboard\dashboard.component.html" />
+    <Content Include="src\app\modules\dashboard\dashboard-home\dashboard-home.component.css" />
+    <Content Include="src\app\modules\dashboard\dashboard-home\dashboard-home.component.html" />
+    <Content Include="src\app\modules\modules.component.css" />
+    <Content Include="src\app\modules\modules.component.html" />
+    <Content Include="src\app\shared\eml-checkbox\eml-checkbox.component.css" />
+    <Content Include="src\app\shared\eml-checkbox\eml-checkbox.component.html" />
+    <Content Include="src\app\shared\statistics\statistics.component.css" />
+    <Content Include="src\app\shared\statistics\statistics.component.html" />
     <Content Include="src\app\shared\statistic\statistic.component.css" />
     <Content Include="src\app\shared\statistic\statistic.component.html" />
     <Content Include="src\assets\.gitkeep" />
-    <Content Include="src\browserslist" />
-    <Content Include="src\tsconfig.app.json" />
-    <Content Include="src\tsconfig.spec.json" />
-    <Content Include="src\tslint.json" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
+    <Content Include="browserslist" />
+    <Content Include="package-lock.json" />
+    <Content Include="tsconfig.app.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -101,7 +108,6 @@
     <Content Include="src\app\shared\busy-indicator\busy-indicator.component.html" />
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
-    <Content Include="src\karma.conf.js" />
     <Content Include="src\styles.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -114,6 +120,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\app-routing.module.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\dashboard\dashboard.component.ts" />
@@ -122,9 +129,21 @@
     <TypeScriptCompile Include="src\app\dashboard\race-stat.service.ts" />
     <TypeScriptCompile Include="src\app\dashboard\requests\race-stat-request.ts" />
     <TypeScriptCompile Include="src\app\dashboard\responses\race-stat-response.ts" />
+    <TypeScriptCompile Include="src\app\modules\dashboard\dashboard-home\dashboard-home.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\dashboard\dashboard-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\dashboard\dashboard.module.ts" />
+    <TypeScriptCompile Include="src\app\modules\dto\horse-stat.ts" />
+    <TypeScriptCompile Include="src\app\modules\dto\race-stat.ts" />
+    <TypeScriptCompile Include="src\app\modules\modules.component.ts" />
+    <TypeScriptCompile Include="src\app\modules\responses\race-stat-response.ts" />
+    <TypeScriptCompile Include="src\app\shared\app-shared.module.ts" />
     <TypeScriptCompile Include="src\app\shared\busy-indicator\busy-indicator.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\eml-checkbox\eml-checkbox.component.ts" />
+    <TypeScriptCompile Include="src\app\shared\pipes\debugger.pipe.ts" />
+    <TypeScriptCompile Include="src\app\shared\requests\search-request-base.ts" />
     <TypeScriptCompile Include="src\app\shared\responses\search-response.ts" />
     <TypeScriptCompile Include="src\app\shared\services\search.service.ts" />
+    <TypeScriptCompile Include="src\app\shared\statistics\statistics.component.ts" />
     <TypeScriptCompile Include="src\app\shared\statistic\statistic.component.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />

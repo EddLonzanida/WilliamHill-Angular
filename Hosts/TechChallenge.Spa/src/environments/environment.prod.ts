@@ -2,6 +2,6 @@ export const environment = {
   production: true
 };
 
-export class AppSettings{
+export const appSettings = {
   apiRoot: 'http://localhost:44344/api/'
 }
