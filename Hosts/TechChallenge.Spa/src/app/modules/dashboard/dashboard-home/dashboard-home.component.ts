@@ -1,7 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { RaceStatResponse } from '../../responses/race-stat-response';
 import { RaceStatService } from 'src/app/shared/services/race-stat.service';
-import { BusyIndicatorComponent } from 'src/app/shared/busy-indicator/busy-indicator.component';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -33,7 +32,7 @@ export class DashboardHomeComponent implements AfterViewInit {
         this.raceStatService.getStats().subscribe(r => {
             this.raceStatResponse = r;
             this.safeIndex = r.raceStats.length;
-            if (this.safeIndex > 5) { this.safeIndex = 5 };
+            if (this.safeIndex > 5) { this.safeIndex = 5; }
             this.isBusy = false;
             this.hasErrors = false;
             console.warn(`getStats: ${r.raceStats}`);

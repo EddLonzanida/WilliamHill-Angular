@@ -26,6 +26,11 @@ body {
     margin-right: 1em;
 }
 
+.ui-state-active {
+    background-color: #F15B2A !important;
+    color: #ffffff;
+}
+
 .menu-selected {
     background-color: #F15B2A !important;
     color: #ffffff;

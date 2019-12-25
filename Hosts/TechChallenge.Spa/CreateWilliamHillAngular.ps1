@@ -9,29 +9,24 @@ function CreateFolder($path) {
 
 function GetAppName() {
 
-    return (get-item $PSScriptRoot).Name.Replace(".Spa","")
+    return (get-item $PSScriptRoot).Name.Replace(".Spa", "")
 }
 
-function DeleteFile($path){
+function DeleteFile($path) {
     
-  if (Test-Path $path) { 
+    if (Test-Path $path) { 
     
-    try {
+        try {
     
-        Write-Host "Deleting $path.." -foreground "magenta" 
+            Write-Host "Deleting $path.." -foreground "magenta" 
             Remove-Item -Path "$path" -Force -ErrorAction SilentlyContinue
             Write-Host " "
-        
-            return $true
         }
         catch {
     
             $_
             return $false
         }	
-    }
-    else {
-        return $true
     }
 }
 
@@ -44,18 +39,12 @@ function DeleteDirectory($path) {
             Write-Host "Deleting $path.." -foreground "magenta" 
             Remove-Item -Path "$path" -Force -Recurse -ErrorAction SilentlyContinue
             Write-Host " "
-    
-            return $true
         }
         catch {
     
             $_
             return $false
         }	
-    }
-    else {
-    
-        return $true
     }
 }
 
@@ -65,13 +54,13 @@ function CreateLaunchJson($path) {
     
     CreateFolder $dest
 
-	#--
-	$fn = "$dest\launch.json"
+    #--
+    $fn = "$dest\launch.json"
    
     DeleteFile $fn
    
     $code = 
-'{
+    '{
     "version": "0.2.0",
     "configurations": [
         {
@@ -97,92 +86,82 @@ function CreateLaunchJson($path) {
 function CreateSearchService($path) {
     
     $dest = "$path\src\app\shared\services"
-    
-    CreateFolder $dest
-    Set-Location $dest
-    
-    ng g service Search --skipTests
-    
-    Set-Location $path
-    Write-Host 
-
-	$fn = "$dest\search.service.ts"
+    $fn = "$dest\search.service.ts"
     DeleteFile $fn
-   
     $code = 
-    'import { Injectable } from "@angular/core";
-    import { HttpClient,HttpParams } from "@angular/common/http";
-    import { Observable, throwError } from "rxjs";
-    import { catchError } from "rxjs/operators";
-    import { SearchResponseBase } from "../responses/search-response-base";
-    import { appSettings } from "src/environments/environment";
-    
-    @Injectable(({ providedIn: "root" }) as any)
-    export class SearchService {
-      private readonly baseUrl: string;
-    
-      constructor(private readonly httpClient: HttpClient) {
-        this.baseUrl = appSettings.apiRoot;
-      }
-    
-      getSuggestions(controller: string, query: string) {
-        const action = "suggestions";
-        const route = `${controller}/${action}`;
-        const param = { search: query };
-    
-        return this.request<string[]>("getSuggestions", route, param);
-      }
-    
-      search<TRequest, TResponse>(route: string, request: TRequest) {
-        return this.request<SearchResponseBase<TResponse>>("search", route, request);
-      }
-    
-      request<TResponse>(operation: string, route: string, params?: any): Observable<TResponse> {
-        const httpParams = this.toHttpParams(params);
-        const config = { params: httpParams }
-        const url = `${this.baseUrl}${route}`;
-    
-        return this.httpClient.get<TResponse>(url, config).pipe(
-          catchError(this.handleError<TResponse>(operation, {} as TResponse))
-        );
-      }
-    
-      private toHttpParams(obj: Object): HttpParams {
-        let params = new HttpParams();
-    
-        if (!obj) return params;
-    
-        for (const key in obj) {
-          if (obj.hasOwnProperty(key)) {
-    
-            const val = obj[key];
-    
-            if (val !== null && val !== undefined) {
-              params = params.append(key, val.toString());
-            }
-          }
+    "import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { SearchResponseBase } from '../responses/search-response-base';
+import { appSettings } from 'src/environments/environment';
+
+@Injectable(({ providedIn: 'root' }) as any)
+export class SearchService {
+  private readonly baseUrl: string;
+
+  constructor(private readonly httpClient: HttpClient) {
+    this.baseUrl = appSettings.apiRoot;
+  }
+
+  getSuggestions(controller: string, query: string) {
+    const action = 'suggestions';
+    const route = ```${controller}/suggestions```;
+    const param = { search: query };
+
+    return this.request<string[]>('getSuggestions', route, param);
+  }
+
+  search<TRequest, TResponse>(route: string, request: TRequest) {
+    return this.request<SearchResponseBase<TResponse>>('search', route, request);
+  }
+
+  request<TResponse>(operation: string, route: string, params?: any): Observable<TResponse> {
+    const httpParams = this.toHttpParams(params);
+    const config = { params: httpParams };
+    const url = this.baseUrl + route;
+
+    return this.httpClient.get<TResponse>(url, config).pipe(
+      catchError(this.handleError<TResponse>(operation, {} as TResponse))
+    );
+  }
+
+  private toHttpParams(obj: object): HttpParams {
+    let params = new HttpParams();
+
+    if (!obj) { return params; }
+
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+
+        const val = obj[key];
+
+        if (val !== null && val !== undefined) {
+          params = params.append(key, val.toString());
         }
-        return params;
       }
-    
-      private log(message: string) {
-        console.log(message);
-      }
-    
-      private handleError<T>(operation = "operation", result?: T) {
-        return (error: any): Observable<T> => {
-          // TODO: send the error to remote logging infrastructure
-          // console.error(error); // log to console instead
-    
-          // TODO: better job of transforming error for user consumption
-          this.log(`${operation} failed: ${error.message}`);
-    
-          // Let the app keep running by returning an empty result.
-          // return of(result as T);
-          return throwError(error);
-        };
-      }
-    }'
+    }
+    return params;
+  }
+
+  private log(message: string) {
+    console.log(message);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      // console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(```${operation} failed: ``` + error.message);
+
+      // Let the app keep running by returning an empty result.
+      // return of(result as T);
+      return throwError(error);
+    };
+  }
+}"
 
     $code | Set-Content $fn
 }
@@ -190,28 +169,19 @@ function CreateSearchService($path) {
 function CreateSearchRequestBase($path) {
     
     $dest = "$path\src\app\shared\requests"
-    
-    CreateFolder $dest
-    Set-Location $dest
-    
-    ng g class SearchRequestBase --skipTests
-    
-    Set-Location $path
-    Write-Host 
-
-	#--
-	$fn = "$dest\search-request-base.ts"
+    $fn = "$dest\search-request-base.ts"
     DeleteFile $fn
    
     $code = 
-'export class SearchRequestBase {
+    "export class SearchRequestBase {
     constructor(
-        public search = "",
+        public search = '',
         public page = 0,
         public sortColumn = 0,
         public isDescending = 0) {
     }
-}'
+}
+"
 
     $code | Set-Content $fn
 }
@@ -219,27 +189,18 @@ function CreateSearchRequestBase($path) {
 function CreateSearchResponseBase($path) {
     
     $dest = "$path\src\app\shared\responses"
-    
-    CreateFolder $dest
-    Set-Location $dest
-    
-    ng g class SearchResponseBase --skipTests
-    
-    Set-Location $path
-    Write-Host 
-
-	#--
-	$fn = "$dest\search-response-base.ts"
+    $fn = "$dest\search-response-base.ts"
     DeleteFile $fn
    
     $code = 
-    'export class SearchResponseBase<T> {
+    "export class SearchResponseBase<T> {
     constructor(
         public recordCount = 0,
         public rowsPerPage = 0,
         public items: T[] = []
     ) { }
-}'
+}
+"
 
     $code | Set-Content $fn
 }
@@ -278,14 +239,14 @@ function CreateEnvironmentConfigs($path) {
     $successfullDelete = DeleteFile $fn
    
     $code = 
-'export const environment = {
-    production: false
-};
-
-export const appSettings = {
-    apiRoot: "http://localhost:44344/api/",
-    identityProvider: "http://localhost:44344/api/",
-}'
+    "export const environment = {
+    production: true
+  };
+  
+  export const appSettings = {
+    apiRoot: 'http://localhost:44344/api/'
+  };
+"
 
     $code | Set-Content $fn
 
@@ -293,14 +254,14 @@ export const appSettings = {
     $successfullDelete = DeleteFile $fn
    
     $code = 
-'export const environment = {
+    "export const environment = {
     production: true
-};
-
-export const appSettings = {
-    apiRoot: "http://localhost:44344/api/",
-    identityProvider: "http://localhost:44344/api/",
-}'
+  };
+  
+  export const appSettings = {
+    apiRoot: 'http://localhost:44344/api/'
+  };
+"
 
     $code | Set-Content $fn
 }
@@ -308,49 +269,37 @@ export const appSettings = {
 function CreateBusyIndicatorComponent($path) {
     
     $dest = "$path\src\app\shared"
-    
-    CreateFolder $dest
-    Set-Location $dest
-    
-    # ng g component BusyIndicator --skipTests
-    
-    Set-Location $path
-    Write-Host 
+    $path2 = "$dest\busy-indicator"
 
-	#--
-	$path2 = "$dest\busy-indicator"
-
-	CreateBusyIndicatorTs $path2
-	CreateBusyIndicatorHtml $path2
-	CreateBusyIndicatorCss $path2
+    CreateBusyIndicatorTs $path2
+    CreateBusyIndicatorHtml $path2
+    CreateBusyIndicatorCss $path2
 }
 
-function CreateBusyIndicatorTs($path){
-	$fn = "$path\busy-indicator.component.ts"
+function CreateBusyIndicatorTs($path) {
+    $fn = "$path\busy-indicator.component.ts"
     $successfullDelete = DeleteFile $fn
    
     $code = 
-    'import { Component, Input } from "@angular/core";
+    "import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: "app-busy-indicator",
-    templateUrl: "./busy-indicator.component.html",
-    styleUrls: ["./busy-indicator.component.css"]
+    selector: 'app-busy-indicator',
+    templateUrl: './busy-indicator.component.html',
+    styleUrls: ['./busy-indicator.component.css']
 })
-export class BusyIndicatorComponent {
-    
-	@Input() title: string;
+export class BusyIndicatorComponent  {
+    @Input() title: string;
     @Input() isBusy: boolean;
-    
-	constructor() { }
-}'
+    constructor() { }
+}"
 
     $code | Set-Content $fn
 }
 
-function CreateBusyIndicatorHtml($path){
-	$fn = "$path\busy-indicator.component.html"
-    $successfullDelete =  DeleteFile $fn
+function CreateBusyIndicatorHtml($path) {
+    $fn = "$path\busy-indicator.component.html"
+    $successfullDelete = DeleteFile $fn
    
     $code = 
     '<div *ngIf="isBusy" class="busy-indicator-container">
@@ -407,8 +356,8 @@ function CreateBusyIndicatorHtml($path){
     $code | Set-Content $fn
 }
 
-function CreateBusyIndicatorCss($path){
-	$fn = "$path\busy-indicator.component.css"
+function CreateBusyIndicatorCss($path) {
+    $fn = "$path\busy-indicator.component.css"
     $successfullDelete = DeleteFile $fn
    
     $code = 
@@ -1319,28 +1268,8 @@ ai-dialog-container {
     $code | Set-Content $fn
 }
 
-function CreateEmlCheckBoxComponent($path) {
-    
-    $dest = "$path\src\app\shared"
-    
-    CreateFolder $dest
-    Set-Location $dest
-    
-    ng g component EmlCheckbox --skipTests
-    
-    Set-Location $path
-    Write-Host 
-	
-	#--
-	$path2 = "$dest\eml-checkbox"
-
-	CreateEmlCheckboxTs $path2
-	CreateEmlCheckboxHtml $path2
-	CreateEmlCheckboxCss $path2
-}
-
-function CreateEmlCheckboxTs($path){
-	$fn = "$path\eml-checkbox.component.ts"
+function CreateEmlCheckboxTs($path) {
+    $fn = "$path\eml-checkbox.component.ts"
     $successfullDelete = DeleteFile $fn
    
     $code = 
@@ -1365,8 +1294,8 @@ export class EmlCheckboxComponent implements OnChanges {
     $code | Set-Content $fn
 }
 
-function CreateEmlCheckboxHtml($path){
-	$fn = "$path\eml-checkbox.component.html"
+function CreateEmlCheckboxHtml($path) {
+    $fn = "$path\eml-checkbox.component.html"
     $successfullDelete = DeleteFile $fn
    
     $code = 
@@ -1383,8 +1312,8 @@ function CreateEmlCheckboxHtml($path){
     $code | Set-Content $fn
 }
 
-function CreateEmlCheckboxCss($path){
-	$fn = "$path\eml-checkbox.component.css"
+function CreateEmlCheckboxCss($path) {
+    $fn = "$path\eml-checkbox.component.css"
     $successfullDelete = DeleteFile $fn
    
     $code = 
@@ -1464,35 +1393,26 @@ function CreateDebuggerPipe($path) {
     
     $dest = "$path\src\app\shared\pipes"
     
-    CreateFolder $dest
-    Set-Location $dest
-    
-    # ng g pipe Debugger --skipTests
-    
-    Set-Location $path
-    Write-Host 
-	
-	#--
-	$fn = "$dest\debugger.pipe.ts"
+    $fn = "$dest\debugger.pipe.ts"
     $successfullDelete = DeleteFile $fn
    
     $code = 
-    'import { Pipe, PipeTransform } from "@angular/core";
+    "import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: "debugger"
+    name: 'debugger'
 })
 export class DebuggerPipe implements PipeTransform {
 
     transform(value: any, args?: any): any {
 
-        console.warn("===myDebugger");
+        console.warn('===myDebugger');
         console.warn(value);
 
         return value;
 
     }
-}'
+}"
     $code | Set-Content $fn
 }
 
@@ -1525,10 +1445,6 @@ function CreateAngular($path, $angularAppName) {
     ng new $angularAppName --directory=./ --routing --skip-install --skip-git --style=css --interactive=false --skipTests
 
     CreateLaunchJson $path
-    CreateSearchService $path
-    CreateSearchRequestBase $path
-    CreateSearchResponseBase $path
-    # CreateEmlCheckBoxComponent $path
     CreateAssetFolders $path
     CreateEditorConfig $path
     CreateEnvironmentConfigs $path
@@ -1549,10 +1465,18 @@ function CreateAngular($path, $angularAppName) {
     ng g class modules/dto/HorseStat --skipTests
     ng g class modules/dto/RaceStat --skipTests
     ng g class modules/responses/RaceStatResponse --skipTests
+
     ng g service shared/services/RaceStat --skipTests
+    ng g service shared/services/Search --skipTests
+    ng g class shared/requests/SearchRequestBase --skipTests
+    ng g class shared/responses/SearchResponseBase --skipTests
 
     CreateDebuggerPipe $path
     CreateBusyIndicatorComponent $path
+    CreateSearchService $path
+    CreateSearchRequestBase $path
+    CreateSearchResponseBase $path
+    
     #https://baswanders.com/angular-cli-cheatsheet-an-overview-of-the-most-used-commands/
     #https://angular.io/guide/styleguide
     # # typescript versions: https://www.npmjs.com/package/typescript

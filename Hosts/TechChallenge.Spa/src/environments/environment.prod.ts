@@ -4,4 +4,4 @@ export const environment = {
 
 export const appSettings = {
   apiRoot: 'http://localhost:44344/api/'
-}
+};
