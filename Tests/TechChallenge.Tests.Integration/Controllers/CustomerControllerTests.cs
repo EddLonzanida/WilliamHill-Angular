@@ -92,7 +92,7 @@ namespace TechChallenge.Tests.Integration.Controllers
         {
             //ensure no remnants of failed tests
             var repository = classFactory.GetExport<ITechChallengeDataRepositorySoftDeleteInt<Customer>>();
-            var context = await repository.GetDb();
+            var context = await repository.GetDbAsync();
 
             using (var connection = context.Database.Connection)
             {
