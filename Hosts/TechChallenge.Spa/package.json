@@ -22,7 +22,7 @@
         "@angular/router": "~8.2.14",
         "animate.css": "^3.7.0",
         "bootstrap": "^4.4.1",
-        "dexie": "^2.0.4",
+        "dexie": "^3.2.2",
         "font-awesome": "^4.7.0",
         "jquery": "^3.4.1",
         "moment": "^2.23.0",
